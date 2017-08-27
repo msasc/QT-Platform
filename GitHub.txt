@@ -1,0 +1,2 @@
+QT-Platform URI
+https://github.com/msasc/QT-Platform.git

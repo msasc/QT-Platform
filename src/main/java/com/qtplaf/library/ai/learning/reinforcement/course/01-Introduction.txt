@@ -1,0 +1,43 @@
+At each step t the agent:
+-   Executes action A(t)
+-   Receives observation O(t)
+-   Receives scalar reward R(t)
+The envirinment:
+-   Receives action A(t)
+-   Emits observation O(t+1)
+-   Emits scalar reward R(t+1)
+t increments at environment step.
+
+The history is the sequence of observations, actions, rewards:
+    H(t) = [O,R,A](1),...,[O,R,A](T)
+State is the information used to determine what happens next, a function of the history:
+    S(t) = f(H(t))
+
+Environment state Se(t)
+-   Any data used to get the next observation/reward
+-   Not usually visible to the agent
+-   May contain irrelevant information for the agent.
+
+Agent state Sa(t)
+-   Information used by the agent to get the next action
+-   It can be any functin of the history 
+-   It can be any functin of the history Sa(t) = f(H(t))
+
+Full observability: agent directly observes environment state
+    O(t) = Sa(t) = Se(t)
+
+Partial aobservability: 
+    -   Poker paying only observes public cardsç
+    -   Trader only observes current (or past) prices
+    Sa(t) != Se(t)
+
+A model predicts what the environment will do next, state and reward.
+
+RL agent categories:
+-   Value based -> No policy (implicit), value function
+-   Policy based -> Policy, no value function
+-   Actor critic -> Policy and value function
+-   Model free -> Policy and/or value function, no model
+-   Model based -> Policy and/or value function, model
+
+

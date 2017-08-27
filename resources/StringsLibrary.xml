@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>System library strings</comment>
+
+	<!-- Several widely used tokens. -->
+
+	<entry key="tokenYes">Yes</entry>
+	<entry key="tokenNo">No</entry>
+	<entry key="tokenTrue">true</entry>
+	<entry key="tokenFalse">false</entry>
+	<entry key="tokenSelect">Select</entry>
+	<entry key="tokenAsc">Asc</entry>
+	<entry key="tokenDesc">Desc</entry>
+	<entry key="tokenOk">Ok</entry>
+	<entry key="tokenClose">Close</entry>
+	<entry key="tokenElapsed">Elapsed</entry>
+	<entry key="tokenEstimated">Estimated</entry>
+	<entry key="tokenRemaining">Remaining</entry>
+	<entry key="tokenPending">Pending</entry>
+	<entry key="tokenTime">Time</entry>
+	<entry key="tokenError">Error</entry>
+	<entry key="tokenDetail">Detail</entry>
+	<entry key="tokenTask">Task</entry>
+	<entry key="tokenStep">Step</entry>
+	<entry key="tokenStart">Start</entry>
+	<entry key="tokenPause">Pause</entry>
+	<entry key="tokenResume">Resume</entry>
+	<entry key="tokenCancel">Cancel</entry>
+	<entry key="tokenFrom">From</entry>
+	<entry key="tokenTo">To</entry>
+	<entry key="tokenPurge">Purge</entry>
+	
+	<entry key="tokenSecond">Second</entry>
+	<entry key="tokenSeconds">Seconds</entry>
+	<entry key="tokenMinute">Minute</entry>
+	<entry key="tokenMinutes">Minutes</entry>
+	<entry key="tokenHour">Hour</entry>
+	<entry key="tokenHours">Hours</entry>
+	
+	<entry key="tokenTerminated">Terminated</entry>
+
+	<!-- Message box options. -->
+
+	<entry key="messageBoxOptionAccept">Accept</entry>
+	<entry key="messageBoxOptionOk">Ok</entry>
+	<entry key="messageBoxOptionYes">Yes</entry>
+	<entry key="messageBoxOptionNo">No</entry>
+	<entry key="messageBoxOptionCancel">Cancel</entry>
+	<entry key="messageBoxOptionRetry">Retry</entry>
+	<entry key="messageBoxOptionIgnore">Ignore</entry>
+	<entry key="messageBoxOptionInvalid">Invalid message box option</entry>
+	<entry key="messageBoxTitleError">Error</entry>
+	<entry key="messageBoxTitleWarning">Warning</entry>
+	<entry key="messageBoxTitleQuestion">Question</entry>
+	<entry key="messageBoxTitleInformation">Information</entry>
+
+	<!-- Actions (buttons) names. These are more generic. -->
+
+	<entry key="actionAcceptName">Accept</entry>
+	<entry key="actionBrowseName">Browse</entry>
+	<entry key="actionCalculateName">Calculate</entry>
+	<entry key="actionCancelName">Cancel</entry>
+	<entry key="actionChartName">Chart</entry>
+	<entry key="actionClearName">Clear</entry>
+	<entry key="actionCloseName">Close</entry>
+	<entry key="actionColumnsName">Columns</entry>
+	<entry key="actionCreateName">Create</entry>
+	<entry key="actionDownloadName">Download</entry>
+	<entry key="actionDeleteName">Delete</entry>
+	<entry key="actionExecuteName">Execute</entry>
+	<entry key="actionExitName">Exit</entry>
+	<entry key="actionPurgeName">Purge</entry>
+	<entry key="actionSelectName">Select</entry>
+	<entry key="actionSortName">Sort</entry>
+	<entry key="actionStartName">Start</entry>
+	<entry key="actionStopName">Stop</entry>
+	
+	<entry key="actionAscendingName">Asc</entry>
+	<entry key="actionDescendingName">Desc</entry>
+
+	<!-- Actions (buttons) short descriptions for the columns panel. -->
+
+	<entry key="actionRightShortDesc">Move the unselected field to selected</entry>
+	<entry key="actionLeftShortDesc">Move the selected field to unselected</entry>
+	<entry key="actionUpShortDesc">Move the selected field up</entry>
+	<entry key="actionDownShortDesc">Move the selected field down</entry>
+
+	<!-- Batch chain: actions (buttons) messages. These are specific. -->
+
+	<entry key="actionExitBatchChainMessageCanNotExit">Can not exit while performing</entry>
+	<entry key="actionStartBatchChainMessageCanNotStart">Can not start while performing</entry>
+	<entry key="actionStartBatchChainMessageQueryStart">Start processing?</entry>
+	<entry key="actionStopBatchChainMessageCanNotStop">Can not stop if not executing</entry>
+	<entry key="actionStopBatchChainMessageQueryStop">Stop processing?</entry>
+
+	<!-- Neural network messages. -->
+
+	<entry key="messageStopIrreducibleError">
+		Stopped by irreducible error condition:
+		Network error:
+		{0,number}
+		Irreducible error: {1,number}
+	</entry>
+	<entry key="messageStopMaxIterations">
+		Stopped by max iterations error condition:
+		Network
+		iteration: {0,number,integer}
+		Max iterations: {1,number,integer}
+	</entry>
+
+	<!-- Trading: unit descriptions. -->
+
+	<entry key="tradeUnitTickDescription">Tick</entry>
+	<entry key="tradeUnitMillisecondDescription">ms</entry>
+	<entry key="tradeUnitSecondDescription">Sec</entry>
+	<entry key="tradeUnitMinuteDescription">Min</entry>
+	<entry key="tradeUnitHourDescription">Hour</entry>
+	<entry key="tradeUnitDayDescription">Day</entry>
+	<entry key="tradeUnitWeekDescription">Week</entry>
+	<entry key="tradeUnitMonthDescription">Month</entry>
+	<entry key="tradeUnitYearDescription">Year</entry>
+
+	<!-- Trading: chart messages. -->
+
+	<!-- JTable strings. -->
+
+	<entry key="lineOfLines">Line {0,number,integer} of {1,number,integer}</entry>
+
+	<!-- Field properties. -->
+
+	<entry key="fieldIndex">Index</entry>
+	<entry key="fieldGroup">Group</entry>
+	<entry key="fieldGroupIndex">Group index</entry>
+	<entry key="fieldName">Name</entry>
+	<entry key="fieldAlias">Alias</entry>
+	<entry key="fieldHeader">Header</entry>
+	<entry key="fieldTitle">Title</entry>
+	<entry key="fieldType">Type</entry>
+	<entry key="fieldLength">Length</entry>
+	<entry key="fieldDecimals">Decimals</entry>
+	<entry key="fieldAsc">Asc/Desc</entry>
+
+	<!-- Key words -->
+
+	<entry key="key_0">0</entry>
+	<entry key="key_1">1</entry>
+	<entry key="key_2">2</entry>
+	<entry key="key_3">3</entry>
+	<entry key="key_4">4</entry>
+	<entry key="key_5">5</entry>
+	<entry key="key_6">6</entry>
+	<entry key="key_7">7</entry>
+	<entry key="key_8">8</entry>
+	<entry key="key_9">9</entry>
+	<entry key="key_A">A</entry>
+	<entry key="key_B">B</entry>
+	<entry key="key_C">C</entry>
+	<entry key="key_D">D</entry>
+	<entry key="key_E">E</entry>
+	<entry key="key_F">F</entry>
+	<entry key="key_G">G</entry>
+	<entry key="key_H">H</entry>
+	<entry key="key_I">I</entry>
+	<entry key="key_J">J</entry>
+	<entry key="key_K">K</entry>
+	<entry key="key_L">L</entry>
+	<entry key="key_M">M</entry>
+	<entry key="key_N">N</entry>
+	<entry key="key_O">O</entry>
+	<entry key="key_P">P</entry>
+	<entry key="key_Q">Q</entry>
+	<entry key="key_R">R</entry>
+	<entry key="key_S">S</entry>
+	<entry key="key_T">T</entry>
+	<entry key="key_U">U</entry>
+	<entry key="key_V">V</entry>
+	<entry key="key_W">W</entry>
+	<entry key="key_X">X</entry>
+	<entry key="key_Y">Y</entry>
+	<entry key="key_Z">Z</entry>
+	<entry key="key_F1">F1</entry>
+	<entry key="key_F2">F2</entry>
+	<entry key="key_F3">F3</entry>
+	<entry key="key_F4">F4</entry>
+	<entry key="key_F5">F5</entry>
+	<entry key="key_F6">F6</entry>
+	<entry key="key_F7">F7</entry>
+	<entry key="key_F8">F8</entry>
+	<entry key="key_F9">F9</entry>
+	<entry key="key_F10">F10</entry>
+	<entry key="key_F11">F11</entry>
+	<entry key="key_F12">F12</entry>
+	<entry key="key_Add">Add</entry>
+	<entry key="key_Alt">Alt</entry>
+	<entry key="key_Altgraph">AltGr</entry>
+	<entry key="key_Back_slash">BackSlash</entry>
+	<entry key="key_Back_space">BackSpace</entry>
+	<entry key="key_Button1">Button1</entry>
+	<entry key="key_Button2">Button2</entry>
+	<entry key="key_Button3">Button3</entry>
+	<entry key="key_Cancel">Cancel</entry>
+	<entry key="key_Caps_lock">CapsLock</entry>
+	<entry key="key_Clear">Clear</entry>
+	<entry key="key_Close_bracket">CloseBracket</entry>
+	<entry key="key_Comma">Comma</entry>
+	<entry key="key_Control">Control</entry>
+	<entry key="key_Ctrl">Ctrl</entry>
+	<entry key="key_Decimal">Dec</entry>
+	<entry key="key_Delete">Del</entry>
+	<entry key="key_Divide">Div</entry>
+	<entry key="key_Down">Down</entry>
+	<entry key="key_End">End</entry>
+	<entry key="key_Enter">Enter</entry>
+	<entry key="key_Equals">Equals</entry>
+	<entry key="key_Escape">Esc</entry>
+	<entry key="key_Home">Home</entry>
+	<entry key="key_Left">Left</entry>
+	<entry key="key_Meta">Meta</entry>
+	<entry key="key_Minus">Minus</entry>
+	<entry key="key_Multiply">Multiply</entry>
+	<entry key="key_Num_lock">NumLock</entry>
+	<entry key="key_Numpad0">Numpad0</entry>
+	<entry key="key_Numpad1">Numpad1</entry>
+	<entry key="key_Numpad2">Numpad2</entry>
+	<entry key="key_Numpad3">Numpad3</entry>
+	<entry key="key_Numpad4">Numpad4</entry>
+	<entry key="key_Numpad5">Numpad5</entry>
+	<entry key="key_Numpad6">Numpad6</entry>
+	<entry key="key_Numpad7">Numpad7</entry>
+	<entry key="key_Numpad8">Numpad8</entry>
+	<entry key="key_Numpad9">Numpad9</entry>
+	<entry key="key_Open_bracket">OpenBracket</entry>
+	<entry key="key_Page_down">PageDn</entry>
+	<entry key="key_Page_up">PageUp</entry>
+	<entry key="key_Pause">Pause</entry>
+	<entry key="key_Period">Period</entry>
+	<entry key="key_Right">Right</entry>
+	<entry key="key_Scroll_lock">ScrollLock</entry>
+	<entry key="key_Semicolon">Semicolon</entry>
+	<entry key="key_Separater">Sep</entry>
+	<entry key="key_Separator">Sep</entry>
+	<entry key="key_Shift">Shift</entry>
+	<entry key="key_Slash">Slash</entry>
+	<entry key="key_Space">Space</entry>
+	<entry key="key_Subtract">Subtract</entry>
+	<entry key="key_Tab">Tab</entry>
+	<entry key="key_Up">Up</entry>
+	
+	<!-- Panel/Dialog columns -->
+	
+	<entry key="dialogColumnsSelectTableFields">Select table fields</entry>
+	<entry key="dialogColumnsDefineTableOrder">Define table order</entry>
+	
+	<entry key="panelColumnsAvailableFields">Available fields</entry>
+	<entry key="panelColumnsSelectedFields">Selected fields</entry>
+	
+	<!-- Panel progress strings. --> 
+	
+	<entry key="panelProgressPause">Pause the current task</entry>
+	<entry key="panelProgressResume">Resume the current task</entry>
+	<entry key="panelProgressStart">Start the current task</entry>
+	<entry key="panelProgressCancel">Cancel (stop) the current task</entry>
+	<entry key="panelProgressClose">Close the current task monitor</entry>
+	<entry key="panelProgressError">View error</entry>
+	<entry key="panelProgressErrorInfo">View detailed error information</entry>
+	<entry key="panelProgressCounting">Counting</entry>
+	<entry key="panelProgressProcessing">Processing...</entry>
+	<entry key="panelProgressProcessed">Processed</entry>
+	<entry key="panelProgressCompleted">Completed</entry>
+	<entry key="panelProgressStarted">Started</entry>
+	<entry key="panelProgressPaused">Paused</entry>
+	<entry key="panelProgressCancelled">Cancelled</entry>
+	<entry key="panelProgressCancelledByUserRequest">Cancelled by user resquest</entry>
+	<entry key="panelProgressHasBeenCancelledByUserRequest">Has been cancelled by user resquest.</entry>
+	<entry key="panelProgressError">Error occurred while processing</entry>
+	<entry key="panelProgressStartTime">started</entry>
+	<entry key="panelProgressEndTime">estimated end</entry>
+	
+	<!-- Task specific strings. -->
+	
+	<entry key="taskStepOfSteps">{0,number,integer} of {1,number,integer}</entry>
+	<entry key="taskExecutingTask">Executing task</entry>
+	
+	<!-- JFileChooser -->
+	
+	<entry key="fileChooserInvalidFileName">Invalid file name: {0}</entry>
+	<entry key="fileChooserConfirmSaveTitle">Confirm save</entry>
+	<entry key="fileChooserConfirmSaveText">{0} exists. Replace it?</entry>
+	<entry key="fileChooserOpenNotExists">{0} does not exist. Choose an existing file.</entry>
+	
+	<!-- Tree menu -->
+	
+	<entry key="treeMenuAccessDenied">Access to menu option is denied. Please contact the security administrator.</entry>
+	<entry key="treeMenuNoAction">No action has been set for the current menu option.</entry>
+	
+	<!-- General security messages. -->
+	
+	<entry key="securityAccessToFileDenied">Access to file denied.</entry>
+	
+	<!-- Frame menu (application) -->
+	
+	<entry key="frameMenuExitApplication">Exit the application?</entry>
+	<entry key="frameMenuTabMenuLabel">Menu</entry>
+	<entry key="frameMenuTabMenuTooltip">Main application menu</entry>
+	<entry key="frameMenuTabConsoleLabel">Console</entry>
+	<entry key="frameMenuTabConsoleTooltip">Out and err console</entry>
+	
+</properties>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>QT Platform strings</comment>
+
+	<entry key="qtMenuTitle">QT Platform</entry>
+	<entry key="qtMenuServers">Supported broker servers</entry>
+	<entry key="qtMenuServersSynchronizeInstruments">Synchronize available instruments</entry>
+	<entry key="qtMenuServersAvInst">Available instruments</entry>
+	<entry key="qtMenuServersTickers">Tickers</entry>
+	<entry key="qtMenuServersTickersDefine">Define &#38; download</entry>
+	<entry key="qtMenuServersTickersStatistics">Statistics</entry>
+	
+	
+	<entry key="qtActionCreateTicker">Create new ticker</entry>
+	<entry key="qtActionCreateStatistics">Create new statistics</entry>
+	
+	<entry key="qtItemMustBeSet">The {0} must be set</entry>
+	
+	<entry key="qtItemServer">server</entry>
+	<entry key="qtItemInstrument">instrument</entry>
+	<entry key="qtItemPeriod">period</entry>
+	<entry key="qtItemOfferSide">offer side</entry>
+	<entry key="qtItemDataFilter">data filter</entry>
+	
+	<entry key="qtAskDeleteTickers">Delete selected tickers and downloaded data?</entry>
+	<entry key="qtAskPurgeTickers">Purge (delete) selected tickers data?</entry>
+	
+	<entry key="qtAskDeleteStatistic">Delete the selected statistics and calculated data?</entry>
+	
+</properties>

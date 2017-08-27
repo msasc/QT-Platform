@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="warn">
+	<Appenders>
+		<Console name="Console" direct="false" follow="true">
+			<PatternLayout>
+				<Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger - %msg%n</Pattern>
+			</PatternLayout>
+		</Console>
+		<RollingFile name="RollingFile" fileName="logs/jfx.log"
+			filePattern="logs/jfx-%d{yyyy-MM-dd}.log">
+			<PatternLayout>
+				<Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger - %msg%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" />
+				<SizeBasedTriggeringPolicy size="1 GB" />
+			</Policies>
+			<DefaultRolloverStrategy>
+				<Delete basePath="logs">
+					<IfAccumulatedFileCount exceeds="5" />
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Root level="trace">
+			<AppenderRef ref="Console" level="info" />
+			<AppenderRef ref="RollingFile" level="error" />
+		</Root>
+	</Loggers>
+</Configuration>

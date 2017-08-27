@@ -1,0 +1,8 @@
+Markov decision processes describe an environment for RLearning
+
+The future is independent of the past given the present: S(t) is Markov if
+    P[S(t+1)|S(t)] = P[S(t+1)|S(1,...t)]
+
+-   The state captures all relevent information from the history
+-   Once the state is known, the history can be forget
+-   The state is sufficient statistic of the future 

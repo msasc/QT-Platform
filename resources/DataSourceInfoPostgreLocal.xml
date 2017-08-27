@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>PostgreSQL Local data source definition</comment>
+
+	<entry key="data-source-name">PostgreSQL Local</entry>
+	<entry key="server-name">localhost</entry>
+	<entry key="port-number">5432</entry>
+	<entry key="database">postgres</entry>
+	<entry key="user">postgres</entry>
+	<entry key="password">postgres</entry>
+	
+</properties>

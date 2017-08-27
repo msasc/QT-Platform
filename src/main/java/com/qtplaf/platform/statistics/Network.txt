@@ -1,0 +1,15 @@
+Network inputs (avgs 5, 20, 50, 200)
+------------------------------------
+
+slope_5
+slope_20
+slope_50
+slope_200
+
+spread_5_20
+spread_5_50
+spread_5_200
+spread_20_50
+spread_20_200
+spread_50_200
+
