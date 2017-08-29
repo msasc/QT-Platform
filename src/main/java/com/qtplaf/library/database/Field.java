@@ -1081,7 +1081,7 @@ public class Field implements Comparable<Object> {
 	 * @return A boolean.
 	 */
 	public boolean isEditable() {
-		return properties.getBoolean(EDIT_BOOLEAN_IN_CHECK_BOX, true);
+		return properties.getBoolean(EDITABLE, true);
 	}
 
 	/**

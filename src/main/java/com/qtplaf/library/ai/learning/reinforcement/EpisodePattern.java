@@ -14,12 +14,15 @@
 
 package com.qtplaf.library.ai.learning.reinforcement;
 
+import com.qtplaf.library.ai.data.Pattern;
+import com.qtplaf.library.util.Properties;
+
 /**
  * A pattern or item of an episode. Handles the state, the action and the reward.
  *
  * @author Miquel Sas
  */
-public class EpisodePattern {
+public class EpisodePattern implements Pattern {
 
 	/** The parent episode. */
 	private final Episode episode;
@@ -44,6 +47,15 @@ public class EpisodePattern {
 		this.state = state;
 		this.action = action;
 		this.reward = reward;
+	}
+
+	/**
+	 * Return the parent episode.
+	 * 
+	 * @return The parent episode.
+	 */
+	public Episode getEpisode() {
+		return episode;
 	}
 
 	/**
@@ -73,4 +85,55 @@ public class EpisodePattern {
 		return reward;
 	}
 
+	/**
+	 * Return the pattern inputs.
+	 * 
+	 * @return The pattern inputs.
+	 */
+	@Override
+	public double[] getInputs() {
+		return state.getInputs();
+	}
+
+	/**
+	 * Return the optional pattern outputs, not applicable.
+	 * 
+	 * @return The pattern outputs.
+	 */
+	@Override
+	public double[] getOutputs() {
+		return null;
+	}
+
+	/**
+	 * Return the errors given the network outputs. The errors are be conditioned by the overall episode reward and are
+	 * determined by the action encourage or discourage gradients.
+	 * 
+	 * @param networkOutputs The list of network outputs.
+	 * @return The errors.
+	 */
+	@Override
+	public double[] getErrors(double[] networkOutputs) {
+		return (episode.isEncourge() ? action.getGradientsEncourage() : action.getGradientsDiscourage());
+	}
+
+	/**
+	 * Return the optional label.
+	 * 
+	 * @return The label.
+	 */
+	@Override
+	public String getLabel() {
+		return null;
+	}
+
+	/**
+	 * Return the additional properties.
+	 * 
+	 * @return The additional properties.
+	 */
+	@Override
+	public Properties getProperties() {
+		return null;
+	}
 }

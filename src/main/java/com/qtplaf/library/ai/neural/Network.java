@@ -391,7 +391,7 @@ public class Network {
 	}
 
 	/**
-	 * Creates an empty structure nwith the argument list of layer sizes. Weights and biases are left to zero, and
+	 * Creates an empty structure with the argument list of layer sizes. Weights and biases are left to zero, and
 	 * activations are null. This method is intended for IO purposes to initialize the structure to later be filled with
 	 * raw data.
 	 * <p>

@@ -35,16 +35,16 @@ public interface Action {
 	boolean isEndEpisode();
 
 	/**
-	 * Return a gradient that, applying the proper back propagation, encourages the action.
+	 * Return the gradients that, applied to the proper back propagation, encourages the action.
 	 * 
-	 * @return The encouraging gradient.
+	 * @return The encouraging gradients.
 	 */
-	double[] getGradientEncourage();
+	double[] getGradientsEncourage();
 
 	/**
-	 * Return a gradient that, applying the proper back propagation, discourages the action.
+	 * Return a gradients that, applied to the proper back propagation, discourages the action.
 	 * 
-	 * @return The discouraging gradient.
+	 * @return The discouraging gradients.
 	 */
-	double[] getGradientDiscourage();
+	double[] getGradientsDiscourage();
 }

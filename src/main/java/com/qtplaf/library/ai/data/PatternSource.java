@@ -14,7 +14,6 @@
 
 package com.qtplaf.library.ai.data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,44 +23,11 @@ import java.util.List;
  */
 public abstract class PatternSource {
 
-	/** List of listeners. */
-	private List<PatternSourceListener> listeners = new ArrayList<>();
-
 	/**
 	 * Constructor.
 	 */
 	public PatternSource() {
 		super();
-	}
-
-	/**
-	 * Add a listener.
-	 * 
-	 * @param listener The listener.
-	 */
-	public void addListener(PatternSourceListener listener) {
-		listeners.add(listener);
-	}
-
-	/**
-	 * Fire the clustering event.
-	 * 
-	 * @param e The pattern source event.
-	 */
-	protected void fireClusteringEvent(PatternSourceEvent e) {
-		for (PatternSourceListener listener : listeners) {
-			listener.patternSourceEvent(e);
-		}
-	}
-	
-	/**
-	 * Fire the clustering event.
-	 * 
-	 * @param message The action message.
-	 */
-	protected void fireClusteringEvent(String message) {
-		PatternSourceEvent e = new PatternSourceEvent(this, message);
-		fireClusteringEvent(e);
 	}
 
 	/**

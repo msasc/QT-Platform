@@ -16,19 +16,25 @@ package com.qtplaf.library.ai.mnist;
 
 import com.qtplaf.library.ai.data.Pattern;
 import com.qtplaf.library.ai.function.normalize.StdNormalizer;
+import com.qtplaf.library.util.Properties;
+import com.qtplaf.library.util.math.Matrix;
 
 /**
  * A MNIST number image pattern.
  *
  * @author Miquel Sas
  */
-public class NumberImagePattern extends Pattern {
+public class NumberImagePattern implements Pattern {
 
 	/** Normalizer. */
 	private StdNormalizer normalizer;
 	/** Underlying number image. */
 	private NumberImage image;
-	
+	/** Patter inputs. */
+	private double[] inputs;
+	/** Pattern outputs. */
+	private double[] outputs;
+
 	/**
 	 * Constructor.
 	 * 
@@ -57,7 +63,6 @@ public class NumberImagePattern extends Pattern {
 		super();
 		this.image = image;
 		this.normalizer = normalizer;
-		setLabel(Integer.toString(image.getNumber()));
 	}
 
 	/**
@@ -67,8 +72,8 @@ public class NumberImagePattern extends Pattern {
 	 */
 	@Override
 	public double[] getInputs() {
-		if (super.getInputs() == null) {
-			double[] inputs = new double[NumberImage.ROWS * NumberImage.COLUMNS];
+		if (inputs == null) {
+			inputs = new double[NumberImage.ROWS * NumberImage.COLUMNS];
 			int index = 0;
 			for (int row = 0; row < NumberImage.ROWS; row++) {
 				for (int column = 0; column < NumberImage.COLUMNS; column++) {
@@ -76,9 +81,8 @@ public class NumberImagePattern extends Pattern {
 					inputs[index++] = normalizer.normalize(imageByte);
 				}
 			}
-			setInputs(inputs);
 		}
-		return super.getInputs();
+		return inputs;
 	}
 
 	/**
@@ -88,10 +92,10 @@ public class NumberImagePattern extends Pattern {
 	 */
 	@Override
 	public double[] getOutputs() {
-		if (super.getOutputs() == null) {
+		if (outputs == null) {
 			StdNormalizer normalizer = new StdNormalizer(1, 0, 1, -1);
 			int number = image.getNumber();
-			double[] outputs = new double[10];
+			outputs = new double[10];
 			int index = 0;
 			for (int i = 0; i < number; i++) {
 				outputs[index++] = normalizer.normalize(0.0);
@@ -100,9 +104,38 @@ public class NumberImagePattern extends Pattern {
 			for (int i = number + 1; i < 10; i++) {
 				outputs[index++] = normalizer.normalize(0.0);
 			}
-			setOutputs(outputs);
 		}
-		return super.getOutputs();
+		return outputs;
+	}
+
+	/**
+	 * Return the errors given the network outputs.
+	 * 
+	 * @return The errors.
+	 */
+	@Override
+	public double[] getErrors(double[] networkOutputs) {
+		return Matrix.subtract(getOutputs(), networkOutputs);
+	}
+
+	/**
+	 * Return the label.
+	 * 
+	 * @return The label.
+	 */
+	@Override
+	public String getLabel() {
+		return Integer.toString(image.getNumber());
+	}
+
+	/**
+	 * Return the additional properties, not supported by this pattern.
+	 * 
+	 * @return The additional properties.
+	 */
+	@Override
+	public Properties getProperties() {
+		throw new UnsupportedOperationException();
 	}
 
 	/**

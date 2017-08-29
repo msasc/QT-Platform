@@ -65,7 +65,6 @@ public abstract class Propagation extends LearningMethod {
 				// Retrive the pattern.
 				Pattern pattern = source.get(i);
 				double[] patternInputs = pattern.getInputs();
-				double[] patternOutputs = pattern.getOutputs();
 
 				// Process inputs.
 				Network.Forward forward = Network.forward(network, patternInputs);
@@ -74,7 +73,7 @@ public abstract class Propagation extends LearningMethod {
 				double[] networkOutputs = ListUtils.getLast(forward.getOutputs());
 
 				// Calculate the output error.
-				double[] errors = Matrix.subtract(patternOutputs, networkOutputs);
+				double[] errors = pattern.getErrors(networkOutputs);
 
 				// Cumulate error.
 				double error = getIterationErrorFunction().getError(errors);
@@ -218,7 +217,7 @@ public abstract class Propagation extends LearningMethod {
 	}
 
 	/**
-	 * Ask extenders (back and resilient propagation) to return the weight change to apply. It is also resposibility of
+	 * Ask extenders (back and resilient propagation) to return the weight change to apply. It is also responsibility of
 	 * the extender to update last gradients and weight changes, because it is the extender that defines their use.
 	 * 
 	 * @param layer The layer.
@@ -328,10 +327,9 @@ public abstract class Propagation extends LearningMethod {
 		// Iterate patterns.
 		for (int i = 0; i < getLearningData().size(); i++) {
 
-			// Retrive the pattern.
+			// Retrieve the pattern.
 			Pattern pattern = getLearningData().get(i);
 			double[] patternInputs = pattern.getInputs();
-			double[] patternOutputs = pattern.getOutputs();
 
 			// Process inputs.
 			Network.Forward forward = Network.forward(network, patternInputs);
@@ -341,9 +339,9 @@ public abstract class Propagation extends LearningMethod {
 			double[] networkOutputs = ListUtils.getLast(forward.getOutputs());
 
 			// Calculate the output error.
-			double[] errors = Matrix.subtract(patternOutputs, networkOutputs);
+			double[] errors = pattern.getErrors(networkOutputs);
 
-			// Cumulate error.
+			// Accumulate error.
 			double error = getIterationErrorFunction().getError(errors);
 			getIterationErrorFunction().addError(error);
 			

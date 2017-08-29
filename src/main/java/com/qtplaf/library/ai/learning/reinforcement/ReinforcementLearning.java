@@ -188,7 +188,7 @@ public class ReinforcementLearning extends LearningMethod {
 			previousState = currentState;
 		}
 
-		// All inputs has been delivered to the agent, it's time to analyze and apply gradient corrections.
+		// All inputs have been delivered to the agent, it's time to analyze episodes and apply gradient corrections.
 
 	}
 

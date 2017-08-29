@@ -15,6 +15,7 @@
 package com.qtplaf.platform.statistics.patterns;
 
 import com.qtplaf.library.ai.data.Pattern;
+import com.qtplaf.library.ai.data.DefaultPattern;
 import com.qtplaf.library.ai.data.info.InputInfo;
 import com.qtplaf.library.ai.data.info.PatternInfo;
 import com.qtplaf.library.database.Record;
@@ -103,7 +104,7 @@ public class Patterns {
 	}
 
 	/**
-	 * Returns the reccord stored in the pattern.
+	 * Returns the record stored in the pattern.
 	 * 
 	 * @param pattern The pattern.
 	 * @return The source record.
@@ -235,7 +236,7 @@ public class Patterns {
 
 		String label = record.getValue(Fields.LABEL).getString();
 
-		Pattern pattern = new Pattern();
+		DefaultPattern pattern = new DefaultPattern();
 		pattern.setInputs(inputs);
 		pattern.setOutputs(outputs);
 		pattern.setLabel(label);

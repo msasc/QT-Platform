@@ -650,7 +650,7 @@ public class JPanelFormFields extends JPanel {
 	 * Check if all the local fields of the relation are present in the list of fields.
 	 * 
 	 * @param relation The relation.
-	 * @param fields The source list of fiels.
+	 * @param fields The source list of fields.
 	 * @return A boolean.
 	 */
 	private boolean allLocalFieldsIncluded(Relation relation, List<Field> fields) {
@@ -681,7 +681,7 @@ public class JPanelFormFields extends JPanel {
 	 * last field of the relation.
 	 * 
 	 * @param field The scanned field.
-	 * @param fields The source list of fiels.
+	 * @param fields The source list of fields.
 	 * @return The required relation or null.
 	 */
 	private Relation getRelation(Field field, List<Field> fields) {

@@ -147,40 +147,40 @@ public abstract class Cluster {
 	public abstract void calculateMetrics();
 
 	/**
-	 * Return a mesure of the distance of a pattern versus the cluster.
+	 * Return a measure of the distance of a pattern versus the cluster.
 	 * 
 	 * @param pattern The pattern.
-	 * @return The mesure of the distance.
+	 * @return The measure of the distance.
 	 */
 	public abstract double getDistance(Pattern pattern);
 
 	/**
-	 * Return a mesure of the cohesion of the patterns in the cluster.
+	 * Return a measure of the cohesion of the patterns in the cluster.
 	 * 
-	 * @return A mesure of the cohesion.
+	 * @return A measure of the cohesion.
 	 */
 	public abstract double getCohesion();
 
 	/**
-	 * Returns a mesure of the cohesion including the given pattern.
+	 * Returns a measure of the cohesion including the given pattern.
 	 * 
 	 * @param pattern The pattern.
-	 * @return A mesure of the cohesion.
+	 * @return A measure of the cohesion.
 	 */
 	public abstract double getCohesion(Pattern pattern);
 
 	/**
-	 * Return a mesure of the dispersion of the patterns in the cluster.
+	 * Return a measure of the dispersion of the patterns in the cluster.
 	 * 
-	 * @return A mesure of the dispersion.
+	 * @return A measure of the dispersion.
 	 */
 	public abstract double getDispersion();
 
 	/**
-	 * Returns a mesure of the dispersion including the given pattern.
+	 * Returns a measure of the dispersion including the given pattern.
 	 * 
 	 * @param pattern The pattern.
-	 * @return A mesure of the dispersion.
+	 * @return A measure of the dispersion.
 	 */
 	public abstract double getDispersion(Pattern pattern);
 

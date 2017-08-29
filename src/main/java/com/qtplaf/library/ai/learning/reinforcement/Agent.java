@@ -48,7 +48,7 @@ public abstract class Agent {
 
 	/**
 	 * Request the agent to process a state and return the correspondant action. During each process request, the agent
-	 * is resposible to setup its state properties.
+	 * is responsible to setup its state properties.
 	 * 
 	 * @param state The state to process.
 	 * @return The applied action.
