@@ -15,26 +15,19 @@
 package com.qtplaf.library.ai.neural;
 
 /**
- * Enumerate neuron types.
- * 
+ * A layer of the neural network.
+ *
  * @author Miquel Sas
  */
-public enum NeuronType {
-	/** Input neuron. */
-	Input,
-	/** Hidden neuron. */
-	Hidden,
-	/** Context neuron. */
-	Context,
-	/** Output neuron. */
-	Output;
+public class Layer {
+	
+	
 
 	/**
-	 * Return the id, the first letter.
 	 * 
-	 * @return The id.
 	 */
-	public String getId() {
-		return name().substring(0, 1);
+	public Layer() {
+		// TODO Auto-generated constructor stub
 	}
+
 }

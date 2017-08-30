@@ -27,9 +27,6 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
 import com.qtplaf.library.ai.function.Activation;
-import com.qtplaf.library.ai.function.activation.ActivationBipolarSigmoid;
-import com.qtplaf.library.ai.function.activation.ActivationTANH;
-import com.qtplaf.library.ai.function.activation.ActivationSigmoid;
 import com.qtplaf.library.ai.io.DataIO;
 import com.qtplaf.library.ai.neural.Network;
 import com.qtplaf.library.ai.neural.NetworkUtils;
@@ -68,23 +65,18 @@ public class NetworkIO extends DataIO {
 
 			// network/structure/layer
 			if (path.equals("network/structure/layer")) {
-				int neurons = Integer.parseInt(attributes.getValue("neurons"));
-				layers.add(neurons);
-				return;
-			}
+				String sneurons = attributes.getValue("neurons");
+				String sactivation = attributes.getValue("activation");
+				String sbias = attributes.getValue("bias");
 
-			// network/activations/a
-			if (path.equals("network/activations/a")) {
-				String activationId = attributes.getValue("v");
-				Activation activation = getActivation(activationId);
-				activations.add(activation);
-				return;
-			}
+				layers.add(Integer.parseInt(sneurons));
+				if (sactivation != null) {
+					activations.add(NetworkUtils.getActivation(sactivation));
+				}
+				if (sbias != null) {
+					biases.add(Double.parseDouble(sbias));
+				}
 
-			// network/biases/b
-			if (path.equals("network/biases/b")) {
-				double bias = Double.parseDouble(attributes.getValue("v"));
-				biases.add(bias);
 				return;
 			}
 
@@ -110,20 +102,10 @@ public class NetworkIO extends DataIO {
 					sizes[i] = layers.get(i);
 				}
 				network.createStructure(sizes);
-				return;
-			}
-
-			// network/activations
-			if (path.equals("network/activations")) {
-				Activation[] activations = this.activations.toArray(new Activation[this.activations.size()]);
-				NetworkUtils.setActivations(network, activations);
-				return;
-			}
-
-			// network/biases
-			if (path.equals("network/biases")) {
-				double[] biases = ListUtils.toDoubleArray(this.biases);
-				NetworkUtils.setBiases(network, biases);
+				for (int i = 1; i < layers.size(); i++) {
+					network.setActivation(i, activations.get(i - 1));
+					network.setBias(i, biases.get(i - 1));
+				}
 				return;
 			}
 
@@ -189,55 +171,19 @@ public class NetworkIO extends DataIO {
 		// Layers.
 		for (int layer = 0; layer < network.getLayers(); layer++) {
 			XMLAttribute neurons = new XMLAttribute("neurons", network.getNeurons(layer));
-			wr.printTag("layer", neurons);
+			// Input layer is done.
+			if (layer == 0) {
+				wr.printTag("layer", neurons);
+				continue;
+			}
+			XMLAttribute activation =
+				new XMLAttribute("activation", NetworkUtils.getActivationId(network.getActivation(layer)));
+			XMLAttribute bias = new XMLAttribute("bias", network.getBias(layer));
+			wr.printTag("layer", neurons, activation, bias);
 		}
 
 		// End structure.
 		wr.decreaseTabLevel();
-		wr.printTagEnd();
-
-		// -------------------------------------------------------------------------------------------------------------
-		// All activations.
-		wr.printTagStart("activations");
-		wr.increaseTabLevel();
-
-		Activation[] activations = NetworkUtils.getActivations(network);
-		for (int i = 0; i < activations.length; i++) {
-			XMLAttribute activation = new XMLAttribute("v", getActivationId(activations[i]));
-			if (i % 10 == 0) {
-				if (i != 0) {
-					wr.println();
-				}
-				wr.printTabs();
-			}
-			wr.print("a", activation);
-		}
-
-		// End activations.
-		wr.decreaseTabLevel();
-		wr.println();
-		wr.printTagEnd();
-
-		// -------------------------------------------------------------------------------------------------------------
-		// All biases.
-		wr.printTagStart("biases");
-		wr.increaseTabLevel();
-
-		double[] biases = NetworkUtils.getBiases(network);
-		for (int i = 0; i < biases.length; i++) {
-			XMLAttribute bias = new XMLAttribute("v", Double.toString(biases[i]));
-			if (i % 10 == 0) {
-				if (i != 0) {
-					wr.println();
-				}
-				wr.printTabs();
-			}
-			wr.print("b", bias);
-		}
-
-		// End biases.
-		wr.decreaseTabLevel();
-		wr.println();
 		wr.printTagEnd();
 
 		// -------------------------------------------------------------------------------------------------------------
@@ -270,50 +216,4 @@ public class NetworkIO extends DataIO {
 		wr.close();
 	}
 
-	/** Hyperbolic tangent activation. */
-	private Activation hyperbolic = new ActivationTANH();
-	/** Sigmoid activation. */
-	private Activation sigmoid = new ActivationSigmoid();
-	/** Bipolar sigmoid. */
-	private Activation bipolar = new ActivationBipolarSigmoid();
-
-	/**
-	 * Returns the activation function given the id.
-	 * 
-	 * @param id The activation id.
-	 * @return The activation function.
-	 */
-	private Activation getActivation(String id) {
-		if (id.equals("H")) {
-			return hyperbolic;
-		}
-		if (id.equals("S")) {
-			return sigmoid;
-		}
-		if (id.equals("B")) {
-			return bipolar;
-		}
-		return null;
-	}
-
-	/**
-	 * Returns the activation index of the neuron activation in the list of activations.
-	 * 
-	 * @param activation The activation.
-	 * @return The id of the activation or an empty string if the neuron has no activation.
-	 */
-	private String getActivationId(Activation activation) {
-		if (activation != null) {
-			if (activation instanceof ActivationTANH) {
-				return "H";
-			}
-			if (activation instanceof ActivationSigmoid) {
-				return "S";
-			}
-			if (activation instanceof ActivationBipolarSigmoid) {
-				return "B";
-			}
-		}
-		return "";
-	}
 }

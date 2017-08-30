@@ -50,7 +50,8 @@ public class NumberImageUtils {
 	 * @return The list of number images instances.
 	 * @throws IOException If such an error occurs.
 	 */
-	public static List<NumberImage> getNumberImages(String labelsFileName, String imagesFileName) throws IOException {
+	public static List<NumberImage> getNumberImages(String labelsFileName, String imagesFileName)
+		throws IOException {
 		File fileLabel = FileUtils.getFileFromClassPathEntries(labelsFileName);
 		File fileImage = FileUtils.getFileFromClassPathEntries(imagesFileName);
 		NumberImageReader reader = new NumberImageReader(fileLabel, fileImage);
@@ -118,44 +119,47 @@ public class NumberImageUtils {
 	/**
 	 * Returns the patter source of train images.
 	 * 
+	 * @param bipolar A boolean that indicates if normalization is bipolar.
 	 * @return The pattern source.
 	 * @throws IOException If such an error occurs.
 	 */
-	public static PatternSource getPatternSourceTrain() throws IOException {
-		return getPatternSource(getNumberImagesTrain());
+	public static PatternSource getPatternSourceTrain(boolean bipolar) throws IOException {
+		return getPatternSource(getNumberImagesTrain(), bipolar);
 	}
 
 	/**
 	 * Returns the patter source of test images.
 	 * 
+	 * @param bipolar A boolean that indicates if normalization is bipolar.
 	 * @return The pattern source.
 	 * @throws IOException If such an error occurs.
 	 */
-	public static PatternSource getPatternSourceTest() throws IOException {
-		return getPatternSource(getNumberImagesTest());
+	public static PatternSource getPatternSourceTest(boolean bipolar) throws IOException {
+		return getPatternSource(getNumberImagesTest(), bipolar);
 	}
 
 	/**
 	 * Returns the pattern source given the list of images.
 	 * 
 	 * @param images The list of number images.
+	 * @param bipolar A boolean that indicates if normalization is bipolar.
 	 * @return The patter source.
 	 */
-	public static PatternSource getPatternSource(List<NumberImage> images) {
-		return new ListPatternSource(getPatternList(images));
+	public static PatternSource getPatternSource(List<NumberImage> images, boolean bipolar) {
+		return new ListPatternSource(getPatternList(images, bipolar));
 	}
 
 	/**
 	 * Returns the list of patterns given the list of images.
 	 * 
 	 * @param images The list of images.
+	 * @param bipolar A boolean that indicates if normalization is bipolar.
 	 * @return The list of patterns.
 	 */
-	public static List<Pattern> getPatternList(List<NumberImage> images) {
-		StdNormalizer normalizer = new StdNormalizer(255, 0, 1, -1);
-		List<Pattern> patterns = new ArrayList<>();
+	public static List<Pattern> getPatternList(List<NumberImage> images, boolean bipolar) {
+	List<Pattern> patterns = new ArrayList<>();
 		for (NumberImage image : images) {
-			patterns.add(new NumberImagePattern(image, normalizer));
+			patterns.add(new NumberImagePattern(image, bipolar));
 		}
 		return patterns;
 	}

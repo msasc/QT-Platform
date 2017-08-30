@@ -58,12 +58,4 @@ public abstract class PatternSource {
 	 * @return The list of sub-pattern sources.
 	 */
 	public abstract List<PatternSource> getBatches();
-
-	/**
-	 * Returns a list of size pattern batches used to process patterns concurrently.
-	 * 
-	 * @param size The number of pattern batches.
-	 * @return The list of sub-pattern sources.
-	 */
-	public abstract List<PatternSource> getBatches(int size);
 }

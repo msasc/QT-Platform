@@ -15,6 +15,7 @@
 package com.qtplaf.library.ai.mnist;
 
 import com.qtplaf.library.ai.data.Pattern;
+import com.qtplaf.library.ai.function.Normalizer;
 import com.qtplaf.library.ai.function.normalize.StdNormalizer;
 import com.qtplaf.library.util.Properties;
 import com.qtplaf.library.util.math.Matrix;
@@ -26,43 +27,25 @@ import com.qtplaf.library.util.math.Matrix;
  */
 public class NumberImagePattern implements Pattern {
 
-	/** Normalizer. */
-	private StdNormalizer normalizer;
 	/** Underlying number image. */
 	private NumberImage image;
 	/** Patter inputs. */
 	private double[] inputs;
 	/** Pattern outputs. */
 	private double[] outputs;
-
-	/**
-	 * Constructor.
-	 * 
-	 * @param parent The parent number image pattern.
-	 */
-	protected NumberImagePattern(NumberImagePattern parent) {
-		this(parent.image, parent.normalizer);
-	}
+	/** A boolean that indicates if input and output must be bipolar. */
+	private boolean bipolar;
 
 	/**
 	 * Constructor.
 	 * 
 	 * @param image The number image.
+	 * @param bipolar A boolean that indicates if input must be bipolar.
 	 */
-	public NumberImagePattern(NumberImage image) {
-		this(image, new StdNormalizer(255, 0, 1, -1));
-	}
-
-	/**
-	 * Constructor.
-	 * 
-	 * @param image The number image.
-	 * @param normalizer The normalizer.
-	 */
-	public NumberImagePattern(NumberImage image, StdNormalizer normalizer) {
+	public NumberImagePattern(NumberImage image, boolean bipolar) {
 		super();
 		this.image = image;
-		this.normalizer = normalizer;
+		this.bipolar = bipolar;
 	}
 
 	/**
@@ -73,6 +56,7 @@ public class NumberImagePattern implements Pattern {
 	@Override
 	public double[] getInputs() {
 		if (inputs == null) {
+			Normalizer normalizer = new StdNormalizer(255, 0, 1, (bipolar ? -1 : 0));
 			inputs = new double[NumberImage.ROWS * NumberImage.COLUMNS];
 			int index = 0;
 			for (int row = 0; row < NumberImage.ROWS; row++) {
@@ -93,7 +77,7 @@ public class NumberImagePattern implements Pattern {
 	@Override
 	public double[] getOutputs() {
 		if (outputs == null) {
-			StdNormalizer normalizer = new StdNormalizer(1, 0, 1, -1);
+			Normalizer normalizer = new StdNormalizer(1, 0, 1, (bipolar ? -1 : 0));
 			int number = image.getNumber();
 			outputs = new double[10];
 			int index = 0;

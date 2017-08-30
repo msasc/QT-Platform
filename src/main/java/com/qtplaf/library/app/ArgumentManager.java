@@ -38,7 +38,7 @@ public class ArgumentManager {
 	 */
 	private Map<String, List<String>> valuesMap = new HashMap<>();
 	/**
-	 * List of errors ocurred during parse.
+	 * List of errors occurred during parse.
 	 */
 	private List<String> errors = new ArrayList<>();
 
@@ -50,7 +50,7 @@ public class ArgumentManager {
 	}
 
 	/**
-	 * Constructor assinging the list of arguments.
+	 * Constructor assigning the list of arguments.
 	 * 
 	 * @param arguments The list of arguments.
 	 */
@@ -60,7 +60,7 @@ public class ArgumentManager {
 	}
 
 	/**
-	 * Constructor assinging the list of arguments.
+	 * Constructor assigning the list of arguments.
 	 * 
 	 * @param arguments The list of arguments.
 	 */
@@ -79,10 +79,10 @@ public class ArgumentManager {
 	}
 
 	/**
-	 * Parse the command line arguments and validat them, returning <tt>false</tt> if any error ocurred.
+	 * Parse the command line arguments and validate them, returning <tt>false</tt> if any error ocurred.
 	 * 
 	 * @param args The command line arguments.
-	 * @return <tt>false</tt> if any error ocurred.
+	 * @return <tt>false</tt> if any error occurred.
 	 */
 	public boolean parse(String[] args) {
 

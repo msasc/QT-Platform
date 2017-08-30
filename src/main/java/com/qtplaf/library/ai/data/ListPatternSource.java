@@ -84,8 +84,7 @@ public class ListPatternSource extends PatternSource {
 	 * @param size The number of pattern batches.
 	 * @return The list of sub-pattern sources.
 	 */
-	@Override
-	public List<PatternSource> getBatches(int size) {
+	private List<PatternSource> getBatches(int size) {
 		List<PatternSource> subSources = new ArrayList<>();
 		if (size > patterns.size()) {
 			subSources.add(this);

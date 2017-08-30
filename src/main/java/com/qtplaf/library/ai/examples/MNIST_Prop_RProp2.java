@@ -19,8 +19,9 @@ import java.math.BigDecimal;
 
 import com.qtplaf.library.ai.data.PatternSource;
 import com.qtplaf.library.ai.function.activation.ActivationTANH;
+import com.qtplaf.library.ai.io.learning.ResilientPropagationIO;
 import com.qtplaf.library.ai.io.neural.NetworkIO;
-import com.qtplaf.library.ai.learning.propagation.BackPropagation;
+import com.qtplaf.library.ai.learning.propagation.ResilientPropagation;
 import com.qtplaf.library.ai.mnist.NumberImage;
 import com.qtplaf.library.ai.mnist.NumberImageUtils;
 import com.qtplaf.library.ai.neural.Network;
@@ -32,11 +33,11 @@ import com.qtplaf.library.util.TextServer;
 import com.qtplaf.library.util.file.FileUtils;
 
 /**
- * Test BackPropagationOnline.
+ * Test resilient propagation.
  *
  * @author Miquel Sas
  */
-public class MNIST_Prop_BProp {
+public class MNIST_Prop_RProp2 {
 
 	/**
 	 * @param args Startup args.
@@ -52,13 +53,13 @@ public class MNIST_Prop_BProp {
 		int hiddenLayerSize = 100;
 		int outputLayerSize = 10;
 
-		File parentDir = FileUtils.getFileFromClassPathEntries("files/networks");
-		String fileName = "BPD-" + hiddenLayerSize + ".xml";
-		File networkFile = new File(parentDir, fileName);
-
-		// NetworkBad
 		boolean deflate = false;
 
+		File parentDir = FileUtils.getFileFromClassPathEntries("files/networks");
+		String networkFileName = "NN2-" + hiddenLayerSize + (deflate ? ".dat" : ".xml");
+		File networkFile = new File(parentDir, networkFileName);
+
+		// Restore network if possible
 		Network network = new Network();
 		boolean restored = false;
 		if (networkFile.exists()) {
@@ -69,6 +70,7 @@ public class MNIST_Prop_BProp {
 		} else {
 			network.addLayer(inputLayerSize);
 			network.addLayer(hiddenLayerSize, new ActivationTANH(), 1.0);
+			network.addLayer(hiddenLayerSize, new ActivationTANH(), 1.0);
 			network.addLayer(outputLayerSize, new ActivationTANH(), 1.0);
 			NetworkUtils.randomizeWeights(network);
 		}
@@ -78,10 +80,18 @@ public class MNIST_Prop_BProp {
 		PatternSource testSrc = NumberImageUtils.getPatternSourceTest(true);
 
 		// Train
-		BackPropagation train = new BackPropagation(network);
+		ResilientPropagation train = new ResilientPropagation(network);
 		train.setLearningData(trainSrc);
 		train.setCheckData(testSrc);
-		train.setBatchMode(true);
+
+		// Restore learning if possible
+		String learningFileName = "RP2-" + hiddenLayerSize + (deflate ? ".dat" : ".xml");
+		File learningFile = new File(parentDir, learningFileName);
+		if (learningFile.exists()) {
+			ResilientPropagationIO ioLearn = new ResilientPropagationIO(train);
+			ioLearn.setDeflate(deflate);
+			ioLearn.fromXML(learningFile);
+		}
 
 		// Start iterations.
 		train.initialize();
@@ -93,22 +103,22 @@ public class MNIST_Prop_BProp {
 			previousPerformance = NetworkUtils.getPerformance(network, testSrc, 4);
 			System.out.println("Previous performance " + previousPerformance);
 		}
-		
+
 		do {
 			// Iteration.
 			long startIter = System.currentTimeMillis();
 			train.iteration();
-			long endIter = System.currentTimeMillis();
-			long iterSeconds = (endIter - startIter) / 1000;
 			trainError = train.getLastError();
 			BigDecimal error = NumberUtils.getBigDecimal(trainError, 8);
+			long endIter = System.currentTimeMillis();
+			double iterSeconds = (endIter - startIter) / 1000d;
 
 			// Performance
 			double performance = NetworkUtils.getPerformance(network, testSrc, 4);
 			long startPerf = System.currentTimeMillis();
 			BigDecimal perf = NumberUtils.getBigDecimal(performance, 4);
 			long endPerf = System.currentTimeMillis();
-			long perfSeconds = (endPerf - startPerf) / 1000;
+			double perfSeconds = (endPerf - startPerf) / 1000d;
 
 			// Save the network if performance has increased.
 			if (performance > previousPerformance) {
@@ -116,6 +126,11 @@ public class MNIST_Prop_BProp {
 				NetworkIO ioNet = new NetworkIO(network);
 				ioNet.setDeflate(deflate);
 				ioNet.toXML(networkFile);
+				// Save learning data.
+				ResilientPropagationIO ioLearn = new ResilientPropagationIO(train);
+				ioLearn.setDeflate(deflate);
+				ioLearn.toXML(learningFile);
+
 				previousPerformance = performance;
 			}
 
@@ -124,17 +139,14 @@ public class MNIST_Prop_BProp {
 			b.append("Epoch ");
 			b.append(epoch++);
 			b.append(" (");
-			b.append(iterSeconds);
+			b.append(NumberUtils.getBigDecimal(iterSeconds + perfSeconds, 2));
 			b.append(") Error ");
 			b.append(error);
 			b.append(" Performance ");
 			b.append(perf);
-			b.append(" (");
-			b.append(perfSeconds);
-			b.append(")");
 			System.out.println(b.toString());
 
-			if (epoch % 100 == 0) {
+			if (epoch % 10000 == 0) {
 				if (MessageBox.question(Session.UK, "Continue?", MessageBox.YES_NO) == MessageBox.NO) {
 					break;
 				}

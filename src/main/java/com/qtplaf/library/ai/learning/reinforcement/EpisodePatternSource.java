@@ -17,6 +17,7 @@ package com.qtplaf.library.ai.learning.reinforcement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.qtplaf.library.ai.data.ListPatternSource;
 import com.qtplaf.library.ai.data.Pattern;
 import com.qtplaf.library.ai.data.PatternSource;
 
@@ -57,10 +58,6 @@ public class EpisodePatternSource extends PatternSource {
 		return allEpisodePatterns;
 	}
 	
-	private Pattern getPattern(EpisodePattern episodePattern) {
-		return null;
-	}
-
 	/**
 	 * Returns the pattern at the given index.
 	 * 
@@ -69,7 +66,7 @@ public class EpisodePatternSource extends PatternSource {
 	 */
 	@Override
 	public Pattern get(int index) {
-		return getPattern(getAllEpisodePatterns().get(index));
+		return getAllEpisodePatterns().get(index);
 	}
 
 	/**
@@ -99,20 +96,11 @@ public class EpisodePatternSource extends PatternSource {
 	 */
 	@Override
 	public List<PatternSource> getBatches() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Pattern> patterns = new ArrayList<>();
+		for (Episode episode : episodes) {
+			patterns.addAll(episode.getEpisodePatterns());
+		}
+		ListPatternSource patternSource = new ListPatternSource(patterns);
+		return patternSource.getBatches();
 	}
-
-	/**
-	 * Returns a list of size pattern batches used to process patterns concurrently.
-	 * 
-	 * @param size The number of pattern batches.
-	 * @return The list of sub-pattern sources.
-	 */
-	@Override
-	public List<PatternSource> getBatches(int size) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

@@ -22,20 +22,22 @@ package com.qtplaf.library.ai.function;
 public interface Activation {
 
 	/**
-	 * Returns the output value of the function given the input value.
+	 * Returns the output values of the function given the input values.
 	 * 
-	 * @param signal The signal (weighted sum) value.
-	 * @return The output value.
+	 * @param triggers The trigger (weighted sum plus bias) values.
+	 * @param outputs The outputs to set.
+	 * @return The output values.
 	 */
-	double getOutput(double signal);
+	void activations(double[] triggers, double[] outputs);
 
 	/**
-	 * Returns the first derivative of the function, given the signal and the output. Some activations require the
+	 * Returns the first derivatives of the function, given the signals and the outputs. Some activations require the
 	 * output and some the signal.
 	 * 
-	 * @param signal The signal applied to <i>getOutput</i>.
-	 * @param output The output obtained applying the signal to <i>getOutput</i>.
-	 * @return The first derivative of the output value.
+	 * @param triggers The triggers applied to <i>getOutputs</i>.
+	 * @param outputs The outputs obtained applying the signals to <i>getOutputs</i>.
+	 * @param derivatives The derivatives to set.
+	 * @return The first derivatives.
 	 */
-	double getDerivative(double signal, double output);
+	void derivatives(double[] triggers, double[] outputs, double[] derivatives);
 }

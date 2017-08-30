@@ -17,7 +17,6 @@ package com.qtplaf.library.ai.learning.propagation;
 import java.util.List;
 
 import com.qtplaf.library.ai.learning.propagation.strategy.SmartLearningRate;
-import com.qtplaf.library.ai.learning.propagation.strategy.SmartMomentum;
 import com.qtplaf.library.ai.neural.Network;
 import com.qtplaf.library.ai.neural.NetworkUtils;
 
@@ -43,7 +42,7 @@ public class BackPropagation extends Propagation {
 	public BackPropagation(Network network) {
 		this(network, 0, 0);
 		addStrategy(new SmartLearningRate(this));
-		addStrategy(new SmartMomentum(this));
+//		addStrategy(new SmartMomentum(this));
 	}
 
 	/**

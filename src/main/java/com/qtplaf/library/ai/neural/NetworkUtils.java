@@ -24,6 +24,10 @@ import java.util.concurrent.RecursiveAction;
 import com.qtplaf.library.ai.data.Pattern;
 import com.qtplaf.library.ai.data.PatternSource;
 import com.qtplaf.library.ai.function.Activation;
+import com.qtplaf.library.ai.function.activation.ActivationBipolarSigmoid;
+import com.qtplaf.library.ai.function.activation.ActivationReLU;
+import com.qtplaf.library.ai.function.activation.ActivationSigmoid;
+import com.qtplaf.library.ai.function.activation.ActivationTANH;
 import com.qtplaf.library.util.NumberUtils;
 import com.qtplaf.library.util.list.ListUtils;
 import com.qtplaf.library.util.math.Matrix;
@@ -76,56 +80,22 @@ public class NetworkUtils {
 	 * @return All the activations.
 	 */
 	public static Activation[] getActivations(Network network) {
-		int size = 0;
+		Activation[] activations = new Activation[network.getLayers()-1];
 		for (int layer = 1; layer < network.getLayers(); layer++) {
-			size += network.getActivations(layer).length;
+			activations[layer-1] = network.getActivation(layer);
 		}
-		Activation[] data = new Activation[size];
-		int index = 0;
-		for (int layer = 1; layer < network.getLayers(); layer++) {
-			Activation[] activations = network.getActivations(layer);
-			for (int i = 0; i < activations.length; i++) {
-				data[index++] = activations[i];
-			}
-		}
-		return data;
-	}
-
-	/**
-	 * Returns the biases as an array of double values.
-	 * 
-	 * @param network The network.
-	 * @return All the biases.
-	 */
-	public static double[] getBiases(Network network) {
-		int size = 0;
-		for (int layer = 1; layer < network.getLayers(); layer++) {
-			size += network.getBiases(layer).length;
-		}
-		double[] data = new double[size];
-		int index = 0;
-		for (int layer = 1; layer < network.getLayers(); layer++) {
-			double[] biases = network.getBiases(layer);
-			for (int i = 0; i < biases.length; i++) {
-				data[index++] = biases[i];
-			}
-		}
-		return data;
+		return activations;
 	}
 
 	/**
 	 * Set all the activations passing an array.
 	 * 
 	 * @param network The network.
-	 * @param data The array of activations.
+	 * @param activations The array of activations.
 	 */
-	public static void setActivations(Network network, Activation[] data) {
-		int index = 0;
+	public static void setActivations(Network network, Activation[] activations) {
 		for (int layer = 1; layer < network.getLayers(); layer++) {
-			Activation[] activations = network.getActivations(layer);
-			for (int i = 0; i < activations.length; i++) {
-				activations[i] = data[index++];
-			}
+			network.setActivation(layer, activations[layer-1]);
 		}
 	}
 
@@ -133,15 +103,11 @@ public class NetworkUtils {
 	 * Set all the biases passing an array of double values.
 	 * 
 	 * @param network The network.
-	 * @param data The array of double values.
+	 * @param biases The array of biases.
 	 */
-	public static void setBiases(Network network, double[] data) {
-		int index = 0;
+	public static void setBiases(Network network, double[] biases) {
 		for (int layer = 1; layer < network.getLayers(); layer++) {
-			double[] biases = network.getBiases(layer);
-			for (int i = 0; i < biases.length; i++) {
-				biases[i] = data[index++];
-			}
+			network.setBias(layer, biases[layer-1]);
 		}
 	}
 
@@ -261,21 +227,6 @@ public class NetworkUtils {
 	}
 
 	/**
-	 * Randomize biases.
-	 * 
-	 * @param network The network.
-	 */
-	public static void randomizeBiases(Network network) {
-		Random random = new Random();
-		for (int layer = 1; layer < network.getLayers(); layer++) {
-			double[] biases = network.getBiases(layer);
-			for (int i = 0; i < biases.length; i++) {
-				biases[i] = random.nextGaussian();
-			}
-		}
-	}
-
-	/**
 	 * Randomize weights.
 	 * 
 	 * @param network The network.
@@ -292,5 +243,50 @@ public class NetworkUtils {
 				}
 			}
 		}
+	}
+	/**
+	 * Returns the activation function given the id.
+	 * 
+	 * @param id The activation id.
+	 * @return The activation function.
+	 */
+	public static Activation getActivation(String id) {
+		if (id.equals("TANH")) {
+			return new ActivationTANH();
+		}
+		if (id.equals("Sigmoid")) {
+			return new ActivationSigmoid();
+		}
+		if (id.equals("BipolarSigmoid")) {
+			return new ActivationBipolarSigmoid();
+		}
+		if (id.equals("ReLU")) {
+			return new ActivationReLU();
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the activation index of the neuron activation in the list of activations.
+	 * 
+	 * @param activation The activation.
+	 * @return The id of the activation or an empty string if the neuron has no activation.
+	 */
+	public static String getActivationId(Activation activation) {
+		if (activation != null) {
+			if (activation instanceof ActivationTANH) {
+				return "TANH";
+			}
+			if (activation instanceof ActivationSigmoid) {
+				return "Sigmoid";
+			}
+			if (activation instanceof ActivationBipolarSigmoid) {
+				return "BipolarSigmoid";
+			}
+			if (activation instanceof ActivationReLU) {
+				return "ReLU";
+			}
+		}
+		return "";
 	}
 }

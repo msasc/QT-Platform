@@ -79,7 +79,7 @@ public class QTPlatform {
 	private static final Logger LOGGER = LogManager.getLogger();
 
 	/**
-	 * Pre-exit action, disconnect any connectred servers.
+	 * Pre-exit action, disconnect any connected servers.
 	 */
 	static class PreExitAction extends AbstractAction {
 		@Override

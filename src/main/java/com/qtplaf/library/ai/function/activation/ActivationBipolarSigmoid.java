@@ -29,25 +29,34 @@ public class ActivationBipolarSigmoid implements Activation {
 	}
 
 	/**
-	 * Returns the output value of the function given the input value.
+	 * Returns the output values of the function given the input values.
 	 * 
-	 * @param signal The signal (weighted sum) value.
-	 * @return The output value.
+	 * @param triggers The trigger (weighted sum plus bias) values.
+	 * @param outputs The outputs to set.
+	 * @return The output values.
 	 */
 	@Override
-	public double getOutput(double signal) {
-		return (2 / (1 + Math.exp(-signal))) - 1;
+	public void activations(double[] triggers, double[] outputs) {
+		int length = triggers.length;
+		for (int i = 0; i < length; i++) {
+			outputs[i] = (2 / (1 + Math.exp(-triggers[i]))) - 1;
+		}
 	}
 
 	/**
-	 * Returns the first derivative of the function, given the output.
+	 * Returns the first derivatives of the function, given the signals and the outputs. Some activations require the
+	 * output and some the signal.
 	 * 
-	 * @param signal The signal applied to <i>getOutput</i>.
-	 * @param output The output obtained applying the input value to <i>getOutput</i>.
-	 * @return The first derivative of the output value.
+	 * @param triggers The triggers applied to <i>getOutputs</i>.
+	 * @param outputs The outputs obtained applying the signals to <i>getOutputs</i>.
+	 * @param derivatives The derivatives to set.
+	 * @return The first derivatives.
 	 */
 	@Override
-	public double getDerivative(double signal, double output) {
-		return (1 - (output * output)) / 2;
+	public void derivatives(double[] triggers, double[] outputs, double[] derivatives) {
+		int length = triggers.length;
+		for (int i = 0; i < length; i++) {
+			derivatives[i] = (1 - (outputs[i] * outputs[i])) / 2;
+		}
 	}
 }

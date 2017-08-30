@@ -396,19 +396,6 @@ public class Incubator {
 	}
 
 	/**
-	 * Assigns the tranlated or added vector.
-	 * 
-	 * @param value The value to add.
-	 * @param vector The source vector.
-	 */
-	public static void addAssign(double value, double[] vector) {
-		int size = Incubator.size(vector);
-		for (int i = 0; i < size; i++) {
-			vector[i] = value + vector[i];
-		}
-	}
-
-	/**
 	 * Add and assign matrix b to matrix a.
 	 * 
 	 * @param a Matrix a.
@@ -1230,5 +1217,17 @@ public class Incubator {
 			return matrix[0].length;
 		}
 		return 0;
+	}
+
+	/**
+	 * Assigns the translated or added vector.
+	 * 
+	 * @param value The value to add.
+	 * @param vector The source vector.
+	 */
+	public static void addAssign(double value, double[] vector) {
+		for (int i = 0; i < vector.length; i++) {
+			vector[i] = value + vector[i];
+		}
 	}
 }

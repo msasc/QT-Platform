@@ -68,15 +68,15 @@ public class MNIST_Prop_RProp {
 			io.fromXML(networkFile);
 			restored = true;
 		} else {
-			network.addInputLayer(inputLayerSize);
-			network.addHiddenLayer(hiddenLayerSize, new ActivationTANH(), 1.0);
-			network.addOutputLayer(outputLayerSize, new ActivationTANH(), 1.0);
+			network.addLayer(inputLayerSize);
+			network.addLayer(hiddenLayerSize, new ActivationTANH(), 1.0);
+			network.addLayer(outputLayerSize, new ActivationTANH(), 1.0);
 			NetworkUtils.randomizeWeights(network);
 		}
 
 		// Pattern sources.
-		PatternSource trainSrc = NumberImageUtils.getPatternSourceTrain();
-		PatternSource testSrc = NumberImageUtils.getPatternSourceTest();
+		PatternSource trainSrc = NumberImageUtils.getPatternSourceTrain(true);
+		PatternSource testSrc = NumberImageUtils.getPatternSourceTest(true);
 
 		// Train
 		ResilientPropagation train = new ResilientPropagation(network);

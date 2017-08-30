@@ -126,7 +126,7 @@ public class TablePatternSource extends PatternSource {
 	public boolean isEmpty() {
 		return false;
 	}
-	
+
 	/**
 	 * Returns a list of size pattern batches used to process patterns concurrently.
 	 * 
@@ -134,17 +134,6 @@ public class TablePatternSource extends PatternSource {
 	 */
 	@Override
 	public List<PatternSource> getBatches() {
-		return getBatches(Runtime.getRuntime().availableProcessors());
-	}
-
-	/**
-	 * Returns a list of size pattern batches used to process patterns concurrently.
-	 * 
-	 * @param size The number of pattern batches.
-	 * @return The list of sub-pattern sources.
-	 */
-	@Override
-	public List<PatternSource> getBatches(int size) {
 		return null;
 	}
 

@@ -53,9 +53,9 @@ public class MNIST_Genetic {
 		int hiddenLayerSize = 100;
 		int outputLayerSize = 10;
 		Network network = new Network();
-		network.addInputLayer(inputLayerSize);
-		network.addHiddenLayer(hiddenLayerSize, new ActivationTANH(), 1.0);
-		network.addOutputLayer(outputLayerSize, new ActivationTANH(), 1.0);
+		network.addLayer(inputLayerSize);
+		network.addLayer(hiddenLayerSize, new ActivationTANH(), 1.0);
+		network.addLayer(outputLayerSize, new ActivationTANH(), 1.0);
 		NetworkUtils.randomizeWeights(network);
 		return network;
 	}
@@ -118,7 +118,7 @@ public class MNIST_Genetic {
 
 	private static PatternSource getSource(List<NumberImage> srcImg, int size) throws Exception {
 		List<NumberImage> images = NumberImageUtils.getNumberImages(srcImg, size);
-		PatternSource source = NumberImageUtils.getPatternSource(images);
+		PatternSource source = NumberImageUtils.getPatternSource(images, true);
 		return source;
 	}
 

@@ -15,15 +15,13 @@
 package com.qtplaf.library.ai.neural;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.qtplaf.library.ai.function.Activation;
-import com.qtplaf.library.util.list.ListUtils;
 import com.qtplaf.library.util.math.Matrix;
 
 /**
- * Feedforward neural network.
+ * Feed forward neural network.
  * <p>
  * All weights and related matrices are [rows=output, columns=input].
  * <p>
@@ -61,15 +59,6 @@ public class Network {
 		}
 
 		/**
-		 * Return all the deltas.
-		 * 
-		 * @return The deltas.
-		 */
-		public List<double[]> getDeltas() {
-			return deltas;
-		}
-
-		/**
 		 * Return the deltas of the layer.
 		 * 
 		 * @param layer The layer.
@@ -103,10 +92,11 @@ public class Network {
 	 * Data generated when the network processes inputs in a feed forward, composed of:
 	 * <ul>
 	 * <li>Signals or weighted sums of inputs.</li>
-	 * <li>Ouputs as a result of applying the activation to the signals.</li>
+	 * <li>Triggers or signals plus biases.</li>
+	 * <li>Outputs as a result of applying the activation to the signals.</li>
 	 * </ul>
-	 * Signals and ouputs should be recorded because in the back propagation process the derivative, depending on the
-	 * activation function, can require the signal or input or the output.
+	 * Signals, triggers and outputs are recorded because in the back propagation process the derivative, depending on
+	 * the activation function, can require the trigger or input or the output.
 	 *
 	 * @author Miquel Sas
 	 */
@@ -114,6 +104,8 @@ public class Network {
 
 		/** List of per layer signals. */
 		private final List<double[]> signals;
+		/** List of per layer triggers. */
+		private final List<double[]> triggers;
 		/** List of per layer outputs. */
 		private final List<double[]> outputs;
 
@@ -125,6 +117,7 @@ public class Network {
 		public Forward(Network network) {
 			super();
 			this.signals = NetworkUtils.createLayerVectors(network);
+			this.triggers = NetworkUtils.createLayerVectors(network);
 			this.outputs = NetworkUtils.createLayerVectors(network);
 		}
 
@@ -139,12 +132,13 @@ public class Network {
 		}
 
 		/**
-		 * Return the list of per layer signals.
+		 * Return the triggers of the layer.
 		 * 
-		 * @return The list of per layer signals.
+		 * @param layer The layer.
+		 * @return The triggers.
 		 */
-		public List<double[]> getSignals() {
-			return signals;
+		public double[] getTriggers(int layer) {
+			return triggers.get(layer);
 		}
 
 		/**
@@ -169,7 +163,7 @@ public class Network {
 
 	/** Flat spot to avoid near zero derivatives in the back propagation process. */
 	private static double flatSpot = 0.01;
-	
+
 	/**
 	 * Set the flat spot to avoid near zero derivatives.
 	 * 
@@ -178,6 +172,7 @@ public class Network {
 	public static void setFlatSpot(double flatSpot) {
 		Network.flatSpot = flatSpot;
 	}
+
 	/**
 	 * Backward process of the network deltas or errors and produce the backward data, cumulating gradients.
 	 * 
@@ -191,7 +186,7 @@ public class Network {
 		Forward forward,
 		Backward backward,
 		double[] networkDeltas) {
-	
+
 		// Process the output layer.
 		backwardOutputLayer(network, forward, backward, networkDeltas);
 		// Process hidden layers.
@@ -215,22 +210,20 @@ public class Network {
 		Forward forward,
 		Backward backward,
 		double[] networkDeltas) {
-	
+
 		int layer = network.getLayers() - 1;
 		int neurons = network.getNeurons(layer);
-	
-		double[] signals = forward.getSignals(layer);
+
+		double[] triggers = forward.getTriggers(layer);
 		double[] outputs = forward.getOutputs(layer);
 		double[] deltas = backward.getDeltas(layer);
-	
-		Activation[] activations = network.getActivations(layer);
-	
+
+		double[] derivatives = new double[neurons];
+		Activation activation = network.getActivation(layer);
+		activation.derivatives(triggers, outputs, derivatives);
+
 		for (int out = 0; out < neurons; out++) {
-			double signal = signals[out];
-			double output = outputs[out];
-			Activation activation = activations[out];
-			double derivative = activation.getDerivative(signal, output) + flatSpot;
-			double delta = networkDeltas[out] * derivative;
+			double delta = networkDeltas[out] * (derivatives[out] + flatSpot);
 			deltas[out] = delta;
 		}
 	}
@@ -248,25 +241,26 @@ public class Network {
 		int layer,
 		Forward forward,
 		Backward backward) {
-	
+
 		int layerOut = layer + 1;
 		int layerIn = layer;
-	
+
 		int neuronsOut = network.getNeurons(layerOut);
 		int neuronsIn = network.getNeurons(layerIn);
-	
-		double[] signalsIn = forward.getSignals(layerIn);
+
+		double[] triggersIn = forward.getTriggers(layerIn);
 		double[] outputsIn = forward.getOutputs(layerIn);
 		double[] deltasIn = backward.getDeltas(layerIn);
 		double[] deltasOut = backward.getDeltas(layerOut);
-	
+
 		double[][] gradients = backward.getGradients(layerOut);
 		double[][] weights = network.getWeights(layerOut);
-	
-		Activation[] activationsIn = network.getActivations(layerIn);
-	
+
+		double[] derivativesIn = new double[neuronsIn];
+		Activation activationIn = network.getActivation(layerIn);
+		activationIn.derivatives(triggersIn, outputsIn, derivativesIn);
+
 		for (int in = 0; in < neuronsIn; in++) {
-			double signal = signalsIn[in];
 			double output = outputsIn[in];
 			double weightedDelta = 0;
 			for (int out = 0; out < neuronsOut; out++) {
@@ -275,9 +269,7 @@ public class Network {
 				weightedDelta += (delta * weight);
 				gradients[out][in] += (output * delta);
 			}
-			Activation activation = activationsIn[in];
-			double derivative = activation.getDerivative(signal, output) + flatSpot;
-			double delta = weightedDelta * derivative;
+			double delta = weightedDelta * (derivativesIn[in] + flatSpot);
 			deltasIn[in] = delta;
 		}
 	}
@@ -290,18 +282,18 @@ public class Network {
 	 * @param backward The backward data.
 	 */
 	private static void backwardInputLayer(Network network, Forward forward, Backward backward) {
-	
+
 		int layerIn = 0;
 		int layerOut = 1;
-	
+
 		int neuronsIn = network.getNeurons(layerIn);
 		int neuronsOut = network.getNeurons(layerOut);
-	
+
 		double[] outputs = forward.getOutputs(layerIn);
 		double[] deltas = backward.getDeltas(layerOut);
-	
+
 		double[][] gradients = backward.getGradients(layerOut);
-	
+
 		for (int in = 0; in < neuronsIn; in++) {
 			double output = outputs[in];
 			for (int out = 0; out < neuronsOut; out++) {
@@ -319,34 +311,33 @@ public class Network {
 	 * @return The forward data.
 	 */
 	public static Forward forward(Network network, double[] networkInputs) {
-	
+
 		// Forward data.
 		Forward forward = new Forward(network);
-	
+
 		// Input layer outputs are the network inputs.
 		Matrix.copy(networkInputs, forward.getOutputs(0));
-	
+
 		// Subsequent layers.
 		for (int i = 1; i < network.getLayers(); i++) {
-	
+
 			// Layers out and in.
 			int layerOut = i;
 			int layerIn = i - 1;
-	
+
 			int neuronsOut = network.getNeurons(layerOut);
 			int neuronsIn = network.getNeurons(layerIn);
-	
+
 			double[] signals = forward.getSignals(layerOut);
-			double[] outputs = forward.getOutputs(layerOut);
-			Activation[] activations = network.getActivations(layerOut);
-			double[] biases = network.getBiases(layerOut);
+			double[] triggers = forward.getTriggers(layerOut);
+			double bias = network.getBias(layerOut);
 			double[][] weights = network.getWeights(layerOut);
-	
+
 			double[] inputs = forward.getOutputs().get(layerIn);
-	
+
 			// Weighted sum.
 			for (int out = 0; out < neuronsOut; out++) {
-	
+
 				// Signal, weighted inputs.
 				double signal = 0;
 				for (int in = 0; in < neuronsIn; in++) {
@@ -354,34 +345,29 @@ public class Network {
 					double weight = weights[out][in];
 					signal += (input * weight);
 				}
-	
-				// Save signal.
 				signals[out] = signal;
-	
-				// Activate.
-				Activation activation = activations[out];
-				double bias = biases[out];
+
+				// Trigger.
 				double trigger = signal + bias;
-				double output = activation.getOutput(trigger);
-	
-				// Save output.
-				outputs[out] = output;
+				triggers[out] = trigger;
 			}
+
+			double[] outputs = forward.getOutputs(layerOut);
+			Activation activation = network.getActivation(layerOut);
+			activation.activations(triggers, outputs);
 		}
-	
+
 		return forward;
 	}
 
 	/** List of sizes of each layer. */
 	private List<Integer> layers = new ArrayList<>();
 	/** List of activations of neurons of subsequent layers (number of layers-1). */
-	private List<Activation[]> activations = new ArrayList<>();
+	private List<Activation> activations = new ArrayList<>();
 	/** List of biases of neurons of subsequent layers (number of layers-1). */
-	private List<double[]> biases = new ArrayList<>();
+	private List<Double> biases = new ArrayList<>();
 	/** List of weights of subsequent layers (number of layers-1). */
 	private List<double[][]> weights = new ArrayList<>();
-	/** List of types of neurons per layer. */
-	private List<NeuronType> types = new ArrayList<>();
 
 	/**
 	 * Constructor.
@@ -405,15 +391,12 @@ public class Network {
 		activations.clear();
 		biases.clear();
 		layers.clear();
-		types.clear();
 		weights.clear();
 
 		for (int i = 0; i < sizes.length; i++) {
 			int sizeOut = sizes[i];
 			int sizeIn = (i == 0 ? 0 : sizes[i - 1]);
-			NeuronType type =
-				(i == 0 ? NeuronType.Input : (i < sizes.length - 1 ? NeuronType.Hidden : NeuronType.Output));
-			createStructure(sizeOut, sizeIn, type);
+			createStructure(sizeOut, sizeIn);
 		}
 	}
 
@@ -422,21 +405,14 @@ public class Network {
 	 * 
 	 * @param sizeOut Output size.
 	 * @param sizeIn Input size.
-	 * @param type Neuron type.
 	 */
-	private void createStructure(int sizeOut, int sizeIn, NeuronType type) {
+	private void createStructure(int sizeOut, int sizeIn) {
 		layers.add(sizeOut);
-		if (sizeIn == 0) {
-			activations.add(new Activation[] {});
-			biases.add(new double[] {});
-			weights.add(new double[][] {});
-		} else {
-			activations.add(new Activation[sizeOut]);
-			biases.add(new double[sizeOut]);
+		if (sizeIn > 0) {
+			activations.add(null);
+			biases.add(0d);
 			weights.add(new double[sizeOut][sizeIn]);
 		}
-		types.add(type);
-
 	}
 
 	/**
@@ -444,66 +420,11 @@ public class Network {
 	 * 
 	 * @param neurons The number of neurons.
 	 */
-	public void addInputLayer(int neurons) {
+	public void addLayer(int neurons) {
 		if (!layers.isEmpty()) {
 			throw new IllegalStateException();
 		}
 		layers.add(neurons);
-		activations.add(new Activation[] {});
-		biases.add(new double[] {});
-		weights.add(new double[][] {});
-
-		// Set the layer type.
-		types.add(NeuronType.Input);
-	}
-
-	/**
-	 * Add a hidden layer with the given number of neurons, the same activation function for each neuron, and the same
-	 * bias for each neuron. The output layer is the last layer added.
-	 * 
-	 * @param neurons The number of neurons.
-	 * @param activation The activation function.
-	 * @param bias The bias.
-	 */
-	public void addHiddenLayer(int neurons, Activation activation, double bias) {
-
-		// Not callable for the input layer.
-		if (layers.isEmpty()) {
-			throw new IllegalStateException();
-		}
-
-		// Not callable if the output layer has been added.
-		if (ListUtils.getLast(types) == NeuronType.Output) {
-			throw new IllegalStateException();
-		}
-
-		// Add the layer structure.
-		addLayer(neurons, activation, bias);
-
-		// Set the layer type.
-		types.add(NeuronType.Hidden);
-	}
-
-	/**
-	 * Add the output layer with the given number of neurons, the same activation function for each neuron, and the same
-	 * bias for each neuron. The output layer is the last layer added.
-	 * 
-	 * @param neurons The number of neurons.
-	 * @param activation The activation function.
-	 * @param bias The bias.
-	 */
-	public void addOutputLayer(int neurons, Activation activation, double bias) {
-
-		// Not callable for the input layer.
-		if (layers.isEmpty()) {
-			throw new IllegalStateException();
-		}
-
-		// Add the layer structure.
-		addLayer(neurons, activation, bias);
-
-		// Set the layer type.
-		types.add(NeuronType.Output);
 	}
 
 	/**
@@ -514,7 +435,7 @@ public class Network {
 	 * @param activation The activation function.
 	 * @param bias The bias.
 	 */
-	private void addLayer(int neurons, Activation activation, double bias) {
+	public void addLayer(int neurons, Activation activation, double bias) {
 
 		// Layer number.
 		int layer = getLayers();
@@ -523,16 +444,12 @@ public class Network {
 		layers.add(neurons);
 
 		// Activations.
-		Activation[] layerActivations = new Activation[neurons];
-		Arrays.fill(layerActivations, activation);
-		activations.add(layerActivations);
+		activations.add(activation);
 
-		// Biases
-		double[] layerBiases = new double[neurons];
-		Arrays.fill(layerBiases, bias);
-		biases.add(layerBiases);
+		// Bias
+		biases.add(bias);
 
-		// Weights withs previous layer.
+		// Weights widths previous layer.
 		int sizeOut = neurons;
 		int sizeIn = getNeurons(layer - 1);
 		double[][] layerWeights = new double[sizeOut][sizeIn];
@@ -547,22 +464,35 @@ public class Network {
 	 */
 	public double[][] getWeights(int layer) {
 		if (layer == 0) {
-			throw new IllegalArgumentException();
+			throw new ArrayIndexOutOfBoundsException();
 		}
-		return weights.get(layer);
+		return weights.get(layer - 1);
 	}
 
 	/**
-	 * Returns the biases of the layer.
+	 * Returns the bias of the layer.
 	 * 
 	 * @param layer The layer.
-	 * @return The biases.
+	 * @return The bias.
 	 */
-	public double[] getBiases(int layer) {
+	public double getBias(int layer) {
 		if (layer == 0) {
-			throw new IllegalArgumentException();
+			throw new ArrayIndexOutOfBoundsException();
 		}
-		return biases.get(layer);
+		return biases.get(layer - 1);
+	}
+
+	/**
+	 * Set the bias of the layer.
+	 * 
+	 * @param layer The layer.
+	 * @param bias The bias.
+	 */
+	public void setBias(int layer, double bias) {
+		if (layer == 0) {
+			throw new ArrayIndexOutOfBoundsException();
+		}
+		biases.set(layer - 1, bias);
 	}
 
 	/**
@@ -585,26 +515,26 @@ public class Network {
 	}
 
 	/**
-	 * Returns the activations of the layer.
+	 * Returns the activation function of the layer.
 	 * 
 	 * @param layer The layer.
-	 * @return The activations.
+	 * @return The activation function.
 	 */
-	public Activation[] getActivations(int layer) {
+	public Activation getActivation(int layer) {
 		if (layer == 0) {
-			throw new IllegalArgumentException();
+			throw new ArrayIndexOutOfBoundsException();
 		}
-		return activations.get(layer);
+		return activations.get(layer - 1);
 	}
 
 	/**
-	 * Returns the type of the layer.
+	 * Set the activation of the layer.
 	 * 
 	 * @param layer The layer.
-	 * @return The type.
+	 * @param activation The activation.
 	 */
-	public NeuronType getType(int layer) {
-		return types.get(layer);
+	public void setActivation(int layer, Activation activation) {
+		activations.set(layer - 1, activation);
 	}
 
 	/**
@@ -618,24 +548,16 @@ public class Network {
 			// Layer size (number of neurons)
 			network.layers.add(new Integer(getNeurons(layer)));
 
-			// Neuron types
-			network.types.add(types.get(layer));
-
-			// Activations
-			Activation[] layerActivations = activations.get(layer);
-			Activation[] targetActivations = new Activation[layerActivations.length];
-			for (int i = 0; i < layerActivations.length; i++) {
-				targetActivations[i] = layerActivations[i];
+			// Layer 0 is done.
+			if (layer == 0) {
+				continue;
 			}
-			network.activations.add(targetActivations);
 
-			// Biases
-			double[] layerBiases = biases.get(layer);
-			double[] targetBiases = new double[layerBiases.length];
-			for (int i = 0; i < layerBiases.length; i++) {
-				targetBiases[i] = layerBiases[i];
-			}
-			network.biases.add(targetBiases);
+			// Activation
+			network.activations.add(activations.get(layer));
+
+			// Bias
+			network.biases.add(biases.get(layer));
 
 			// Weights
 			double[][] layerWeights = weights.get(layer);
