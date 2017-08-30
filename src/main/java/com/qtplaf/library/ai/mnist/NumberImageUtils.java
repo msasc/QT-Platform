@@ -23,7 +23,6 @@ import java.util.Random;
 import com.qtplaf.library.ai.data.ListPatternSource;
 import com.qtplaf.library.ai.data.Pattern;
 import com.qtplaf.library.ai.data.PatternSource;
-import com.qtplaf.library.ai.function.normalize.StdNormalizer;
 import com.qtplaf.library.util.file.FileUtils;
 
 /**

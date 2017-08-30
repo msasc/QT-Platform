@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.qtplaf.library.ai.learning.LearningMethod;
+import com.qtplaf.library.ai.learning.propagation.Propagation;
 import com.qtplaf.library.util.list.ListUtils;
 
 /**
@@ -92,6 +93,8 @@ public class ReinforcementLearning extends LearningMethod {
 	private Reward rewardFunction;
 	/** List of episodes record during the iteration. */
 	private List<Episode> episodes = new ArrayList<>();
+	/** The back propagation learning method (BPROP or RPROP) */
+	private Propagation propagation;
 
 	/**
 	 * Constructor.
@@ -128,6 +131,15 @@ public class ReinforcementLearning extends LearningMethod {
 	}
 
 	/**
+	 * Set the propagation learning method (BPROP or RPROP)
+	 * 
+	 * @param propagation The propagation learning method
+	 */
+	public void setPropagation(Propagation propagation) {
+		this.propagation = propagation;
+	}
+
+	/**
 	 * Returns the total reward of the current series of episodes.
 	 * 
 	 * @return The total reward.
@@ -147,7 +159,7 @@ public class ReinforcementLearning extends LearningMethod {
 	protected void performIteration() {
 
 		// Check necessary configuration.
-		if (agent == null || environment == null || rewardFunction == null) {
+		if (agent == null || environment == null || rewardFunction == null || propagation == null) {
 			throw new IllegalStateException();
 		}
 
@@ -189,7 +201,10 @@ public class ReinforcementLearning extends LearningMethod {
 		}
 
 		// All inputs have been delivered to the agent, it's time to analyze episodes and apply gradient corrections.
-
+		EpisodePatternSource patternSource = new EpisodePatternSource(episodes);
+		propagation.setLearningData(patternSource);
+		propagation.setBatchMode(true);
+		propagation.iteration();
 	}
 
 }
