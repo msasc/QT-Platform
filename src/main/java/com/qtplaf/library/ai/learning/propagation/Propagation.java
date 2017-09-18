@@ -272,6 +272,10 @@ public abstract class Propagation extends LearningMethod {
 	 */
 	@Override
 	protected void performIteration() {
+
+		// Notify start iteration
+		fireLearningEvent("Start propagation iteration");
+
 		if (isBatchMode()) {
 			performIterationBatch();
 		} else {
@@ -300,6 +304,9 @@ public abstract class Propagation extends LearningMethod {
 			task.reinitialize();
 		}
 
+		// Notify start processing tasks.
+		fireLearningEvent("Batch: processing patterns concurrently");
+
 		// Wait completion.
 		ForkJoinPool.commonPool().invoke(new Executor(tasks));
 
@@ -307,9 +314,11 @@ public abstract class Propagation extends LearningMethod {
 		setLastError(getIterationErrorFunction().getTotalError());
 
 		// Update gradients from tasks.
+		fireLearningEvent("Batch: update gradients");
 		updateGradients();
 
 		// Update weights (do learn).
+		fireLearningEvent("Batch: update weights");
 		updateWeights(gradients);
 	}
 
@@ -320,10 +329,10 @@ public abstract class Propagation extends LearningMethod {
 
 		// Reset the error function.
 		getIterationErrorFunction().reset();
-		
+
 		// Network and backward data.
 		Network network = getNetwork();
-		
+
 		// Iterate patterns.
 		for (int i = 0; i < getLearningData().size(); i++) {
 
@@ -332,8 +341,8 @@ public abstract class Propagation extends LearningMethod {
 			double[] patternInputs = pattern.getInputs();
 
 			// Process inputs.
+			fireLearningEvent("Online: process forward pattern " + i);
 			Network.Forward forward = Network.forward(network, patternInputs);
-			
 
 			// Network outputs.
 			double[] networkOutputs = ListUtils.getLast(forward.getOutputs());
@@ -344,12 +353,14 @@ public abstract class Propagation extends LearningMethod {
 			// Accumulate error.
 			double error = getIterationErrorFunction().getError(errors);
 			getIterationErrorFunction().addError(error);
-			
+
 			// Process backward.
+			fireLearningEvent("Online: process backward pattern " + i);
 			Network.Backward backward = new Network.Backward(network);
 			Network.backward(network, forward, backward, errors);
-			
+
 			// Update weights.
+			fireLearningEvent("Online: update weights pattern " + i);
 			updateWeights(backward.getGradients());
 		}
 	}

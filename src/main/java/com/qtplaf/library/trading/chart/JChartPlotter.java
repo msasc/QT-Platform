@@ -60,7 +60,7 @@ public class JChartPlotter extends JPanel {
 	/**
 	 * The cursor to use.
 	 */
-	private CursorType cursorType = CursorType.Custom;
+	private CursorType cursorType = CursorType.ChartCross;
 
 	/**
 	 * Constructor assigning the parent chart container.

@@ -86,7 +86,7 @@ public abstract class Clustering extends LearningMethod {
 	public abstract void initializeClustering(PatternSource source);
 
 	/**
-	 * Returns the best mathing cluster for the pattern applying algorithm criteria..
+	 * Returns the best matching cluster for the pattern applying algorithm criteria..
 	 * 
 	 * @param pattern The pattern.
 	 * @return The best matching cluster.
@@ -99,7 +99,7 @@ public abstract class Clustering extends LearningMethod {
 	protected abstract void initializeIteration();
 
 	/**
-	 * Returns a boolean inticating whether there are more patterns pending to process in the current iteration.
+	 * Returns a boolean indicating whether there are more patterns pending to process in the current iteration.
 	 * 
 	 * @return A boolean.
 	 */

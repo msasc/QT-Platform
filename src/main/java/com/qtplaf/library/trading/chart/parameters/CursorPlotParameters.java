@@ -57,7 +57,7 @@ public class CursorPlotParameters {
 	/**
 	 * The cursot type to use.
 	 */
-	private CursorType chartCursorType = CursorType.Custom;
+	private CursorType chartCursorType = CursorType.ChartCross;
 	/**
 	 * An integer that denotes the system cursor that applies, default is cross hair..
 	 */

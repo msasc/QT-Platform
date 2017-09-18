@@ -64,7 +64,7 @@ import com.qtplaf.library.util.list.ListUtils;
  * Nearly any implementation can issue start and end points. In the classical <i>pong</i> game, the start point comes
  * with the first frame when a game starts, and the end point arrives when the game ends.
  * <p>
- * Finally, an action must provide gradients to encurage or discourage similar actions.
+ * Finally, an action must provide gradients to encourage or discourage similar actions.
  * 
  * <h3>State</h3>
  *

@@ -29,11 +29,7 @@ public class ActivationBipolarSigmoid implements Activation {
 	}
 
 	/**
-	 * Returns the output values of the function given the input values.
-	 * 
-	 * @param triggers The trigger (weighted sum plus bias) values.
-	 * @param outputs The outputs to set.
-	 * @return The output values.
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void activations(double[] triggers, double[] outputs) {

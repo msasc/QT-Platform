@@ -111,67 +111,6 @@ public class Matrix {
 	}
 
 	/**
-	 * Return the Eucliden distance between two vectors.
-	 * 
-	 * @param a Vector a.
-	 * @param b Vector b.
-	 * @return The Eucliden distance.
-	 */
-	public static double distanceEuclidean(double[] a, double[] b) {
-		if (a.length != b.length) {
-			throw new IllegalArgumentException();
-		}
-		int length = a.length;
-		double distance = 0;
-		for (int i = 0; i < length; i++) {
-			distance += Math.pow(a[i] - b[i], 2);
-		}
-		distance = Math.pow(distance, 0.5);
-		return distance;
-	}
-
-	/**
-	 * Set the matrix with a scalar value.
-	 * 
-	 * @param matrix The matrix to initialize.
-	 * @param value The value to assign.
-	 */
-	public static void set(double[][] matrix, double value) {
-		int rows = rows(matrix);
-		int columns = columns(matrix);
-		for (int row = 0; row < rows; row++) {
-			for (int column = 0; column < columns; column++) {
-				matrix[row][column] = value;
-			}
-		}
-	}
-
-	/**
-	 * Returns the number of rows of a matrix.
-	 * 
-	 * @param matrix The argument matrix.
-	 * @return The number of rows.
-	 */
-	private static int rows(double[][] matrix) {
-		return matrix.length;
-	}
-
-	/**
-	 * Subtract the values of vector b from vector a (must have the same length).
-	 * 
-	 * @param a Vector a.
-	 * @param b Vector b.
-	 * @return The result of subtracting the values.
-	 */
-	public static double[] subtract(double[] a, double[] b) {
-		double[] r = new double[a.length];
-		for (int i = 0; i < a.length; i++) {
-			r[i] = a[i] - b[i];
-		}
-		return r;
-	}
-
-	/**
 	 * Copy the source array into the destination array. Both must have the same length.
 	 * 
 	 * @param src The source array.
@@ -198,4 +137,91 @@ public class Matrix {
 			}
 		}
 	}
+
+	/**
+	 * Return the Eucliden distance between two vectors.
+	 * 
+	 * @param a Vector a.
+	 * @param b Vector b.
+	 * @return The Eucliden distance.
+	 */
+	public static double distanceEuclidean(double[] a, double[] b) {
+		if (a.length != b.length) {
+			throw new IllegalArgumentException();
+		}
+		int length = a.length;
+		double distance = 0;
+		for (int i = 0; i < length; i++) {
+			distance += Math.pow(a[i] - b[i], 2);
+		}
+		distance = Math.pow(distance, 0.5);
+		return distance;
+	}
+
+	/**
+	 * Returns the number of rows of a matrix.
+	 * 
+	 * @param matrix The argument matrix.
+	 * @return The number of rows.
+	 */
+	private static int rows(double[][] matrix) {
+		return matrix.length;
+	}
+
+	/**
+	 * Set the matrix with a scalar value.
+	 * 
+	 * @param matrix The matrix to initialize.
+	 * @param value The value to assign.
+	 */
+	public static void set(double[][] matrix, double value) {
+		int rows = rows(matrix);
+		int columns = columns(matrix);
+		for (int row = 0; row < rows; row++) {
+			for (int column = 0; column < columns; column++) {
+				matrix[row][column] = value;
+			}
+		}
+	}
+
+	/**
+	 * Returns the cosine similarity between two vectors.
+	 * 
+	 * @param a Vector a.
+	 * @param b Vector b.
+	 * @return The cosine similarity.
+	 */
+	public static double similarity(double[] a, double[] b) {
+		double ab = 0;
+		double a2 = 0;
+		double b2 = 0;
+		for (int i = 0; i < a.length; i++) {
+			ab += (a[i] * b[i]);
+			a2 += (a[i] * a[i]);
+			b2 += (b[i] * b[i]);
+		}
+		if (a2 == 0 && b2 == 0) {
+			return 1;
+		}
+		if (a2 == 0 || b2 == 0) {
+			return -1;
+		}
+		return ab / Math.sqrt(a2 * b2);
+	}
+
+	/**
+	 * Subtract the values of vector b from vector a (must have the same length).
+	 * 
+	 * @param a Vector a.
+	 * @param b Vector b.
+	 * @return The result of subtracting the values.
+	 */
+	public static double[] subtract(double[] a, double[] b) {
+		double[] r = new double[a.length];
+		for (int i = 0; i < a.length; i++) {
+			r[i] = a[i] - b[i];
+		}
+		return r;
+	}
+
 }

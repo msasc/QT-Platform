@@ -52,6 +52,7 @@ public class CMAUpdate {
 	
 	enum Environment {
 		Production,
+		ProductionAD,
 		Quality,
 		Incubator;
 	}
@@ -99,7 +100,7 @@ public class CMAUpdate {
 		// - quality
 		// - production
 		Argument argEnvironment =
-			new Argument("environment", "Environment: quality/production/incubator", true, false, "quality", "production", "incubator");
+			new Argument("environment", "Environment: quality/production/incubator", true, false, "quality", "production", "production-ad", "incubator");
 
 		// Command line argument: target
 		// - local (local image)
@@ -164,6 +165,9 @@ public class CMAUpdate {
 		if (argMngr.getValue("environment").equals("production")) {
 			env = Environment.Production;
 		}
+		if (argMngr.getValue("environment").equals("production-ad")) {
+			env = Environment.ProductionAD;
+		}
 		if (argMngr.getValue("environment").equals("quality")) {
 			env = Environment.Quality;
 		}
@@ -171,7 +175,7 @@ public class CMAUpdate {
 			env = Environment.Incubator;
 		}
 
-		// Local: copy from workspace to exec image.
+		// Local: copy from workspace to execution image.
 		if (local) {
 
 			// Central.
@@ -232,14 +236,17 @@ public class CMAUpdate {
 			}
 		}
 
-		// Remote: copy from exec image to destination drives.
+		// Remote: copy from execution image to destination drives.
 		if (remote) {
 
 			// The list of destination drives.
 			List<String> drives = new ArrayList<>();
 			if (env == Environment.Production) {
 				drives.addAll(ListUtils.asList("U", "V", "W", "X", "Y", "Z"));
-			} else {
+			} else if (env == Environment.ProductionAD) {
+				drives.addAll(ListUtils.asList("M"));
+				drives.addAll(ListUtils.asList("N"));
+			} else if (env == Environment.Quality) {
 				drives.addAll(ListUtils.asList("T"));
 			}
 
@@ -341,7 +348,7 @@ public class CMAUpdate {
 	 * @param fc File copy.
 	 * @param env Environment
 	 * @param module Module (CMA_Central/CMA_Dictionary/CMA_Local)
-	 * @param menu A boolean to indocate if the menu file should be copied.
+	 * @param menu A boolean to indicate if the menu file should be copied.
 	 */
 	private static void addLocalModuleMarginsCentral(FileCopy fc, Environment env, String module, boolean menu) {
 		String srcParent = "XVR COM Module Margins Central";
@@ -633,7 +640,7 @@ public class CMAUpdate {
 	private static String getName(Environment env, boolean local, String module) {
 		StringBuilder b = new StringBuilder();
 		b.append("CP");
-		if (env == Environment.Production) {
+		if (env == Environment.Production || env == Environment.ProductionAD) {
 			b.append("EP");
 		}
 		if (env == Environment.Quality) {
@@ -774,7 +781,7 @@ public class CMAUpdate {
 	 */
 	private static String getSrcRootLocal(Environment env) {
 		String srcRoot = null;
-		if (env == Environment.Production) {
+		if (env == Environment.Production || env == Environment.ProductionAD) {
 			srcRoot = "c:\\Development\\Eclipse-Workspaces\\Roca\\workspace-head";
 		}
 		if (env == Environment.Quality) {
@@ -794,7 +801,7 @@ public class CMAUpdate {
 	 */
 	private static String getDstRootLocal(Environment env) {
 		String dstRoot = null;
-		if (env == Environment.Production) {
+		if (env == Environment.Production || env == Environment.ProductionAD) {
 			dstRoot = "c:\\Development\\Eclipse-Workspaces\\Roca\\cma-head";
 		}
 		if (env == Environment.Quality) {
