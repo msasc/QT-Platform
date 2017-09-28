@@ -289,16 +289,16 @@ public class Field implements Comparable<Object> {
 	public void setType(Types type) {
 		properties.setObject(TYPE, type);
 		switch (type) {
-		case String:
+		case STRING:
 			setHorizontalAlignment(Alignment.Left);
 			break;
-		case Decimal:
-		case Double:
-		case Long:
-		case Integer:
+		case DECIMAL:
+		case DOUBLE:
+		case LONG:
+		case INTEGER:
 			setHorizontalAlignment(Alignment.Right);
 			break;
-		case Boolean:
+		case BOOLEAN:
 			setHorizontalAlignment(Alignment.Center);
 			break;
 		default:

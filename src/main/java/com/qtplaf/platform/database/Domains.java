@@ -74,7 +74,7 @@ public class Domains {
 		field.setSession(session);
 		field.setName(name);
 		field.setAlias(alias);
-		field.setType(Types.Double);
+		field.setType(Types.DOUBLE);
 		field.setHeader(header);
 		field.setLabel(label);
 		field.setTitle(title);
@@ -134,7 +134,7 @@ public class Domains {
 		field.setSession(session);
 		field.setName(name);
 		field.setAlias(alias);
-		field.setType(Types.String);
+		field.setType(Types.STRING);
 		field.setLength(length);
 		field.setHeader(header);
 		field.setLabel(label);
@@ -191,7 +191,7 @@ public class Domains {
 		field.setSession(session);
 		field.setName(name);
 		field.setAlias(alias);
-		field.setType(Types.Integer);
+		field.setType(Types.INTEGER);
 
 		field.setHeader(header);
 		field.setLabel(label);
@@ -248,7 +248,7 @@ public class Domains {
 		field.setSession(session);
 		field.setName(name);
 		field.setAlias(alias);
-		field.setType(Types.Long);
+		field.setType(Types.LONG);
 
 		field.setHeader(header);
 		field.setLabel(label);

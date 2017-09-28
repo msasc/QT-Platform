@@ -99,9 +99,9 @@ public class OracleAdapter extends DBEngineAdapter {
 		b.append(" ");
 
 		Types type = field.getType();
-		if (type == Types.Boolean) {
+		if (type == Types.BOOLEAN) {
 			b.append("CHAR(1)");
-		} else if (type == Types.ByteArray) {
+		} else if (type == Types.BYTEARRAY) {
 			if (field.getLength() <= Types.FIXED_LENGTH) {
 				b.append("RAW");
 				b.append("(");
@@ -110,7 +110,7 @@ public class OracleAdapter extends DBEngineAdapter {
 			} else {
 				b.append("LONG RAW");
 			}
-		} else if (type == Types.String) {
+		} else if (type == Types.STRING) {
 			if (field.getLength() <= Types.FIXED_LENGTH) {
 				b.append("VARCHAR2");
 				b.append("(");
@@ -119,24 +119,24 @@ public class OracleAdapter extends DBEngineAdapter {
 			} else {
 				b.append("LONG");
 			}
-		} else if (type == Types.Decimal) {
+		} else if (type == Types.DECIMAL) {
 			b.append("NUMBER");
 			b.append("(");
 			b.append(field.getLength());
 			b.append(",");
 			b.append(field.getDecimals());
 			b.append(")");
-		} else if (type == Types.Double) {
+		} else if (type == Types.DOUBLE) {
 			b.append("NUMBER");
-		} else if (type == Types.Long) {
+		} else if (type == Types.LONG) {
 			b.append("NUMBER");
-		} else if (type == Types.Integer) {
+		} else if (type == Types.INTEGER) {
 			b.append("NUMBER");
-		} else if (type == Types.Date) {
+		} else if (type == Types.DATE) {
 			b.append("DATE");
-		} else if (type == Types.Time) {
+		} else if (type == Types.TIME) {
 			b.append("DATE");
-		} else if (type == Types.Timestamp) {
+		} else if (type == Types.TIMESTAMP) {
 			b.append("DATE");
 		} else {
 			throw new IllegalArgumentException("Invalid field type to create the field");

@@ -109,7 +109,7 @@ public class FieldProperties {
 		field.setTitle(session.getString("fieldGroupIndex"));
 		field.setLabel(session.getString("fieldGroupIndex"));
 		field.setHeader(session.getString("fieldGroupIndex"));
-		field.setType(Types.Integer);
+		field.setType(Types.INTEGER);
 		field.setPrimaryKey(true);
 		field.setFixedWidth(false);
 		return field;
@@ -127,7 +127,7 @@ public class FieldProperties {
 		field.setTitle(session.getString("fieldIndex"));
 		field.setLabel(session.getString("fieldIndex"));
 		field.setHeader(session.getString("fieldIndex"));
-		field.setType(Types.Integer);
+		field.setType(Types.INTEGER);
 		field.setPrimaryKey(true);
 		field.setFixedWidth(false);
 		return field;
@@ -145,7 +145,7 @@ public class FieldProperties {
 		field.setTitle(session.getString("fieldGroup"));
 		field.setLabel(session.getString("fieldGroup"));
 		field.setHeader(session.getString("fieldGroup"));
-		field.setType(Types.String);
+		field.setType(Types.STRING);
 		field.setLength(60);
 		field.setFixedWidth(false);
 		return field;
@@ -163,7 +163,7 @@ public class FieldProperties {
 		field.setTitle(session.getString("fieldName"));
 		field.setLabel(session.getString("fieldName"));
 		field.setHeader(session.getString("fieldName"));
-		field.setType(Types.String);
+		field.setType(Types.STRING);
 		field.setLength(30);
 		field.setFixedWidth(false);
 		return field;
@@ -181,7 +181,7 @@ public class FieldProperties {
 		field.setTitle(session.getString("fieldAlias"));
 		field.setLabel(session.getString("fieldAlias"));
 		field.setHeader(session.getString("fieldAlias"));
-		field.setType(Types.String);
+		field.setType(Types.STRING);
 		field.setLength(30);
 		field.setFixedWidth(false);
 		return field;
@@ -199,7 +199,7 @@ public class FieldProperties {
 		field.setTitle(session.getString("fieldHeader"));
 		field.setLabel(session.getString("fieldHeader"));
 		field.setHeader(session.getString("fieldHeader"));
-		field.setType(Types.String);
+		field.setType(Types.STRING);
 		field.setLength(60);
 		field.setFixedWidth(false);
 		return field;
@@ -217,7 +217,7 @@ public class FieldProperties {
 		field.setTitle(session.getString("fieldTitle"));
 		field.setLabel(session.getString("fieldTitle"));
 		field.setHeader(session.getString("fieldTitle"));
-		field.setType(Types.String);
+		field.setType(Types.STRING);
 		field.setLength(60);
 		field.setFixedWidth(false);
 		return field;
@@ -235,7 +235,7 @@ public class FieldProperties {
 		field.setTitle(session.getString("fieldType"));
 		field.setLabel(session.getString("fieldType"));
 		field.setHeader(session.getString("fieldType"));
-		field.setType(Types.String);
+		field.setType(Types.STRING);
 		field.setLength(20);
 		field.setFixedWidth(false);
 		return field;
@@ -253,7 +253,7 @@ public class FieldProperties {
 		field.setTitle(session.getString("fieldLength"));
 		field.setLabel(session.getString("fieldLength"));
 		field.setHeader(session.getString("fieldLength"));
-		field.setType(Types.Integer);
+		field.setType(Types.INTEGER);
 		field.setFixedWidth(false);
 		return field;
 	}
@@ -270,7 +270,7 @@ public class FieldProperties {
 		field.setTitle(session.getString("fieldDecimals"));
 		field.setLabel(session.getString("fieldDecimals"));
 		field.setHeader(session.getString("fieldDecimals"));
-		field.setType(Types.Integer);
+		field.setType(Types.INTEGER);
 		field.setFixedWidth(false);
 		return field;
 	}
@@ -287,7 +287,7 @@ public class FieldProperties {
 		field.setTitle(session.getString("fieldAsc"));
 		field.setLabel(session.getString("fieldAsc"));
 		field.setHeader(session.getString("fieldAsc"));
-		field.setType(Types.String);
+		field.setType(Types.STRING);
 		field.addPossibleValue(new Value(session.getString("tokenAsc")));
 		field.addPossibleValue(new Value(session.getString("tokenDesc")));
 		field.setFixedWidth(false);

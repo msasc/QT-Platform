@@ -101,7 +101,7 @@ public class Value implements Comparable<Object> {
 	public Value(ValueArray valueArray) {
 		super();
 		value = valueArray;
-		type = Types.ValueArray;
+		type = Types.VALUEARRAY;
 	}
 
 	/**
@@ -112,7 +112,7 @@ public class Value implements Comparable<Object> {
 	public Value(boolean b) {
 		super();
 		value = b;
-		type = Types.Boolean;
+		type = Types.BOOLEAN;
 	}
 
 	/**
@@ -123,7 +123,7 @@ public class Value implements Comparable<Object> {
 	public Value(Boolean b) {
 		super();
 		value = b;
-		type = Types.Boolean;
+		type = Types.BOOLEAN;
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class Value implements Comparable<Object> {
 	public Value(String s) {
 		super();
 		value = s;
-		type = Types.String;
+		type = Types.STRING;
 	}
 
 	/**
@@ -145,7 +145,7 @@ public class Value implements Comparable<Object> {
 	public Value(BigDecimal b) {
 		super();
 		value = b;
-		type = Types.Decimal;
+		type = Types.DECIMAL;
 		if (b == null) {
 			decimals = 0;
 		} else {
@@ -161,7 +161,7 @@ public class Value implements Comparable<Object> {
 	public Value(Double d) {
 		super();
 		value = d;
-		type = Types.Double;
+		type = Types.DOUBLE;
 		decimals = -1;
 	}
 
@@ -173,7 +173,7 @@ public class Value implements Comparable<Object> {
 	public Value(double d) {
 		super();
 		value = d;
-		type = Types.Double;
+		type = Types.DOUBLE;
 		decimals = -1;
 	}
 
@@ -185,7 +185,7 @@ public class Value implements Comparable<Object> {
 	public Value(Integer i) {
 		super();
 		value = i;
-		type = Types.Integer;
+		type = Types.INTEGER;
 		decimals = 0;
 	}
 
@@ -197,7 +197,7 @@ public class Value implements Comparable<Object> {
 	public Value(int i) {
 		super();
 		value = i;
-		type = Types.Integer;
+		type = Types.INTEGER;
 		decimals = 0;
 	}
 
@@ -209,7 +209,7 @@ public class Value implements Comparable<Object> {
 	public Value(Long l) {
 		super();
 		value = l;
-		type = Types.Long;
+		type = Types.LONG;
 		decimals = 0;
 	}
 
@@ -221,7 +221,7 @@ public class Value implements Comparable<Object> {
 	public Value(long l) {
 		super();
 		value = l;
-		type = Types.Long;
+		type = Types.LONG;
 		decimals = 0;
 	}
 
@@ -233,7 +233,7 @@ public class Value implements Comparable<Object> {
 	public Value(ByteArray byteArray) {
 		super();
 		value = byteArray;
-		type = Types.ByteArray;
+		type = Types.BYTEARRAY;
 	}
 
 	/**
@@ -246,7 +246,7 @@ public class Value implements Comparable<Object> {
 		ByteArray byteArray = new ByteArray(b.length);
 		byteArray.addAll(b);
 		value = byteArray;
-		type = Types.ByteArray;
+		type = Types.BYTEARRAY;
 	}
 
 	/**
@@ -257,7 +257,7 @@ public class Value implements Comparable<Object> {
 	public Value(Date d) {
 		super();
 		value = d;
-		type = Types.Date;
+		type = Types.DATE;
 	}
 
 	/**
@@ -268,7 +268,7 @@ public class Value implements Comparable<Object> {
 	public Value(Time t) {
 		super();
 		value = t;
-		type = Types.Time;
+		type = Types.TIME;
 	}
 
 	/**
@@ -279,7 +279,7 @@ public class Value implements Comparable<Object> {
 	public Value(Timestamp t) {
 		super();
 		value = t;
-		type = Types.Timestamp;
+		type = Types.TIMESTAMP;
 	}
 
 	/**
@@ -297,40 +297,40 @@ public class Value implements Comparable<Object> {
 			return v;
 		}
 		switch (type) {
-		case Boolean:
+		case BOOLEAN:
 			v.value = new Boolean(getBoolean());
 			break;
-		case ByteArray:
+		case BYTEARRAY:
 			v.value = new ByteArray(getByteArray());
 			break;
-		case Date:
+		case DATE:
 			v.value = new Date(getDate());
 			break;
-		case Decimal:
+		case DECIMAL:
 			v.value = new BigDecimal(getDouble()).setScale(decimals, BigDecimal.ROUND_HALF_UP);
 			break;
-		case Double:
+		case DOUBLE:
 			v.value = new Double(getDouble());
 			break;
-		case Integer:
+		case INTEGER:
 			v.value = new Integer(getInteger());
 			break;
-		case Long:
+		case LONG:
 			v.value = new Long(getLong());
 			break;
-		case Object:
+		case OBJECT:
 			v.value = value;
 			break;
-		case String:
+		case STRING:
 			v.value = new String(getString());
 			break;
-		case Time:
+		case TIME:
 			v.value = new Time(getTime());
 			break;
-		case Timestamp:
+		case TIMESTAMP:
 			v.value = new Timestamp(getTimestamp());
 			break;
-		case ValueArray:
+		case VALUEARRAY:
 			v.value = new ValueArray(getValueArray());
 			break;
 		default:
@@ -1514,21 +1514,21 @@ public class Value implements Comparable<Object> {
 			return;
 		}
 		switch (getType()) {
-		case Boolean:
+		case BOOLEAN:
 			setBoolean(FormatUtils.formattedToBoolean(str, locale));
 			break;
-		case ByteArray:
+		case BYTEARRAY:
 			getByteArray().clear();
 			getByteArray().addAll(str.getBytes());
 			break;
-		case Date:
+		case DATE:
 			if (str.trim().length() == 0) {
 				setDate(null);
 				break;
 			}
 			setDate(FormatUtils.formattedToDate(str, locale));
 			break;
-		case Decimal:
+		case DECIMAL:
 			if (str.trim().length() == 0) {
 				str = "0";
 			}
@@ -1536,37 +1536,37 @@ public class Value implements Comparable<Object> {
 			bd = bd.setScale(decimals, BigDecimal.ROUND_HALF_UP);
 			setBigDecimal(bd);
 			break;
-		case Double:
+		case DOUBLE:
 			setDouble(FormatUtils.formattedToDouble(str, locale));
 			break;
-		case Integer:
+		case INTEGER:
 			setInteger(FormatUtils.formattedToInteger(str, locale));
 			break;
-		case Long:
+		case LONG:
 			setLong(FormatUtils.formattedToLong(str, locale));
 			break;
-		case Object:
+		case OBJECT:
 			break;
-		case String:
+		case STRING:
 			setString(str);
 			break;
-		case Time:
+		case TIME:
 			if (str.trim().length() == 0) {
 				setTime(null);
 				break;
 			}
 			setTime(FormatUtils.formattedToTime(str, locale));
 			break;
-		case Timestamp:
+		case TIMESTAMP:
 			if (str.trim().length() == 0) {
 				setTimestamp(null);
 				break;
 			}
 			setTimestamp(FormatUtils.formattedToTimestamp(str, locale));
 			break;
-		case Value:
+		case VALUE:
 			break;
-		case ValueArray:
+		case VALUEARRAY:
 			break;
 		default:
 			break;
@@ -1584,21 +1584,21 @@ public class Value implements Comparable<Object> {
 			return;
 		}
 		switch (getType()) {
-		case Boolean:
+		case BOOLEAN:
 			setBoolean(FormatUtils.unformattedToBoolean(str));
 			break;
-		case ByteArray:
+		case BYTEARRAY:
 			getByteArray().clear();
 			getByteArray().addAll(str.getBytes());
 			break;
-		case Date:
+		case DATE:
 			if (str.trim().length() == 0) {
 				setDate(null);
 				break;
 			}
 			setDate(FormatUtils.unformattedToDate(str));
 			break;
-		case Decimal:
+		case DECIMAL:
 			if (str.trim().length() == 0) {
 				str = "0";
 			}
@@ -1606,37 +1606,37 @@ public class Value implements Comparable<Object> {
 			bd = bd.setScale(decimals, BigDecimal.ROUND_HALF_UP);
 			setBigDecimal(bd);
 			break;
-		case Double:
+		case DOUBLE:
 			setDouble(FormatUtils.unformattedToDouble(str));
 			break;
-		case Integer:
+		case INTEGER:
 			setInteger(FormatUtils.unformattedToInteger(str));
 			break;
-		case Long:
+		case LONG:
 			setLong(FormatUtils.unformattedToLong(str));
 			break;
-		case Object:
+		case OBJECT:
 			break;
-		case String:
+		case STRING:
 			setString(str);
 			break;
-		case Time:
+		case TIME:
 			if (str.trim().length() == 0) {
 				setTime(null);
 				break;
 			}
 			setTime(FormatUtils.unformattedToTime(str));
 			break;
-		case Timestamp:
+		case TIMESTAMP:
 			if (str.trim().length() == 0) {
 				setTimestamp(null);
 				break;
 			}
 			setTimestamp(FormatUtils.unformattedToTimestamp(str));
 			break;
-		case Value:
+		case VALUE:
 			break;
-		case ValueArray:
+		case VALUEARRAY:
 			break;
 		default:
 			break;
@@ -1679,7 +1679,7 @@ public class Value implements Comparable<Object> {
 	 * @param decimals The number of decimal places.
 	 */
 	public void setDecimals(int decimals) {
-		if (getType() != Types.Decimal) {
+		if (getType() != Types.DECIMAL) {
 			throw new UnsupportedOperationException("Not supported for types different than decimal.");
 		}
 		this.decimals = decimals;

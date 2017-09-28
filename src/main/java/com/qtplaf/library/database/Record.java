@@ -704,31 +704,31 @@ public class Record implements Comparable<Object> {
 			Value value = getValue(i);
 			Types type = getField(i).getType();
 			switch (type) {
-			case Boolean:
+			case BOOLEAN:
 				b.append(value.getBoolean());
 				break;
-			case ByteArray:
+			case BYTEARRAY:
 				b.append(value.getByteArray());
 				break;
-			case Decimal:
-			case Double:
-			case Integer:
-			case Long:
+			case DECIMAL:
+			case DOUBLE:
+			case INTEGER:
+			case LONG:
 				b.append(value.getNumber());
 				break;
-			case Object:
+			case OBJECT:
 				b.append(value.getType());
 				break;
-			case String:
-			case Date:
-			case Time:
-			case Timestamp:
+			case STRING:
+			case DATE:
+			case TIME:
+			case TIMESTAMP:
 				b.append("'" + value.toString() + "'");
 				break;
-			case Value:
+			case VALUE:
 				b.append(value.toString());
 				break;
-			case ValueArray:
+			case VALUEARRAY:
 				b.append(value.toString());
 				break;
 			default:

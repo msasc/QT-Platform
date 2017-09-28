@@ -45,7 +45,7 @@ public class FormatUtils {
 	private static final int NORMALIZED_DATE_FORMAT = propertyIndex++;
 	/** The normalized time format key. */
 	private static final int NORMALIZED_TIME_FORMAT = propertyIndex++;
-	/** The normalized timestamp format. */
+	/** The normalized time stamp format. */
 	private static final int NORMALIZED_TIMESTAMP_FORMAT = propertyIndex++;
 
 	/**
@@ -444,29 +444,29 @@ public class FormatUtils {
 	@SuppressWarnings("incomplete-switch")
 	public static String formattedFromValue(Value value, Locale locale) {
 		switch (value.getType()) {
-		case Boolean:
+		case BOOLEAN:
 			return formattedFromBoolean(value.getBoolean(), locale);
-		case Decimal:
+		case DECIMAL:
 			return formattedFromBigDecimal(value.getBigDecimal(), value.getDecimals(), locale);
-		case Date:
+		case DATE:
 			return formattedFromDate(value.getDate(), locale);
-		case Double:
+		case DOUBLE:
 			return formattedFromDouble(value.getDouble(), locale);
-		case Integer:
+		case INTEGER:
 			return formattedFromInteger(value.getInteger(), locale);
-		case Long:
+		case LONG:
 			return formattedFromLong(value.getLong(), locale);
-		case String:
+		case STRING:
 			return value.getString();
-		case Time:
+		case TIME:
 			return formattedFromTime(value.getTime(), locale);
-		case Timestamp:
+		case TIMESTAMP:
 			return formattedFromTimestamp(value.getTimestamp(), locale);
 		/** Types that do not support a formated conversion. */
-		case ByteArray:
-		case Object:
-		case Value:
-		case ValueArray:
+		case BYTEARRAY:
+		case OBJECT:
+		case VALUE:
+		case VALUEARRAY:
 		}
 		return value.toString();
 	}
@@ -607,29 +607,29 @@ public class FormatUtils {
 	@SuppressWarnings("incomplete-switch")
 	public static Value formattedToValue(Types type, String str, Locale locale) throws ParseException {
 		switch (type) {
-		case Boolean:
+		case BOOLEAN:
 			return new Value(formattedToBoolean(str, locale));
-		case Decimal:
+		case DECIMAL:
 			return new Value(formattedToBigDecimal(str, locale));
-		case Date:
+		case DATE:
 			return new Value(formattedToDate(str, locale));
-		case Double:
+		case DOUBLE:
 			return new Value(formattedToDouble(str, locale));
-		case Integer:
+		case INTEGER:
 			return new Value(formattedToInteger(str, locale));
-		case Long:
+		case LONG:
 			return new Value(formattedToLong(str, locale));
-		case String:
+		case STRING:
 			return new Value(str);
-		case Time:
+		case TIME:
 			return new Value(formattedToTime(str, locale));
-		case Timestamp:
+		case TIMESTAMP:
 			return new Value(formattedToTimestamp(str, locale));
 		/** Types that do not support a formated conversion. */
-		case ByteArray:
-		case Object:
-		case Value:
-		case ValueArray:
+		case BYTEARRAY:
+		case OBJECT:
+		case VALUE:
+		case VALUEARRAY:
 		}
 		return new Value(str);
 	}

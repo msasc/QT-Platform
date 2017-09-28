@@ -638,7 +638,7 @@ public class JPanelFormFields extends JPanel {
 			// Check if access to the current field is denied and if so skip it. By default fields with access mode not
 			// defined are accepted.
 			AccessMode accessMode = getSession().getAccessMode(field.getNameSecurity());
-			if (accessMode.equals(AccessMode.Denied)) {
+			if (accessMode.equals(AccessMode.DENIED)) {
 				continue;
 			}
 			accessibleFields.add(field);
@@ -721,7 +721,7 @@ public class JPanelFormFields extends JPanel {
 		List<Field> foreignRefreshFieldsTmp = new ArrayList<>();
 		for (Field field : fields) {
 			AccessMode accessMode = getSession().getAccessMode(field.getNameSecurity());
-			if (accessMode.equals(AccessMode.Denied)) {
+			if (accessMode.equals(AccessMode.DENIED)) {
 				continue;
 			}
 			if (field.getParentTable().equals(relation.getForeignTable())) {

@@ -19,20 +19,12 @@ package com.qtplaf.library.app;
  * @author Miquel Sas
  */
 public enum AccessMode {
-	/**
-	 * Access denied.
-	 */
-	Denied,
-	/**
-	 * Readonly access.
-	 */
-	ReadOnly,
-	/**
-	 * Read-write access.
-	 */
-	ReadWrite,
-	/**
-	 * Not defined.
-	 */
-	NotDefined;
+	/** Access denied. */
+	DENIED,
+	/** Read-only access. */
+	READ_ONLY,
+	/** Read-write access. */
+	READ_WRITE,
+	/** Not defined. */
+	NOT_DEFINED;
 }

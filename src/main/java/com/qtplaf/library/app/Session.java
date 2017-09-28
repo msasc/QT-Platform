@@ -133,7 +133,7 @@ public class Session {
 		if (getUser() != null && getSecurity() != null && accessKey != null) {
 			return getSecurity().getAccessMode(getUser(), accessKey);
 		}
-		return AccessMode.NotDefined;
+		return AccessMode.NOT_DEFINED;
 	}
 
 	/**

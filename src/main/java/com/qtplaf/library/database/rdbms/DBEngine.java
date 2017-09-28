@@ -924,7 +924,7 @@ public class DBEngine {
 
 		Field field = new Field();
 		field.setName("COUNTER");
-		field.setType(Types.Long);
+		field.setType(Types.LONG);
 		field.setFunction("COUNT(*)");
 
 		view.removeAllFields();

@@ -69,7 +69,7 @@ public class MetaData {
 	 */
 	public static FieldList getFieldListCatalogInfo() {
 		FieldList fieldList = new FieldList();
-		fieldList.addField(createField(TABLE_CATALOG, "Catalog", Types.String, 40, 0, true));
+		fieldList.addField(createField(TABLE_CATALOG, "Catalog", Types.STRING, 40, 0, true));
 		return fieldList;
 	}
 
@@ -80,25 +80,25 @@ public class MetaData {
 	 */
 	public static FieldList getFieldListColumnInfo() {
 		FieldList fieldList = new FieldList();
-		fieldList.addField(createField(TABLE_CATALOG, "Catalog", Types.String, 40, 0, true));
-		fieldList.addField(createField(TABLE_SCHEMA, "Schema", Types.String, 40, 0, true));
-		fieldList.addField(createField(TABLE_NAME, "Table", Types.String, 40, 0, false));
-		fieldList.addField(createField(COLUMN_NAME, "Column", Types.String, 40, 0, false));
-		fieldList.addField(createField(DATA_TYPE, "Data type", Types.Integer, 0, 0, false));
-		fieldList.addField(createField(TYPE_NAME, "Type name", Types.String, 20, 0, false));
-		fieldList.addField(createField("COLUMN_SIZE", "Column size", Types.Long, 0, 0, false));
-		fieldList.addField(createField("BUFFER_LENGTH", "Buffer length", Types.Integer, 0, 0, false));
-		fieldList.addField(createField("DECIMAL_DIGITS", "Decimal digits", Types.Integer, 0, 0, false));
-		fieldList.addField(createField("NUM_PREC_RADIX", "Num prec radix", Types.Integer, 0, 0, false));
-		fieldList.addField(createField("NULLABLE", "Nullable", Types.Integer, 0, 0, false));
-		fieldList.addField(createField("REMARKS", "Remarks", Types.String, 128, 0, false));
-		fieldList.addField(createField("COLUMN_DEF", "Column def", Types.String, 128, 0, false));
-		fieldList.addField(createField("SQL_DATA_TYPE", "SQL data type", Types.Integer, 0, 0, false));
-		fieldList.addField(createField("SQL_DATETIME_SUB", "SQL date time sub", Types.Integer, 0, 0, false));
-		fieldList.addField(createField("CHAR_OCTET_LENGTH", "Char octet length", Types.Long, 0, 0, false));
-		fieldList.addField(createField("ORDINAL_POSITION", "Ordinal position", Types.Integer, 0, 0, true));
-		fieldList.addField(createField("IS_NULLABLE", "Is nullable", Types.String, 5, 0, false));
-		fieldList.addField(createField("DATA_TYPE_NAME", "Data type name", Types.String, 20, 0, false));
+		fieldList.addField(createField(TABLE_CATALOG, "Catalog", Types.STRING, 40, 0, true));
+		fieldList.addField(createField(TABLE_SCHEMA, "Schema", Types.STRING, 40, 0, true));
+		fieldList.addField(createField(TABLE_NAME, "Table", Types.STRING, 40, 0, false));
+		fieldList.addField(createField(COLUMN_NAME, "Column", Types.STRING, 40, 0, false));
+		fieldList.addField(createField(DATA_TYPE, "Data type", Types.INTEGER, 0, 0, false));
+		fieldList.addField(createField(TYPE_NAME, "Type name", Types.STRING, 20, 0, false));
+		fieldList.addField(createField("COLUMN_SIZE", "Column size", Types.LONG, 0, 0, false));
+		fieldList.addField(createField("BUFFER_LENGTH", "Buffer length", Types.INTEGER, 0, 0, false));
+		fieldList.addField(createField("DECIMAL_DIGITS", "Decimal digits", Types.INTEGER, 0, 0, false));
+		fieldList.addField(createField("NUM_PREC_RADIX", "Num prec radix", Types.INTEGER, 0, 0, false));
+		fieldList.addField(createField("NULLABLE", "Nullable", Types.INTEGER, 0, 0, false));
+		fieldList.addField(createField("REMARKS", "Remarks", Types.STRING, 128, 0, false));
+		fieldList.addField(createField("COLUMN_DEF", "Column def", Types.STRING, 128, 0, false));
+		fieldList.addField(createField("SQL_DATA_TYPE", "SQL data type", Types.INTEGER, 0, 0, false));
+		fieldList.addField(createField("SQL_DATETIME_SUB", "SQL date time sub", Types.INTEGER, 0, 0, false));
+		fieldList.addField(createField("CHAR_OCTET_LENGTH", "Char octet length", Types.LONG, 0, 0, false));
+		fieldList.addField(createField("ORDINAL_POSITION", "Ordinal position", Types.INTEGER, 0, 0, true));
+		fieldList.addField(createField("IS_NULLABLE", "Is nullable", Types.STRING, 5, 0, false));
+		fieldList.addField(createField("DATA_TYPE_NAME", "Data type name", Types.STRING, 20, 0, false));
 		return fieldList;
 	}
 
@@ -109,20 +109,20 @@ public class MetaData {
 	 */
 	public static FieldList getFieldListIndexInfo() {
 		FieldList fieldList = new FieldList();
-		fieldList.addField(createField(TABLE_CATALOG, "Catalog", Types.String, 40, 0, true));
-		fieldList.addField(createField(TABLE_SCHEMA, "Schema", Types.String, 40, 0, true));
-		fieldList.addField(createField(TABLE_NAME, "Table", Types.String, 40, 0, true));
-		fieldList.addField(createField("NON_UNIQUE", "Non unique", Types.Boolean, 1, 0, false));
-		fieldList.addField(createField("INDEX_QUALIFIER", "Index qualifier", Types.String, 40, 0, false));
-		fieldList.addField(createField("INDEX_NAME", "Index name", Types.String, 40, 0, false));
-		fieldList.addField(createField("TYPE", "Index type", Types.Integer, 40, 0, false));
-		fieldList.addField(createField("ORDINAL_POSITION", "Ordinal position", Types.Integer, 0, 0, false));
-		fieldList.addField(createField(COLUMN_NAME, "Column name", Types.String, 0, 0, false));
-		fieldList.addField(createField("ASC_OR_DESC", "Asc/desc", Types.String, 2, 0, false));
-		fieldList.addField(createField("CARDINALITY", "Cardinality", Types.Integer, 0, 0, false));
-		fieldList.addField(createField("PAGES", "Pages", Types.Integer, 0, 0, false));
-		fieldList.addField(createField("FILTER_CONDITION", "Filter condition", Types.String, 128, 0, false));
-		fieldList.addField(createField("INDEX_TYPE_DESC", "Index type desc", Types.String, 20, 0, false));
+		fieldList.addField(createField(TABLE_CATALOG, "Catalog", Types.STRING, 40, 0, true));
+		fieldList.addField(createField(TABLE_SCHEMA, "Schema", Types.STRING, 40, 0, true));
+		fieldList.addField(createField(TABLE_NAME, "Table", Types.STRING, 40, 0, true));
+		fieldList.addField(createField("NON_UNIQUE", "Non unique", Types.BOOLEAN, 1, 0, false));
+		fieldList.addField(createField("INDEX_QUALIFIER", "Index qualifier", Types.STRING, 40, 0, false));
+		fieldList.addField(createField("INDEX_NAME", "Index name", Types.STRING, 40, 0, false));
+		fieldList.addField(createField("TYPE", "Index type", Types.INTEGER, 40, 0, false));
+		fieldList.addField(createField("ORDINAL_POSITION", "Ordinal position", Types.INTEGER, 0, 0, false));
+		fieldList.addField(createField(COLUMN_NAME, "Column name", Types.STRING, 0, 0, false));
+		fieldList.addField(createField("ASC_OR_DESC", "Asc/desc", Types.STRING, 2, 0, false));
+		fieldList.addField(createField("CARDINALITY", "Cardinality", Types.INTEGER, 0, 0, false));
+		fieldList.addField(createField("PAGES", "Pages", Types.INTEGER, 0, 0, false));
+		fieldList.addField(createField("FILTER_CONDITION", "Filter condition", Types.STRING, 128, 0, false));
+		fieldList.addField(createField("INDEX_TYPE_DESC", "Index type desc", Types.STRING, 20, 0, false));
 		return fieldList;
 	}
 
@@ -133,11 +133,11 @@ public class MetaData {
 	 */
 	public static FieldList getFieldListTableInfo() {
 		FieldList fieldList = new FieldList();
-		fieldList.addField(createField(TABLE_CATALOG, "Catalog", Types.String, 40, 0, false));
-		fieldList.addField(createField(TABLE_SCHEMA, "Schema", Types.String, 40, 0, false));
-		fieldList.addField(createField(TABLE_NAME, "Table", Types.String, 40, 0, false));
-		fieldList.addField(createField("TABLE_TYPE", "Table type", Types.String, 40, 0, false));
-		fieldList.addField(createField("REMARKS", "Remarks", Types.String, 128, 0, false));
+		fieldList.addField(createField(TABLE_CATALOG, "Catalog", Types.STRING, 40, 0, false));
+		fieldList.addField(createField(TABLE_SCHEMA, "Schema", Types.STRING, 40, 0, false));
+		fieldList.addField(createField(TABLE_NAME, "Table", Types.STRING, 40, 0, false));
+		fieldList.addField(createField("TABLE_TYPE", "Table type", Types.STRING, 40, 0, false));
+		fieldList.addField(createField("REMARKS", "Remarks", Types.STRING, 128, 0, false));
 		return fieldList;
 	}
 
@@ -148,12 +148,12 @@ public class MetaData {
 	 */
 	public static FieldList getFieldListPrimaryKeyInfo() {
 		FieldList fieldList = new FieldList();
-		fieldList.addField(createField(TABLE_CATALOG, "Catalog", Types.String, 40, 0, true));
-		fieldList.addField(createField(TABLE_SCHEMA, "Schema", Types.String, 40, 0, true));
-		fieldList.addField(createField(TABLE_NAME, "Table", Types.String, 40, 0, true));
-		fieldList.addField(createField(COLUMN_NAME, "Column", Types.String, 40, 0, true));
-		fieldList.addField(createField("KEY_SEQ", "Key seq", Types.Integer, 4, 0, true));
-		fieldList.addField(createField("PK_NAME", "PK name", Types.String, 40, 0, false));
+		fieldList.addField(createField(TABLE_CATALOG, "Catalog", Types.STRING, 40, 0, true));
+		fieldList.addField(createField(TABLE_SCHEMA, "Schema", Types.STRING, 40, 0, true));
+		fieldList.addField(createField(TABLE_NAME, "Table", Types.STRING, 40, 0, true));
+		fieldList.addField(createField(COLUMN_NAME, "Column", Types.STRING, 40, 0, true));
+		fieldList.addField(createField("KEY_SEQ", "Key seq", Types.INTEGER, 4, 0, true));
+		fieldList.addField(createField("PK_NAME", "PK name", Types.STRING, 40, 0, false));
 		return fieldList;
 	}
 
@@ -164,7 +164,7 @@ public class MetaData {
 	 */
 	public static FieldList getFieldListSchemaInfo() {
 		FieldList fieldList = new FieldList();
-		fieldList.addField(createField(TABLE_SCHEMA, "Schema", Types.String, 40, 0, true));
+		fieldList.addField(createField(TABLE_SCHEMA, "Schema", Types.STRING, 40, 0, true));
 		return fieldList;
 	}
 
@@ -175,26 +175,26 @@ public class MetaData {
 	 */
 	public static FieldList getFieldListTypeInfo() {
 		FieldList fieldList = new FieldList();
-		fieldList.addField(createField(TYPE_NAME, "Type name", Types.String, 20, 0, true));
-		fieldList.addField(createField(DATA_TYPE, "Data type", Types.Integer, 0, 0, false));
-		fieldList.addField(createField("PRECISION", "Precision", Types.Long, 0, 0, false));
-		fieldList.addField(createField("LITERAL_PREFIX", "Literal prefix", Types.String, 5, 0, false));
-		fieldList.addField(createField("LITERAL_SUFFIX", "Literal suffix", Types.String, 5, 0, false));
-		fieldList.addField(createField("CREATE_PARAMS", "Create params", Types.String, 20, 0, false));
-		fieldList.addField(createField("NULLABLE", "Nullable", Types.Integer, 0, 0, false));
-		fieldList.addField(createField("CASE_SENSITIVE", "Case sensitive", Types.Boolean, 0, 0, false));
-		fieldList.addField(createField("SEARCHABLE", "Searcheable", Types.Integer, 0, 0, false));
-		fieldList.addField(createField("UNSIGNED_ATTRIBUTE", "Unsigned attribute", Types.Boolean, 0, 0, false));
-		fieldList.addField(createField("FIXED_PREC_SCALE", "Fixed prec scale", Types.Boolean, 0, 0, false));
-		fieldList.addField(createField("AUTO_INCREMENT", "Auto increment", Types.Boolean, 0, 0, false));
-		fieldList.addField(createField("LOCAL_TYPE_NAME", "Local type name", Types.String, 20, 0, false));
-		fieldList.addField(createField("MINIMUM_SCALE", "Minimum scale", Types.Integer, 0, 0, false));
-		fieldList.addField(createField("MAXIMUM_SCALE", "Maximum scale", Types.Integer, 0, 0, false));
-		fieldList.addField(createField("SQL_DATA_TYPE", "SQL data type", Types.Integer, 0, 0, false));
-		fieldList.addField(createField("SQL_DATETIME_SUB", "SQL date time sub", Types.Integer, 0, 0, false));
-		fieldList.addField(createField("NUM_PREC_RADIX", "Num prec radix", Types.Integer, 0, 0, false));
-		fieldList.addField(createField("DATA_TYPE_NAME", "Data type name", Types.String, 20, 0, false));
-		fieldList.addField(createField("NULLABLE_DESC", "Nullable desc", Types.String, 20, 0, false));
+		fieldList.addField(createField(TYPE_NAME, "Type name", Types.STRING, 20, 0, true));
+		fieldList.addField(createField(DATA_TYPE, "Data type", Types.INTEGER, 0, 0, false));
+		fieldList.addField(createField("PRECISION", "Precision", Types.LONG, 0, 0, false));
+		fieldList.addField(createField("LITERAL_PREFIX", "Literal prefix", Types.STRING, 5, 0, false));
+		fieldList.addField(createField("LITERAL_SUFFIX", "Literal suffix", Types.STRING, 5, 0, false));
+		fieldList.addField(createField("CREATE_PARAMS", "Create params", Types.STRING, 20, 0, false));
+		fieldList.addField(createField("NULLABLE", "Nullable", Types.INTEGER, 0, 0, false));
+		fieldList.addField(createField("CASE_SENSITIVE", "Case sensitive", Types.BOOLEAN, 0, 0, false));
+		fieldList.addField(createField("SEARCHABLE", "Searcheable", Types.INTEGER, 0, 0, false));
+		fieldList.addField(createField("UNSIGNED_ATTRIBUTE", "Unsigned attribute", Types.BOOLEAN, 0, 0, false));
+		fieldList.addField(createField("FIXED_PREC_SCALE", "Fixed prec scale", Types.BOOLEAN, 0, 0, false));
+		fieldList.addField(createField("AUTO_INCREMENT", "Auto increment", Types.BOOLEAN, 0, 0, false));
+		fieldList.addField(createField("LOCAL_TYPE_NAME", "Local type name", Types.STRING, 20, 0, false));
+		fieldList.addField(createField("MINIMUM_SCALE", "Minimum scale", Types.INTEGER, 0, 0, false));
+		fieldList.addField(createField("MAXIMUM_SCALE", "Maximum scale", Types.INTEGER, 0, 0, false));
+		fieldList.addField(createField("SQL_DATA_TYPE", "SQL data type", Types.INTEGER, 0, 0, false));
+		fieldList.addField(createField("SQL_DATETIME_SUB", "SQL date time sub", Types.INTEGER, 0, 0, false));
+		fieldList.addField(createField("NUM_PREC_RADIX", "Num prec radix", Types.INTEGER, 0, 0, false));
+		fieldList.addField(createField("DATA_TYPE_NAME", "Data type name", Types.STRING, 20, 0, false));
+		fieldList.addField(createField("NULLABLE_DESC", "Nullable desc", Types.STRING, 20, 0, false));
 		return fieldList;
 	}
 
@@ -205,20 +205,20 @@ public class MetaData {
 	 */
 	public static FieldList getFieldListForeignKeyInfo() {
 		FieldList fieldList = new FieldList();
-		fieldList.addField(createField("PKTABLE_CAT", "PK Table catalog", Types.String, 20, 0, true));
-		fieldList.addField(createField("PKTABLE_SCHEM", "PK Table schema", Types.String, 20, 0, false));
-		fieldList.addField(createField("PKTABLE_NAME", "PK Table name", Types.String, 20, 0, false));
-		fieldList.addField(createField("PKCOLUMN_NAME", "PK Column name", Types.String, 20, 0, false));
-		fieldList.addField(createField("FKTABLE_CAT", "FK Table catalog", Types.String, 20, 0, false));
-		fieldList.addField(createField("FKTABLE_SCHEM", "FK Table schema", Types.String, 20, 0, false));
-		fieldList.addField(createField("FKTABLE_NAME", "FK Table name", Types.String, 20, 0, false));
-		fieldList.addField(createField("FKCOLUMN_NAME", "FK Column name", Types.String, 20, 0, false));
-		fieldList.addField(createField("KEY_SEQ", "Key sequence", Types.Integer, 2, 0, false));
-		fieldList.addField(createField("UPDATE_RULE", "Update rule", Types.Integer, 2, 0, false));
-		fieldList.addField(createField("DELETE_RULE", "Delete rule", Types.Integer, 2, 0, false));
-		fieldList.addField(createField("FK_NAME", "FK Name", Types.String, 20, 0, false));
-		fieldList.addField(createField("PK_NAME", "PK Name", Types.String, 20, 0, false));
-		fieldList.addField(createField("DEFERRABILITY", "Deferrability", Types.Integer, 20, 0, false));
+		fieldList.addField(createField("PKTABLE_CAT", "PK Table catalog", Types.STRING, 20, 0, true));
+		fieldList.addField(createField("PKTABLE_SCHEM", "PK Table schema", Types.STRING, 20, 0, false));
+		fieldList.addField(createField("PKTABLE_NAME", "PK Table name", Types.STRING, 20, 0, false));
+		fieldList.addField(createField("PKCOLUMN_NAME", "PK Column name", Types.STRING, 20, 0, false));
+		fieldList.addField(createField("FKTABLE_CAT", "FK Table catalog", Types.STRING, 20, 0, false));
+		fieldList.addField(createField("FKTABLE_SCHEM", "FK Table schema", Types.STRING, 20, 0, false));
+		fieldList.addField(createField("FKTABLE_NAME", "FK Table name", Types.STRING, 20, 0, false));
+		fieldList.addField(createField("FKCOLUMN_NAME", "FK Column name", Types.STRING, 20, 0, false));
+		fieldList.addField(createField("KEY_SEQ", "Key sequence", Types.INTEGER, 2, 0, false));
+		fieldList.addField(createField("UPDATE_RULE", "Update rule", Types.INTEGER, 2, 0, false));
+		fieldList.addField(createField("DELETE_RULE", "Delete rule", Types.INTEGER, 2, 0, false));
+		fieldList.addField(createField("FK_NAME", "FK Name", Types.STRING, 20, 0, false));
+		fieldList.addField(createField("PK_NAME", "PK Name", Types.STRING, 20, 0, false));
+		fieldList.addField(createField("DEFERRABILITY", "Deferrability", Types.INTEGER, 20, 0, false));
 		return fieldList;
 	}
 

@@ -203,7 +203,7 @@ public class TreeMenuItem {
 	 */
 	public boolean canExecute() {
 		AccessMode accessMode = getSession().getAccessMode(getAccessKey());
-		if (accessMode.equals(AccessMode.Denied)) {
+		if (accessMode.equals(AccessMode.DENIED)) {
 			String message = getSession().getString("treeMenuAccessDenied");
 			MessageBox.warning(getSession(), message);
 			return false;
@@ -358,7 +358,7 @@ public class TreeMenuItem {
 
 				// Access mode readonly to edit mode readonly.
 				AccessMode accessMode = getSession().getAccessMode(getAccessKey());
-				if (accessMode.equals(AccessMode.ReadOnly)) {
+				if (accessMode.equals(AccessMode.READ_ONLY)) {
 					ActionUtils.setEditMode(action, EditMode.ReadOnly);
 				}
 

@@ -57,11 +57,11 @@ public class TableTicks extends Table {
 		if (values.size() != 5) {
 			throw new IllegalArgumentException("Invalid list of values: size must be 5");
 		}
-		if (!values.get(0).getType().equals(Types.Long)) {
+		if (!values.get(0).getType().equals(Types.LONG)) {
 			throw new IllegalArgumentException("Invalid list of values: type of element 0  must be Long");
 		}
 		for (int i = 1; i < values.size(); i++) {
-			if (!values.get(i).getType().equals(Types.Double)) {
+			if (!values.get(i).getType().equals(Types.DOUBLE)) {
 				throw new IllegalArgumentException(
 					"Invalid list of values: type of first elements 1 to 4 must be Double");
 			}
@@ -101,7 +101,7 @@ public class TableTicks extends Table {
 		time.setTitle("Time");
 		time.setLabel("Time");
 		time.setHeader("Time");
-		time.setType(Types.Long);
+		time.setType(Types.LONG);
 		time.setPrimaryKey(true);
 		addField(time);
 
@@ -112,7 +112,7 @@ public class TableTicks extends Table {
 		askPrice.setTitle("Ask price");
 		askPrice.setLabel("Ask price");
 		askPrice.setHeader("Ask price");
-		askPrice.setType(Types.Double);
+		askPrice.setType(Types.DOUBLE);
 		addField(askPrice);
 
 		// Ask volume.
@@ -122,7 +122,7 @@ public class TableTicks extends Table {
 		askVolume.setTitle("Ask volume");
 		askVolume.setLabel("Ask volume");
 		askVolume.setHeader("Ask volume");
-		askVolume.setType(Types.Double);
+		askVolume.setType(Types.DOUBLE);
 		addField(askVolume);
 
 		// Bid price.
@@ -132,7 +132,7 @@ public class TableTicks extends Table {
 		bidPrice.setTitle("Bid price");
 		bidPrice.setLabel("Bid price");
 		bidPrice.setHeader("Bid price");
-		bidPrice.setType(Types.Double);
+		bidPrice.setType(Types.DOUBLE);
 		addField(bidPrice);
 
 		// Bid volume.
@@ -142,7 +142,7 @@ public class TableTicks extends Table {
 		bidVolume.setTitle("Bid volume");
 		bidVolume.setLabel("Bid volume");
 		bidVolume.setHeader("Bid volume");
-		bidVolume.setType(Types.Double);
+		bidVolume.setType(Types.DOUBLE);
 		addField(bidVolume);
 	}
 

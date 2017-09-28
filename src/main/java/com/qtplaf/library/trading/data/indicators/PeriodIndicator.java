@@ -294,7 +294,7 @@ public abstract class PeriodIndicator extends Indicator {
 		period.setAlias(PERIOD_NAME);
 		period.setLabel("Period");
 		period.setTitle("Average period");
-		period.setType(Types.Integer);
+		period.setType(Types.INTEGER);
 		period.setValidator(new IntegerValidator("Period", 1, NumberUtils.MAX_INTEGER));
 		Value value = period.getDefaultValue();
 		value.setInteger(20);

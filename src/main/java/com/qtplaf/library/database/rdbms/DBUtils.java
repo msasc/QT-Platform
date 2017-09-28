@@ -80,23 +80,23 @@ public class DBUtils {
 	 */
 	public static Value fromResultSet(Types type, int decimals, int index, ResultSet resultSet) throws SQLException {
 		Value value = null;
-		if (type == Types.Boolean) {
+		if (type == Types.BOOLEAN) {
 			String s = resultSet.getString(index);
 			boolean b = (s != null && s.equals("Y"));
 			value = new Value(b);
-		} else if (type == Types.Decimal) {
+		} else if (type == Types.DECIMAL) {
 			BigDecimal bd = resultSet.getBigDecimal(index);
 			if (bd != null) {
 				bd = bd.setScale(decimals, BigDecimal.ROUND_HALF_UP);
 				value = new Value(bd);
 			}
-		} else if (type == Types.Integer) {
+		} else if (type == Types.INTEGER) {
 			value = new Value(resultSet.getInt(index));
-		} else if (type == Types.Long) {
+		} else if (type == Types.LONG) {
 			value = new Value(resultSet.getLong(index));
-		} else if (type == Types.Double) {
+		} else if (type == Types.DOUBLE) {
 			value = new Value(resultSet.getDouble(index));
-		} else if (type == Types.Date) {
+		} else if (type == Types.DATE) {
 			java.sql.Date date = resultSet.getDate(index);
 			if (date == null) {
 				value = new Value((Date) null);
@@ -104,7 +104,7 @@ public class DBUtils {
 				Calendar calendar = new Calendar(date.getTime());
 				value = new Value(calendar.toDate());
 			}
-		} else if (type == Types.Time) {
+		} else if (type == Types.TIME) {
 			java.sql.Time time = resultSet.getTime(index);
 			if (time == null) {
 				value = new Value((Time) null);
@@ -112,16 +112,16 @@ public class DBUtils {
 				Calendar calendar = new Calendar(time.getTime());
 				value = new Value(calendar.toTime());
 			}
-		} else if (type == Types.Timestamp) {
+		} else if (type == Types.TIMESTAMP) {
 			java.sql.Timestamp timestamp = resultSet.getTimestamp(index);
 			if (timestamp == null) {
 				value = new Value((Timestamp) timestamp);
 			} else {
 				value = new Value(new Timestamp(timestamp.getTime()));
 			}
-		} else if (type == Types.String) {
+		} else if (type == Types.STRING) {
 			value = new Value(resultSet.getString(index));
-		} else if (type == Types.ByteArray) {
+		} else if (type == Types.BYTEARRAY) {
 			value = new Value(resultSet.getBytes(index));
 		}
 		if (!type.isNumber() && resultSet.wasNull()) {
@@ -144,17 +144,17 @@ public class DBUtils {
 		Types type = value.getType();
 		if (value.isNull()) {
 			ps.setNull(index, type.getJDBCType(0));
-		} else if (type == Types.Boolean) {
+		} else if (type == Types.BOOLEAN) {
 			ps.setString(index, (value.getBoolean() ? "Y" : "N"));
-		} else if (type == Types.Decimal) {
+		} else if (type == Types.DECIMAL) {
 			ps.setBigDecimal(index, value.getBigDecimal());
-		} else if (type == Types.Double) {
+		} else if (type == Types.DOUBLE) {
 			ps.setDouble(index, value.getDouble());
-		} else if (type == Types.Integer) {
+		} else if (type == Types.INTEGER) {
 			ps.setInt(index, value.getInteger());
-		} else if (type == Types.Long) {
+		} else if (type == Types.LONG) {
 			ps.setLong(index, value.getLong());
-		} else if (type == Types.String) {
+		} else if (type == Types.STRING) {
 			int length = value.getString().length();
 			if (length <= Types.FIXED_LENGTH) {
 				ps.setString(index, value.getString());
@@ -162,7 +162,7 @@ public class DBUtils {
 				String string = value.getString();
 				ps.setCharacterStream(index, new StringReader(string), string.length());
 			}
-		} else if (type == Types.ByteArray) {
+		} else if (type == Types.BYTEARRAY) {
 			int length = value.getByteArray().size();
 			if (length <= Types.FIXED_LENGTH) {
 				ps.setBytes(index, value.getByteArray().getBytes());
@@ -170,11 +170,11 @@ public class DBUtils {
 				byte[] bytes = value.getByteArray().getBytes();
 				ps.setBinaryStream(index, new ByteArrayInputStream(bytes), bytes.length);
 			}
-		} else if (type == Types.Date) {
+		} else if (type == Types.DATE) {
 			ps.setDate(index, value.getDate());
-		} else if (type == Types.Time) {
+		} else if (type == Types.TIME) {
 			ps.setTime(index, value.getTime());
-		} else if (type == Types.Timestamp) {
+		} else if (type == Types.TIMESTAMP) {
 			ps.setTimestamp(index, value.getTimestamp());
 		}
 	}

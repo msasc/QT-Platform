@@ -96,9 +96,9 @@ public class MySQLAdapter extends DBEngineAdapter {
 		b.append(" ");
 
 		Types type = field.getType();
-		if (type == Types.Boolean) {
+		if (type == Types.BOOLEAN) {
 			b.append("CHAR(1)");
-		} else if (type == Types.ByteArray) {
+		} else if (type == Types.BYTEARRAY) {
 			if (field.getLength() <= Types.FIXED_LENGTH) {
 				b.append("MEDIUMBLOB");
 				b.append("(");
@@ -107,7 +107,7 @@ public class MySQLAdapter extends DBEngineAdapter {
 			} else {
 				b.append("LONGBLOB");
 			}
-		} else if (type == Types.String) {
+		} else if (type == Types.STRING) {
 			if (field.getLength() <= Types.FIXED_LENGTH) {
 				b.append("VARCHAR");
 				b.append("(");
@@ -116,24 +116,24 @@ public class MySQLAdapter extends DBEngineAdapter {
 			} else {
 				b.append("LONGTEXT");
 			}
-		} else if (type == Types.Decimal) {
+		} else if (type == Types.DECIMAL) {
 			b.append("DECIMAL");
 			b.append("(");
 			b.append(field.getLength());
 			b.append(",");
 			b.append(field.getDecimals());
 			b.append(")");
-		} else if (type == Types.Double) {
+		} else if (type == Types.DOUBLE) {
 			b.append("DOUBLE");
-		} else if (type == Types.Long) {
+		} else if (type == Types.LONG) {
 			b.append("BIGINT");
-		} else if (type == Types.Integer) {
+		} else if (type == Types.INTEGER) {
 			b.append("INTEGER");
-		} else if (type == Types.Date) {
+		} else if (type == Types.DATE) {
 			b.append("DATETIME");
-		} else if (type == Types.Time) {
+		} else if (type == Types.TIME) {
 			b.append("TIME");
-		} else if (type == Types.Timestamp) {
+		} else if (type == Types.TIMESTAMP) {
 			b.append("TIMESTAMP");
 		} else {
 			throw new IllegalArgumentException("Invalid field type to create the field");

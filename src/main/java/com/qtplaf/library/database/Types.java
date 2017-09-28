@@ -21,59 +21,32 @@ import java.text.MessageFormat;
  * @author Miquel Sas
  */
 public enum Types {
-
-	/**
-	 * Type Boolean.
-	 */
-	Boolean,
-	/**
-	 * Type String.
-	 */
-	String,
-	/**
-	 * Type Decimal.
-	 */
-	Decimal,
-	/**
-	 * Type Double.
-	 */
-	Double,
-	/**
-	 * Type Integer.
-	 */
-	Integer,
-	/**
-	 * Type Long.
-	 */
-	Long,
-	/**
-	 * Type Date.
-	 */
-	Date,
-	/**
-	 * Type Time.
-	 */
-	Time,
-	/**
-	 * Type Timestamp.
-	 */
-	Timestamp,
-	/**
-	 * Type Binary.
-	 */
-	ByteArray,
-	/**
-	 * Type Value.
-	 */
-	Value,
-	/**
-	 * Value array.
-	 */
-	ValueArray,
-	/**
-	 * Type Object.
-	 */
-	Object;
+	/** Boolean. */
+	BOOLEAN,
+	/** String. */
+	STRING,
+	/** Decimal. */
+	DECIMAL,
+	/** Double. */
+	DOUBLE,
+	/** Integer. */
+	INTEGER,
+	/** Long. */
+	LONG,
+	/** Date. */
+	DATE,
+	/** Time. */
+	TIME,
+	/** Time-stamp. */
+	TIMESTAMP,
+	/** Binary (byte array). */
+	BYTEARRAY,
+	/** Value. */
+	VALUE,
+	/** Value array. */
+	VALUEARRAY,
+	/** Type Object. */
+	OBJECT;
 
 	/**
 	 * The fixed length to select VARCHAR/VARBINARY or LONVARCHAR/LONGVARBINARY.
@@ -86,7 +59,7 @@ public enum Types {
 	 * @return A boolean
 	 */
 	public boolean isBoolean() {
-		return equals(Boolean);
+		return equals(BOOLEAN);
 	}
 
 	/**
@@ -95,7 +68,7 @@ public enum Types {
 	 * @return A boolean
 	 */
 	public boolean isString() {
-		return equals(String);
+		return equals(STRING);
 	}
 
 	/**
@@ -104,7 +77,7 @@ public enum Types {
 	 * @return A boolean
 	 */
 	public boolean isDecimal() {
-		return equals(Decimal);
+		return equals(DECIMAL);
 	}
 
 	/**
@@ -113,7 +86,7 @@ public enum Types {
 	 * @return A boolean
 	 */
 	public boolean isDouble() {
-		return equals(Double);
+		return equals(DOUBLE);
 	}
 
 	/**
@@ -122,7 +95,7 @@ public enum Types {
 	 * @return A boolean
 	 */
 	public boolean isInteger() {
-		return equals(Integer);
+		return equals(INTEGER);
 	}
 
 	/**
@@ -131,7 +104,7 @@ public enum Types {
 	 * @return A boolean
 	 */
 	public boolean isLong() {
-		return equals(Long);
+		return equals(LONG);
 	}
 
 	/**
@@ -158,7 +131,7 @@ public enum Types {
 	 * @return A boolean
 	 */
 	public boolean isDate() {
-		return equals(Date);
+		return equals(DATE);
 	}
 
 	/**
@@ -167,7 +140,7 @@ public enum Types {
 	 * @return A boolean
 	 */
 	public boolean isTime() {
-		return equals(Time);
+		return equals(TIME);
 	}
 
 	/**
@@ -176,7 +149,7 @@ public enum Types {
 	 * @return A boolean
 	 */
 	public boolean isTimestamp() {
-		return equals(Timestamp);
+		return equals(TIMESTAMP);
 	}
 
 	/**
@@ -194,7 +167,7 @@ public enum Types {
 	 * @return A boolean
 	 */
 	public boolean isByteArray() {
-		return equals(ByteArray);
+		return equals(BYTEARRAY);
 	}
 
 	/**
@@ -203,7 +176,7 @@ public enum Types {
 	 * @return A boolean
 	 */
 	public boolean isValueArray() {
-		return equals(ValueArray);
+		return equals(VALUEARRAY);
 	}
 
 	/**
@@ -212,7 +185,7 @@ public enum Types {
 	 * @return A boolean
 	 */
 	public boolean isObject() {
-		return equals(Object);
+		return equals(OBJECT);
 	}
 
 	/**
@@ -223,28 +196,28 @@ public enum Types {
 	 */
 	public int getJDBCType(int length) {
 		switch (this) {
-		case String:
+		case STRING:
 			if (length <= FIXED_LENGTH) {
 				return java.sql.Types.VARCHAR;
 			}
 			return java.sql.Types.LONGVARCHAR;
-		case Decimal:
+		case DECIMAL:
 			return java.sql.Types.DECIMAL;
-		case Boolean:
+		case BOOLEAN:
 			return java.sql.Types.CHAR;
-		case Double:
+		case DOUBLE:
 			return java.sql.Types.DOUBLE;
-		case Integer:
+		case INTEGER:
 			return java.sql.Types.INTEGER;
-		case Long:
+		case LONG:
 			return java.sql.Types.BIGINT;
-		case Date:
+		case DATE:
 			return java.sql.Types.DATE;
-		case Time:
+		case TIME:
 			return java.sql.Types.TIME;
-		case Timestamp:
+		case TIMESTAMP:
 			return java.sql.Types.TIMESTAMP;
-		case ByteArray:
+		case BYTEARRAY:
 			if (length <= FIXED_LENGTH) {
 				return java.sql.Types.VARBINARY;
 			}
