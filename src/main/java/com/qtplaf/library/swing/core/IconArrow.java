@@ -37,24 +37,24 @@ public class IconArrow implements Icon {
 		/**
 		 * North pointing direction.
 		 */
-		Up,
+		UP,
 		/**
 		 * South pointing direction.
 		 */
-		Down,
+		DOWN,
 		/**
 		 * West pointing direction.
 		 */
-		Left,
+		LEFT,
 		/**
 		 * East pointing direction.
 		 */
-		Right
+		RIGHT
 	}
 
 	private int size = 15;
 
-	private Direction direction = Direction.Down;
+	private Direction direction = Direction.DOWN;
 
 	/**
 	 * Default constructor.
@@ -134,27 +134,27 @@ public class IconArrow implements Icon {
 		}
 		Polygon p = new Polygon();
 		switch (direction) {
-		case Up:
+		case UP:
 			p.addPoint(minX, maxY);
 			p.addPoint(maxX, maxY);
 			p.addPoint(midX, minY);
 			g.fillPolygon(p);
 			break;
-		case Down:
+		case DOWN:
 			// Perceptual correction
 			p.addPoint(minX, minY + 1);
 			p.addPoint(maxX, minY + 1);
 			p.addPoint(midX, maxY + 1);
 			g.fillPolygon(p);
 			break;
-		case Left:
+		case LEFT:
 			// Perceptual correction
 			p.addPoint(maxY - 1, minX);
 			p.addPoint(maxY - 1, maxX);
 			p.addPoint(minY - 1, midX);
 			g.fillPolygon(p);
 			break;
-		case Right:
+		case RIGHT:
 			p.addPoint(minY, minX);
 			p.addPoint(minY, maxX);
 			p.addPoint(maxY, midX);

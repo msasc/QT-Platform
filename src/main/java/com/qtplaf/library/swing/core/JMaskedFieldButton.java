@@ -125,7 +125,7 @@ public class JMaskedFieldButton extends JPanel implements EditField {
 			int width = height;
 			Dimension size = new Dimension(width, height);
 			button = new JButton();
-			button.setIcon(new IconArrow(IconArrow.Direction.Down));
+			button.setIcon(new IconArrow(IconArrow.Direction.DOWN));
 			button.setMinimumSize(size);
 			button.setMaximumSize(size);
 			button.setPreferredSize(size);

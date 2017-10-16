@@ -253,7 +253,7 @@ public class JMaskedFieldDate extends JMaskedFieldButton {
 
 		getWindowCalendar().pack();
 		getWindowCalendar().setVisible(true);
-		((IconArrow) getButton().getIcon()).setDirection(IconArrow.Direction.Up);
+		((IconArrow) getButton().getIcon()).setDirection(IconArrow.Direction.UP);
 		getButton().invalidate();
 		getButton().repaint();
 	}
@@ -262,7 +262,7 @@ public class JMaskedFieldDate extends JMaskedFieldButton {
 	 * Closes the calendar window.
 	 */
 	private void closeWindowCalendar() {
-		((IconArrow) getButton().getIcon()).setDirection(IconArrow.Direction.Down);
+		((IconArrow) getButton().getIcon()).setDirection(IconArrow.Direction.DOWN);
 		getButton().invalidate();
 		getButton().repaint();
 		getWindowCalendar().setVisible(false);

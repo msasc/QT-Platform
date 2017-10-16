@@ -77,7 +77,7 @@ public class JPanelColumns extends JPanel {
 		ActionLeft() {
 			super();
 			ActionUtils.setShortDescription(this, getSession().getString("actionLeftShortDesc"));
-			ActionUtils.setSmallIcon(this, new IconArrow(IconArrow.Direction.Left));
+			ActionUtils.setSmallIcon(this, new IconArrow(IconArrow.Direction.LEFT));
 			ActionUtils.setSession(this, getSession());
 		}
 
@@ -118,7 +118,7 @@ public class JPanelColumns extends JPanel {
 		ActionRight() {
 			super();
 			ActionUtils.setShortDescription(this, getSession().getString("actionRightShortDesc"));
-			ActionUtils.setSmallIcon(this, new IconArrow(IconArrow.Direction.Right));
+			ActionUtils.setSmallIcon(this, new IconArrow(IconArrow.Direction.RIGHT));
 			ActionUtils.setSession(this, getSession());
 		}
 
@@ -158,7 +158,7 @@ public class JPanelColumns extends JPanel {
 		ActionUp() {
 			super();
 			ActionUtils.setShortDescription(this, getSession().getString("actionUpShortDesc"));
-			ActionUtils.setSmallIcon(this, new IconArrow(IconArrow.Direction.Up));
+			ActionUtils.setSmallIcon(this, new IconArrow(IconArrow.Direction.UP));
 			ActionUtils.setSession(this, getSession());
 		}
 
@@ -189,7 +189,7 @@ public class JPanelColumns extends JPanel {
 		ActionDown() {
 			super();
 			ActionUtils.setShortDescription(this, getSession().getString("actionDownShortDesc"));
-			ActionUtils.setSmallIcon(this, new IconArrow(IconArrow.Direction.Down));
+			ActionUtils.setSmallIcon(this, new IconArrow(IconArrow.Direction.DOWN));
 			ActionUtils.setSession(this, getSession());
 		}
 

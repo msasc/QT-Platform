@@ -74,7 +74,7 @@ import com.qtplaf.library.util.Timestamp;
  * <li>An optional list of user labels to describe any additional information. The name of the labels can not be one of
  * the predefined names.</li>
  * </ul>
- * All labels are set by defaul with the dialog font normal, except for the task label that is bold. Label fonts can be
+ * All labels are set by default with the dialog font normal, except for the task label that is bold. Label fonts can be
  * changed.
  * 
  * @author Miquel Sas

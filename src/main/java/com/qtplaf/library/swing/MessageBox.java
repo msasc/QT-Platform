@@ -27,23 +27,23 @@ public class MessageBox {
 	 * Message box types.
 	 */
 	public static enum Type {
-		Plain,
-		Information,
-		Warning,
-		Error,
-		Question
+		PLAIN,
+		INFORMATION,
+		WARNING,
+		ERROR,
+		QUESTION
 	}
 	/**
 	 * The possible message box options.
 	 */
 	public static enum Option {
-		Accept,
-		Ok,
-		Yes,
-		Cancel,
-		No,
-		Retry,
-		Ignore;
+		ACCEPT,
+		OK,
+		YES,
+		CANCEL,
+		NO,
+		RETRY,
+		IGNORE;
 
 		/**
 		 * Check if it is a cancel option to use when closing the window.
@@ -51,7 +51,7 @@ public class MessageBox {
 		 * @return A boolean
 		 */
 		public boolean isCancel() {
-			if (equals(Cancel) || equals(No)) {
+			if (equals(CANCEL) || equals(NO)) {
 				return true;
 			}
 			return false;
@@ -65,19 +65,19 @@ public class MessageBox {
 		 */
 		public String getLabel(Session session) {
 			switch (this) {
-			case Accept:
+			case ACCEPT:
 				return session.getString("messageBoxOptionAccept");
-			case Ok:
+			case OK:
 				return session.getString("messageBoxOptionOk");
-			case Yes:
+			case YES:
 				return session.getString("messageBoxOptionYes");
-			case Cancel:
+			case CANCEL:
 				return session.getString("messageBoxOptionCancel");
-			case No:
+			case NO:
 				return session.getString("messageBoxOptionNo");
-			case Retry:
+			case RETRY:
 				return session.getString("messageBoxOptionRetry");
-			case Ignore:
+			case IGNORE:
 				return session.getString("messageBoxOptionIgnore");
 			default:
 				throw new IllegalArgumentException();
@@ -85,15 +85,15 @@ public class MessageBox {
 		}
 	}
 
-	public static final Option ACCEPT = Option.Accept;
-	public static final Option OK = Option.Ok;
-	public static final Option YES = Option.Yes;
-	public static final Option CANCEL = Option.Cancel;
-	public static final Option NO = Option.No;
-	public static final Option RETRY = Option.Retry;
-	public static final Option IGNORE = Option.Ignore;
-	public static final Option[] YES_NO = new Option[] { Option.Yes, Option.No };
-	public static final Option[] ACCEPT_CANCEL = new Option[] { Option.Accept, Option.Cancel };
+	public static final Option ACCEPT = Option.ACCEPT;
+	public static final Option OK = Option.OK;
+	public static final Option YES = Option.YES;
+	public static final Option CANCEL = Option.CANCEL;
+	public static final Option NO = Option.NO;
+	public static final Option RETRY = Option.RETRY;
+	public static final Option IGNORE = Option.IGNORE;
+	public static final Option[] YES_NO = new Option[] { Option.YES, Option.NO };
+	public static final Option[] ACCEPT_CANCEL = new Option[] { Option.ACCEPT, Option.CANCEL };
 
 	/**
 	 * Error message box.
@@ -103,7 +103,7 @@ public class MessageBox {
 	 * @return The selected option or null if the box is closed with the close operation.
 	 */
 	public static Option error(Session session, String message) {
-		return error(session, message, Option.Accept);
+		return error(session, message, Option.ACCEPT);
 	}
 
 	/**
@@ -155,7 +155,7 @@ public class MessageBox {
 	 * @return The selected option or null if the box is closed with the close operation.
 	 */
 	public static Option error(Session session, String message, String title, Option[] options, Option initialOption) {
-		return showOptionDialog(session, message, title, Type.Error, options, initialOption);
+		return showOptionDialog(session, message, title, Type.ERROR, options, initialOption);
 	}
 
 	/**
@@ -166,7 +166,7 @@ public class MessageBox {
 	 * @return The selected option or null if the box is closed with the close operation.
 	 */
 	public static Option info(Session session, String message) {
-		return info(session, message, Option.Accept);
+		return info(session, message, Option.ACCEPT);
 	}
 
 	/**
@@ -218,7 +218,7 @@ public class MessageBox {
 	 * @return The selected option or null if the box is closed with the close operation.
 	 */
 	public static Option info(Session session, String message, String title, Option[] options, Option initialOption) {
-		return showOptionDialog(session, message, title, Type.Information, options, initialOption);
+		return showOptionDialog(session, message, title, Type.INFORMATION, options, initialOption);
 	}
 
 	/**
@@ -229,7 +229,7 @@ public class MessageBox {
 	 * @return The selected option or null if the box is closed with the close operation.
 	 */
 	public static Option warning(Session session, String message) {
-		return warning(session, message, Option.Accept);
+		return warning(session, message, Option.ACCEPT);
 	}
 
 	/**
@@ -283,7 +283,7 @@ public class MessageBox {
 	public static
 		Option
 		warning(Session session, String message, String title, Option[] options, Option initialOption) {
-		return showOptionDialog(session, message, title, Type.Warning, options, initialOption);
+		return showOptionDialog(session, message, title, Type.WARNING, options, initialOption);
 	}
 
 	/**
@@ -294,7 +294,7 @@ public class MessageBox {
 	 * @return The selected option or null if the box is closed with the close operation.
 	 */
 	public static Option question(Session session, String message) {
-		return question(session, message, Option.Accept);
+		return question(session, message, Option.ACCEPT);
 	}
 
 	/**
@@ -348,7 +348,7 @@ public class MessageBox {
 	public static
 		Option
 		question(Session session, String message, String title, Option[] options, Option initialOption) {
-		return showOptionDialog(session, message, title, Type.Question, options, initialOption);
+		return showOptionDialog(session, message, title, Type.QUESTION, options, initialOption);
 	}
 
 	/**
@@ -398,16 +398,16 @@ public class MessageBox {
 		if (initialOption != null) {
 			dialog.setInitialOption(initialOption.toString());
 		}
-		if (type.equals(Type.Information)) {
+		if (type.equals(Type.INFORMATION)) {
 			dialog.setIcon(UIManager.getIcon("OptionPane.informationIcon"));
 		}
-		if (type.equals(Type.Warning)) {
+		if (type.equals(Type.WARNING)) {
 			dialog.setIcon(UIManager.getIcon("OptionPane.warningIcon"));
 		}
-		if (type.equals(Type.Error)) {
+		if (type.equals(Type.ERROR)) {
 			dialog.setIcon(UIManager.getIcon("OptionPane.errorIcon"));
 		}
-		if (type.equals(Type.Question)) {
+		if (type.equals(Type.QUESTION)) {
 			dialog.setIcon(UIManager.getIcon("OptionPane.questionIcon"));
 		}
 
