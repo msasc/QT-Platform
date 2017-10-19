@@ -244,7 +244,7 @@ public class CMAUpdate {
 			if (env == Environment.Production) {
 				drives.addAll(ListUtils.asList("U", "V", "W", "X", "Y", "Z"));
 			} else if (env == Environment.ProductionAD) {
-				drives.addAll(ListUtils.asList("M", "N", "O", "P"));
+				drives.addAll(ListUtils.asList("M", "N", "O", "P", "Q", "R", "S", "T"));
 			} else if (env == Environment.Quality) {
 				drives.addAll(ListUtils.asList("T"));
 			}
