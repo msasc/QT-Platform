@@ -95,7 +95,7 @@ public class FeedDispatcher implements Runnable {
 	/**
 	 * Adds a feed listener to the list of feed listeners. Before adding the listener to the dispatcher, the
 	 * <i>FeeddManager</i> would normally have to initialize the listener subscriptions in the backend server. If the
-	 * listerner has o subscriptions, an <i>IllegalArgumentException</i> is thrown.
+	 * listener has o subscriptions, an <i>IllegalArgumentException</i> is thrown.
 	 * 
 	 * @param listener Feed listener.
 	 */

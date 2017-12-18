@@ -34,7 +34,7 @@ public class DkSystemListener implements ISystemListener {
 	 */
 	private DkServer server;
 	/**
-	 * List of connectio listeners.
+	 * List of connection listeners.
 	 */
 	private List<ConnectionListener> listeners = new ArrayList<>();
 

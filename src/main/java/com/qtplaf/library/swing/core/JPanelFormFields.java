@@ -899,8 +899,8 @@ public class JPanelFormFields extends JPanel {
 				actionSR.addRefreshEditFieldName(EditContext.getEditFieldName(refreshField));
 				actionSR.addRefreshAlias(refreshField.getAlias());
 
-				// If this field is a segment of another multi-segment lookup, add clear fields for the rest of the
-				// multi-segment lookup.
+				// If this field is a segment of another multiple-segment lookup, add clear fields for the rest of the
+				// multiple-segment lookup.
 				List<String> clearEditFieldNames = getClearEditFieldNames(field, fields, relation);
 				for (String clearEditFieldName : clearEditFieldNames) {
 					actionSR.addClearEditFieldName(clearEditFieldName);

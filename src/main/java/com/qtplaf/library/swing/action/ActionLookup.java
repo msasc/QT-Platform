@@ -142,7 +142,7 @@ public class ActionLookup extends AbstractAction {
 			addKeyLink(keyEditName, keyAlias);
 		}
 		
-		// Add the field aliases to be displayed: foreign key fields and fields from the foreirg table that are main
+		// Add the field aliases to be displayed: foreign key fields and fields from the foreign table that are main
 		// description and lookup.
 		List<String> lookupFields = new ArrayList<>();
 		for (Field foreignKeyField : foreignKeyFields) {
@@ -237,9 +237,9 @@ public class ActionLookup extends AbstractAction {
 	}
 
 	/**
-	 * Sets the optional filteer criteria.
+	 * Sets the optional filter criteria.
 	 * 
-	 * @param criteria The optional filteer criteria.
+	 * @param criteria The optional filter criteria.
 	 */
 	public void setCriteria(Criteria criteria) {
 		this.criteria = criteria;
@@ -352,7 +352,7 @@ public class ActionLookup extends AbstractAction {
 			throw new IllegalStateException("The list of key aliases and edit fields must be set.");
 		}
 
-		// Check that all displayable fields exist.
+		// Check that all display-able fields exist.
 		for (String alias : fieldAliases) {
 			if (masterRecord.getField(alias) == null) {
 				throw new IllegalStateException("Invalid field alias: " + alias);
@@ -395,7 +395,7 @@ public class ActionLookup extends AbstractAction {
 				workingCriteria.add(criteria);
 			}
 
-			// Append the criteria for key fields. If the field is string, then a partial value is admited through a
+			// Append the criteria for key fields. If the field is string, then a partial value is admitted through a
 			// LikeLeft condition.
 			for (int i = 0; i < keyAliases.size(); i++) {
 				String alias = keyAliases.get(i);
@@ -415,7 +415,7 @@ public class ActionLookup extends AbstractAction {
 				}
 			}
 
-			// The selection order. If not set, buildit with the key fields.
+			// The selection order. If not set, build it with the key fields.
 			Order selectionOrder;
 			if (order == null) {
 				if (getMasterRecord().getPersistor().getView().getOrderBy() != null) {

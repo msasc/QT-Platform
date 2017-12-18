@@ -74,8 +74,7 @@ public class DkServer extends AbstractServer {
 	/**
 	 * List of subscribed instruments.
 	 */
-	private Set<com.dukascopy.api.Instrument> subscribedInstruments =
-		new HashSet<>();
+	private Set<com.dukascopy.api.Instrument> subscribedInstruments = new HashSet<>();
 
 	/**
 	 * Constructor.

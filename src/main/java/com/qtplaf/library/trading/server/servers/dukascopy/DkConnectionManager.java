@@ -99,7 +99,7 @@ public class DkConnectionManager implements ConnectionManager {
 			}
 			if (!server.getClient().isConnected()) {
 				LOGGER.error("Failed to connect Dukascopy servers");
-				System.exit(1);
+//				System.exit(1);
 			}
 		} catch (Exception cause) {
 			throw new ServerException(cause);

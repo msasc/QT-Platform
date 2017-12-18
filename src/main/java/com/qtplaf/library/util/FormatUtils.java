@@ -45,7 +45,7 @@ public class FormatUtils {
 	private static final int NORMALIZED_DATE_FORMAT = propertyIndex++;
 	/** The normalized time format key. */
 	private static final int NORMALIZED_TIME_FORMAT = propertyIndex++;
-	/** The normalized time stamp format. */
+	/** The normalized time-stamp format. */
 	private static final int NORMALIZED_TIMESTAMP_FORMAT = propertyIndex++;
 
 	/**
@@ -122,10 +122,10 @@ public class FormatUtils {
 	}
 
 	/**
-	 * Returns the normalized time stamp pattern for the argument locale.
+	 * Returns the normalized time-stamp pattern for the argument locale.
 	 * 
 	 * @param locale The applying locale.
-	 * @return The normalized time stamp pattern.
+	 * @return The normalized time-stamp pattern.
 	 */
 	public static String getNormalizedTimestampPattern(Locale locale) {
 		return getNormalizedTimestampFormat(locale).toPattern();
@@ -144,13 +144,13 @@ public class FormatUtils {
 	/**
 	 * Returns the normalized pattern for a date or time.
 	 * <p>
-	 * The normalized pattern for a date, or the date part of a time stamp, is always two digit long for days and months
+	 * The normalized pattern for a date, or the date part of a time-stamp, is always two digit long for days and months
 	 * and four digit long for the year.
 	 * <p>
-	 * The normalized pattern for a time, or the time part of a time stamp, is always two digit long for the hour, the
+	 * The normalized pattern for a time, or the time part of a time-stamp, is always two digit long for the hour, the
 	 * minute and the second.
 	 * <p>
-	 * In a time or time stamp, the millisecond part is always three digit long.
+	 * In a time or time-stamp, the millisecond part is always three digit long.
 	 * <p>
 	 * The hour is always converted to the 0-23 format (H).
 	 * 
@@ -587,7 +587,7 @@ public class FormatUtils {
 	 * 
 	 * @param str The formatted string to convert.
 	 * @param locale The locale to apply.
-	 * @return The time stamp.
+	 * @return The time-stamp.
 	 * @throws ParseException If an error occurs parsing the string.
 	 */
 	public static Timestamp formattedToTimestamp(String str, Locale locale) throws ParseException {

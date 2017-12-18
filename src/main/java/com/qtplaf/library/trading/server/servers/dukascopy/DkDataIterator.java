@@ -187,11 +187,11 @@ public class DkDataIterator implements DataIterator {
 			throw new ServerException();
 		}
 
-		// Tranfer loaded data to buffer with the limit of to.
+		// Transfer loaded data to buffer with the limit of to.
 		for (Data data : dataList) {
 			long time = data.getTime();
 
-			// Skipt last loaded uppon buffer loads.
+			// Skip last loaded upon buffer loads.
 			if (time == lastTimeLoaded) {
 				continue;
 			}

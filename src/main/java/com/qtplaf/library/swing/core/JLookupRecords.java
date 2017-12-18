@@ -137,7 +137,7 @@ public class JLookupRecords extends JDialogSession {
 	 */
 	private Alignment horizontalAlignment = Alignment.Center;
 	/**
-	 * Minimum number of columns to show accolumns and sort and set a standard width.
+	 * Minimum number of columns to show a columns and sort and set a standard width.
 	 */
 	private int minimumColumns = 4;
 	/**

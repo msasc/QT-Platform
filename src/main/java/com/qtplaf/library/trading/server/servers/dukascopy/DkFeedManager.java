@@ -114,7 +114,7 @@ public class DkFeedManager implements FeedManager {
 	}
 
 	/**
-	 * Unsubscribes the listener from completed bars.
+	 * Unsubscribe the listener from completed bars.
 	 * 
 	 * @param listener The listener to unsubscribe.
 	 */

@@ -97,7 +97,7 @@ public class Field implements Comparable<Object> {
 	private static final Integer REQUIRED = index++;
 	/** A generic value validator. */
 	private static final Integer VALIDATOR = index++;
-	/** A flag to indicate if the field should initialize to the current date, time or time stamp. */
+	/** A flag to indicate if the field should initialize to the current date, time or time-stamp. */
 	private static final Integer CURRENT_DATE_TIME_OR_TIMESTAMP = index++;
 
 	/** Horizontal alignment. */
@@ -704,9 +704,9 @@ public class Field implements Comparable<Object> {
 	}
 
 	/**
-	 * Check if his field should initialize to the current time stamp.
+	 * Check if his field should initialize to the current time-stamp.
 	 * 
-	 * @return A boolean indicating that it should be initialized to the current time stamp.
+	 * @return A boolean indicating that it should be initialized to the current time-stamp.
 	 */
 	public boolean isCurrentTimestamp() {
 		return isTimestamp() && isCurrentDateTimeOrTimestamp();
@@ -1288,7 +1288,7 @@ public class Field implements Comparable<Object> {
 	}
 
 	/**
-	 * Check if this field is a date, time or time stamp.
+	 * Check if this field is a date, time or time-stamp.
 	 *
 	 * @return A boolean.
 	 */
