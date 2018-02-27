@@ -158,7 +158,7 @@ public class HorizontalAxisPlotter extends Plotter {
 	 * @param second Second flag.
 	 * @param millis Millis flag.
 	 * @param separators Separators flag.
-	 * @return The string to ploit.
+	 * @return The string to plot.
 	 */
 	private static String getStringToPlot(
 		long time,

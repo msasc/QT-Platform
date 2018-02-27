@@ -240,7 +240,7 @@ public class PlotterContext {
 	 */
 	public double getDataValue(int y) {
 		
-		// The y coordinate relaive to the plot area.
+		// The y coordinate relative to the plot area.
 		double yRelative = y - chartInsets.top;
 
 		// Minimum and maximum values.
@@ -272,7 +272,7 @@ public class PlotterContext {
 	 * coordinate.
 	 * 
 	 * @param x The starting x coordinate.
-	 * @return The verical line X coordinate.
+	 * @return The vertical line X coordinate.
 	 */
 	public int getDrawingCenterCoordinateX(int x) {
 		int verticalLineWidth = 1;

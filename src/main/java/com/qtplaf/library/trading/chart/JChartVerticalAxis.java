@@ -92,7 +92,7 @@ public class JChartVerticalAxis extends JPanel {
 		// Plot parameters.
 		VerticalAxisPlotParameters plotParameters = chartContainer.getChart().getVerticalAxisPlotParameters();
 
-		// A grafics object and textFont metrics necessary to calculate the text width.
+		// A graphics object and textFont metrics necessary to calculate the text width.
 		FontMetrics fm = SwingUtils.getFontMetrics(plotParameters.getVerticalAxisTextFont());
 		int textWidth = Math.max(fm.stringWidth(smaximumValue), fm.stringWidth(sminimumValue));
 

@@ -27,7 +27,7 @@ import com.qtplaf.platform.database.Fields;
 import com.qtplaf.platform.database.formatters.DataValue;
 
 /**
- * Centralizes recordset operations.
+ * Centralizes record set operations.
  *
  * @author Miquel Sas
  */

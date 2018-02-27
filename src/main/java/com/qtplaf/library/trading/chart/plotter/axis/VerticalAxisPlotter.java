@@ -51,7 +51,7 @@ public class VerticalAxisPlotter extends Plotter {
 	}
 
 	/**
-	 * Plot th vertical axis scale of numbers.
+	 * Plot the vertical axis scale of numbers.
 	 * 
 	 * @param g2 The graphics object.
 	 */

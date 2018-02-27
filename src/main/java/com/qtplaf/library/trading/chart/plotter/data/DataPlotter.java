@@ -155,8 +155,8 @@ public abstract class DataPlotter extends Plotter {
 
 	/**
 	 * Sets the color used for a bearish line bar candle is an even period. For periods lower than day, the color
-	 * changes when the day changes, for the day period when the week changes, for the week the month and for the
-	 * monththe year.
+	 * changes when the day changes, for the day period when the week changes, for the week of the month and for the
+	 * month of the year.
 	 * 
 	 * @param colorBearishEven The color used for a bearish line bar candle is an even period.
 	 */
@@ -231,7 +231,7 @@ public abstract class DataPlotter extends Plotter {
 	/**
 	 * Returns the color used for a bullish line/bar/candle in an odd period. For periods lower than day, the color
 	 * changes when the day changes, for the day period when the week changes, for the week the month and for the
-	 * monththe year.
+	 * month, the year.
 	 * 
 	 * @return the colorBullishOdd The color used for a bullish line/bar/candle in an odd period.
 	 */

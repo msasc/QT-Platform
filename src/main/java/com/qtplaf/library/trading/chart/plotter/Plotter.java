@@ -90,7 +90,7 @@ public class Plotter {
 	}
 
 	/**
-	 * Returnd the bounds for intersection increased by a unit, because intersection looks for the interior of a shape.
+	 * Return the bounds for intersection increased by a unit, because intersection looks for the interior of a shape.
 	 * 
 	 * @param rect The source rectangle.
 	 * @return The rectangle for intersection.

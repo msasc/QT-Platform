@@ -41,8 +41,8 @@ import com.qtplaf.library.trading.data.info.DataInfo;
  * A persistor for elements of timed <tt>Data</tt>. The general contract for a persistor of timed <tt>Data</tt> is that
  * fields must be defined as follows:
  * <ul>
- * <li>The first field is always the index, that starts at 0, primary key. This field value at insert time is
- * managed by this persistor.</li>
+ * <li>The first field is always the index, that starts at 0, primary key. This field value at insert time is managed by
+ * this persistor.</li>
  * <li>The second field is a long, the time of the timed data.</li>
  * <li>All subsequent <b>persistent</b> fields of type double and are considered data.</li>
  * </ul>
@@ -72,7 +72,7 @@ public class DataPersistor implements Persistor {
 	}
 
 	/**
-	 * The uderlying persistor.
+	 * The underlying persistor.
 	 */
 	private Persistor persistor;
 	/**
@@ -589,7 +589,7 @@ public class DataPersistor implements Persistor {
 	public boolean exists(Record record) throws PersistorException {
 		return persistor.exists(record);
 	}
-	
+
 	/**
 	 * Check if the primary key exists within its persistent layer.
 	 * 
@@ -601,7 +601,7 @@ public class DataPersistor implements Persistor {
 	public boolean exists(OrderKey primaryKey) throws PersistorException {
 		return persistor.exists(primaryKey);
 	}
-	
+
 	/**
 	 * Check if the primary key exists within its persistent layer.
 	 * 
@@ -613,7 +613,6 @@ public class DataPersistor implements Persistor {
 	public boolean exists(Value... primaryKey) throws PersistorException {
 		return persistor.exists(primaryKey);
 	}
-
 
 	/**
 	 * Returns true if the record has successfully refreshed.

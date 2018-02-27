@@ -49,8 +49,8 @@ import com.qtplaf.library.util.ImageIconUtils;
  * A top panel aimed to contain all the panels involved in the display of a trading chart. From top to down the panels
  * are:
  * <ul>
- * <li>A chart panel to display prices and over-chart indicators, with its corrsponding right-vertical axis panel.</li>
- * <li>Several optional panels to display not over-chart indicators, with their corrsponding right-vertical axis
+ * <li>A chart panel to display prices and over-chart indicators, with its corresponding right-vertical axis panel.</li>
+ * <li>Several optional panels to display not over-chart indicators, with their corresponding right-vertical axis
  * panels.</li>
  * <li>A optional panel to display volumes and over-volumes indicators, with its corrsponding right-vertical axis
  * panel.</li>
@@ -376,7 +376,7 @@ public class JChart extends JPanel {
 			horizontalAxis = new JChartHorizontalAxis(this);
 		}
 
-		// Remove all from this conainer, mainly charts and split panels.
+		// Remove all from this container, mainly charts and split panels.
 		removeAll();
 
 		// If no panels...

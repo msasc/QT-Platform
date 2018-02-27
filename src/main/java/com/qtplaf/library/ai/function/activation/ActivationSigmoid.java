@@ -29,10 +29,10 @@ public class ActivationSigmoid implements Activation {
 	}
 
 	/**
-	 * Returns the output values of the function given the input values.
+	 * Returns the output values of the function given the input values or triggers.
 	 * 
 	 * @param triggers The trigger (weighted sum plus bias) values.
-	 * @param outputs The outputs to set.
+	 * @param outputs The output values to set.
 	 * @return The output values.
 	 */
 	@Override
@@ -44,8 +44,8 @@ public class ActivationSigmoid implements Activation {
 	}
 
 	/**
-	 * Returns the first derivatives of the function, given the signals and the outputs. Some activations require the
-	 * output and some the signal.
+	 * Returns the first derivatives of the function, given the triggers and the outputs. Some activations require the
+	 * output and some the trigger.
 	 * 
 	 * @param triggers The triggers applied to <i>getOutputs</i>.
 	 * @param outputs The outputs obtained applying the signals to <i>getOutputs</i>.

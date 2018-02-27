@@ -78,7 +78,7 @@ public class JConsole extends JTextArea {
 	}
 
 	/**
-	 * Constructor assigning the maximum numbeer of lines.
+	 * Constructor assigning the maximum number of lines.
 	 * 
 	 * @param maxLines The maximum number of lines for this console.
 	 */

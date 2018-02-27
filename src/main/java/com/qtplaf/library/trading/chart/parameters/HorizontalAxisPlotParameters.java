@@ -49,7 +49,7 @@ public class HorizontalAxisPlotParameters {
 	private int horizontalAxisHeight = 40;
 
 	/**
-	 * Constructor assigning ther parent chart.
+	 * Constructor assigning the parent chart.
 	 */
 	public HorizontalAxisPlotParameters() {
 		super();
