@@ -17,7 +17,10 @@ package com.qtplaf.overlap;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Insets;
 import java.awt.LayoutManager2;
+
+import javax.swing.JPanel;
 
 /**
  * The layout manager for the stack pane. It is aimed to be used to paint stock charts by layers.
@@ -27,10 +30,9 @@ import java.awt.LayoutManager2;
 public class StackPaneLayout implements LayoutManager2 {
 
 	/**
-	 * 
+	 * Constructor.
 	 */
 	public StackPaneLayout() {
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -38,17 +40,13 @@ public class StackPaneLayout implements LayoutManager2 {
 	 */
 	@Override
 	public void addLayoutComponent(Component comp, Object constraints) {
-		// TODO Auto-generated method stub
-
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public void addLayoutComponent(String name, Component comp) {
-		// TODO Auto-generated method stub
-
 	}
 
 	/**
@@ -56,8 +54,6 @@ public class StackPaneLayout implements LayoutManager2 {
 	 */
 	@Override
 	public void removeLayoutComponent(Component comp) {
-		// TODO Auto-generated method stub
-
 	}
 
 	/**
@@ -65,8 +61,25 @@ public class StackPaneLayout implements LayoutManager2 {
 	 */
 	@Override
 	public Dimension preferredLayoutSize(Container parent) {
-		// TODO Auto-generated method stub
 		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void layoutContainer(Container parent) {
+		synchronized (parent.getTreeLock()) {
+			Insets insets = parent.getInsets();
+			for (int i = 0; i < parent.getComponentCount(); i++) {
+				Component component = parent.getComponent(i);
+				int x = insets.left;
+				int y = insets.top;
+				int width = parent.getWidth() - (insets.left + insets.right);
+				int height = parent.getHeight() - (insets.top + insets.bottom);
+				component.setBounds(x, y, width, height);
+			}
+		}
 	}
 
 	/**
@@ -82,18 +95,8 @@ public class StackPaneLayout implements LayoutManager2 {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void layoutContainer(Container parent) {
-		// TODO Auto-generated method stub
-
-	}
-
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
 	public Dimension maximumLayoutSize(Container target) {
-		return null;
+		return new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE);
 	}
 
 	/**
@@ -101,7 +104,7 @@ public class StackPaneLayout implements LayoutManager2 {
 	 */
 	@Override
 	public float getLayoutAlignmentX(Container target) {
-        return 0.0f;
+		return 0.0f;
 	}
 
 	/**
@@ -109,7 +112,7 @@ public class StackPaneLayout implements LayoutManager2 {
 	 */
 	@Override
 	public float getLayoutAlignmentY(Container target) {
-        return 0.0f;
+		return 0.0f;
 	}
 
 	/**
