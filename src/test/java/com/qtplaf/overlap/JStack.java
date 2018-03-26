@@ -14,19 +14,40 @@
 
 package com.qtplaf.overlap;
 
-import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
+import javax.swing.JComponent;
 
 /**
- * A pane made of itself and a stack of panes with the same size.
+ * A stack of components. This component paints the background and the rest of components, that have the same size as this, paint themselves 
  *
  * @author Miquel Sas
  */
-public class JStackPane extends JPanel {
+public class JStack extends JComponent {
 
 	/**
 	 * Constructor.
 	 */
-	public JStackPane() {
+	public JStack() {
 		super();
+		setLayout(new StackLayout());
+		setBackground(Color.WHITE);
 	}
+
+	@Override
+	public Component add(Component comp) {
+		
+		return super.add(comp);
+	}
+
+	@Override
+	protected void paintComponent(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g;
+		g2.clearRect(0, 0, getWidth(), getHeight());
+		super.paintComponent(g);
+	}
+
 }

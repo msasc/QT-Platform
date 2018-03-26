@@ -54,6 +54,7 @@ public class CMAUpdate {
 		Production,
 		ProductionAD,
 		Quality,
+		Quality64,
 		Incubator;
 	}
 
@@ -100,7 +101,7 @@ public class CMAUpdate {
 		// - quality
 		// - production
 		Argument argEnvironment =
-			new Argument("environment", "Environment: quality/production/incubator", true, false, "quality", "production", "production-ad", "incubator");
+			new Argument("environment", "Environment: quality/production/incubator", true, false, "quality", "quality64", "production", "production-ad", "incubator");
 
 		// Command line argument: target
 		// - local (local image)
@@ -170,6 +171,9 @@ public class CMAUpdate {
 		}
 		if (argMngr.getValue("environment").equals("quality")) {
 			env = Environment.Quality;
+		}
+		if (argMngr.getValue("environment").equals("quality64")) {
+			env = Environment.Quality64;
 		}
 		if (argMngr.getValue("environment").equals("incubator")) {
 			env = Environment.Incubator;
@@ -244,8 +248,8 @@ public class CMAUpdate {
 			if (env == Environment.Production) {
 				drives.addAll(ListUtils.asList("U", "V", "W", "X", "Y", "Z"));
 			} else if (env == Environment.ProductionAD) {
-				drives.addAll(ListUtils.asList("M", "N", "O", "P", "Q", "R", "S", "T"));
-			} else if (env == Environment.Quality) {
+				drives.addAll(ListUtils.asList("L", "M", "N", "O", "P", "Q", "R", "S", "T"));
+			} else if (env == Environment.Quality || env == Environment.Quality64) {
 				drives.addAll(ListUtils.asList("T"));
 			}
 
@@ -786,6 +790,9 @@ public class CMAUpdate {
 		if (env == Environment.Quality) {
 			srcRoot = "c:\\Development\\Eclipse-Workspaces\\Roca\\workspace-development";
 		}
+		if (env == Environment.Quality64) {
+			srcRoot = "c:\\Development\\Eclipse-Workspaces\\Roca\\workspace-development-64";
+		}
 		if (env == Environment.Incubator) {
 			srcRoot = "c:\\Development\\Eclipse-Workspaces\\Roca\\workspace-incubator";
 		}
@@ -805,6 +812,9 @@ public class CMAUpdate {
 		}
 		if (env == Environment.Quality) {
 			dstRoot = "c:\\Development\\Eclipse-Workspaces\\Roca\\cma-development";
+		}
+		if (env == Environment.Quality64) {
+			dstRoot = "c:\\Development\\Eclipse-Workspaces\\Roca\\cma-development-64";
 		}
 		if (env == Environment.Incubator) {
 			dstRoot = "c:\\Development\\Eclipse-Workspaces\\Roca\\cma-incubator";

@@ -25,7 +25,7 @@ public class Random {
 	/**
 	 * Return the next integer.
 	 * 
-	 * @param bound The bouns.
+	 * @param bound The bounds.
 	 * @return The next integer.
 	 */
 	public static int nextInt(int bound) {

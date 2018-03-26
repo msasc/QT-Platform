@@ -59,7 +59,7 @@ public class EditContext {
 	private String alias;
 	/**
 	 * The list of actions that are triggered when the edited value changes. The previous value, current value and this
-	 * edit context are set in the action propoerties.
+	 * edit context are set in the action properties.
 	 */
 	private List<Action> valueActions = new ArrayList<>();
 	/**

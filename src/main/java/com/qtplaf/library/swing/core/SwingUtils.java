@@ -344,7 +344,7 @@ public class SwingUtils {
 	 * @param actionClass The action name.
 	 */
 	public static void executeButtonAction(Component parent, Class<? extends Action> actionClass) {
-		List<Component> components = SwingUtils.getAllComponents(parent, JButton.class);
+		List<Component> components = getAllComponents(parent, JButton.class);
 		for (Component component : components) {
 			JButton button = (JButton) component;
 			Action action = button.getAction();

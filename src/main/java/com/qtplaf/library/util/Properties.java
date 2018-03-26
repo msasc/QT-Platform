@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * A usefull and quite generic properties table with typed accessors for most used objects. Using a map to store the
+ * A useful and quite generic properties table with typed accessors for most used objects. Using a map to store the
  * properties of an object has several advantages, like for instance a natural copy mechanism.
  * 
  * @author Miquel Sas
@@ -38,7 +38,7 @@ public class Properties {
 	}
 
 	/**
-	 * Vlear this properties.
+	 * Clear this properties.
 	 */
 	public void clear() {
 		properties.clear();

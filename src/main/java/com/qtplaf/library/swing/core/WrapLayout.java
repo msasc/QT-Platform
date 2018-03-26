@@ -69,6 +69,7 @@ public class WrapLayout extends FlowLayout {
 	 */
 	@Override
 	public Dimension minimumLayoutSize(Container target) {
+		minimumLayoutSize = getDimension(target, true);
 		return minimumLayoutSize;
 	}
 
@@ -79,7 +80,7 @@ public class WrapLayout extends FlowLayout {
 	 */
 	@Override
 	public Dimension preferredLayoutSize(Container target) {
-		minimumLayoutSize = getDimension(target, true);
+		minimumLayoutSize = getDimension(target, false);
 		return minimumLayoutSize;
 	}
 

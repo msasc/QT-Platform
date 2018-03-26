@@ -108,7 +108,7 @@ public class TableModelRecord extends AbstractTableModel {
 	}
 
 	/**
-	 * The master record used to configurate the model even if the <code>RecordSet</code> has not been set or is empty.
+	 * The master record used to configure the model even if the <code>RecordSet</code> has not been set or is empty.
 	 */
 	private Record masterRecord;
 	/**

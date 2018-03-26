@@ -223,5 +223,18 @@ public class Matrix {
 		}
 		return r;
 	}
+	
+	public static double cosineSimilarity(double[] a, double[] b) {
+		double dotp = 0;
+		double moda = 0;
+		double modb = 0;
+		for (int i = 0; i < a.length; i++) {
+			dotp += (a[i] * b[i]);
+			moda += (a[i] * a[i]);
+			modb += (b[i] * b[i]);
+		}
+		double cos = dotp / (Math.sqrt(moda) * Math.sqrt(modb));
+		return cos;
+	}
 
 }

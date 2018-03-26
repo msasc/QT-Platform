@@ -88,7 +88,7 @@ public class ActionUtils {
 	private static final Integer VISIBLE_IN_POPUP_MENU = index++;
 	/** A boolean to indicate that the action is the default close action in dialog and frames. */
 	private static final Integer DEFAULT_CLOSE_ACTION = index++;
-	/** A an object used as launch arguments fromm the menu. */
+	/** A an object used as launch arguments from the menu. */
 	private static final Integer LAUNCH_ARGS = index++;
 	/** A list of tasks, used in the progress manager to pass the tasks to actions. */
 	private static final Integer TASKS = index++;
@@ -886,7 +886,7 @@ public class ActionUtils {
 		setShortDescription(action, session.getString("actionCloseName"));
 		setAcceleratorKey(action, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0));
 		setSession(action, session);
-		setActionGroup(action, ActionGroup.EXIT);
+		setActionGroup(action, ActionGroup.EDIT);
 		setSmallIcon(action, ImageIconUtils.getImageIcon(Icons.app_16x16_close));
 	}
 
@@ -935,7 +935,7 @@ public class ActionUtils {
 			action,
 			KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, KeyEvent.CTRL_DOWN_MASK | KeyEvent.SHIFT_DOWN_MASK));
 		setSession(action, session);
-		setActionGroup(action, ActionGroup.OPERATION);
+		setActionGroup(action, ActionGroup.EDIT);
 		setSmallIcon(action, ImageIconUtils.getImageIcon(Icons.app_16x16_download));
 	}
 
@@ -982,7 +982,7 @@ public class ActionUtils {
 			action,
 			KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, KeyEvent.CTRL_DOWN_MASK | KeyEvent.SHIFT_DOWN_MASK));
 		setSession(action, session);
-		setActionGroup(action, ActionGroup.OPERATION);
+		setActionGroup(action, ActionGroup.EDIT);
 		setSmallIcon(action, ImageIconUtils.getImageIcon(Icons.app_16x16_purge));
 	}
 

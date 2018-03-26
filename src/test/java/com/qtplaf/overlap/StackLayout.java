@@ -17,22 +17,19 @@ package com.qtplaf.overlap;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Insets;
 import java.awt.LayoutManager2;
-
-import javax.swing.JPanel;
 
 /**
  * The layout manager for the stack pane. It is aimed to be used to paint stock charts by layers.
  *
  * @author Miquel Sas
  */
-public class StackPaneLayout implements LayoutManager2 {
+public class StackLayout implements LayoutManager2 {
 
 	/**
 	 * Constructor.
 	 */
-	public StackPaneLayout() {
+	public StackLayout() {
 	}
 
 	/**
@@ -70,13 +67,12 @@ public class StackPaneLayout implements LayoutManager2 {
 	@Override
 	public void layoutContainer(Container parent) {
 		synchronized (parent.getTreeLock()) {
-			Insets insets = parent.getInsets();
 			for (int i = 0; i < parent.getComponentCount(); i++) {
 				Component component = parent.getComponent(i);
-				int x = insets.left;
-				int y = insets.top;
-				int width = parent.getWidth() - (insets.left + insets.right);
-				int height = parent.getHeight() - (insets.top + insets.bottom);
+				int x = 0;
+				int y = 0;
+				int width = parent.getWidth();
+				int height = parent.getHeight();
 				component.setBounds(x, y, width, height);
 			}
 		}
@@ -104,7 +100,7 @@ public class StackPaneLayout implements LayoutManager2 {
 	 */
 	@Override
 	public float getLayoutAlignmentX(Container target) {
-		return 0.0f;
+		return 0.5f;
 	}
 
 	/**
@@ -112,7 +108,7 @@ public class StackPaneLayout implements LayoutManager2 {
 	 */
 	@Override
 	public float getLayoutAlignmentY(Container target) {
-		return 0.0f;
+		return 0.5f;
 	}
 
 	/**
