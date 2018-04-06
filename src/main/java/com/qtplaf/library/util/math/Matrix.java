@@ -139,11 +139,11 @@ public class Matrix {
 	}
 
 	/**
-	 * Return the Eucliden distance between two vectors.
+	 * Return the Euclidean distance between two vectors.
 	 * 
 	 * @param a Vector a.
 	 * @param b Vector b.
-	 * @return The Eucliden distance.
+	 * @return The Euclidean distance.
 	 */
 	public static double distanceEuclidean(double[] a, double[] b) {
 		if (a.length != b.length) {

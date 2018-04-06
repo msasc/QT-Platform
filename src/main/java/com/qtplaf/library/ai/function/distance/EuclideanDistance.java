@@ -18,7 +18,7 @@ import com.qtplaf.library.ai.function.Distance;
 import com.qtplaf.library.util.math.Matrix;
 
 /**
- * Eucliden distance.
+ * Euclidean distance.
  *
  * @author Miquel Sas
  */

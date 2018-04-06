@@ -368,7 +368,7 @@ public class FileCopy extends TaskRunner {
 	 * Returns the source directory given the destination one, in the list of source-destination directories.
 	 * 
 	 * @param destinationDirectory The destination directory.
-	 * @return The source dirfectory.
+	 * @return The source directory.
 	 */
 	private File getSourceDirectory(File destinationDirectory) {
 		Iterator<File> keys = mapDirectories.keySet().iterator();

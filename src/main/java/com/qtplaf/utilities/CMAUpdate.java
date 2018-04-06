@@ -188,18 +188,18 @@ public class CMAUpdate {
 				fc.setName(getName(env, local, "C"));
 				fc.setDescription(getDescription(env, local, "central"));
 				fc.setPurgeDestination(purge);
-				addLocalLibrary(fc, env, "CMA_Central");
-				addLocalModuleBudgetDictionary(fc, env, "CMA_Central");
-				addLocalModuleBudgetLocal(fc, env, "CMA_Central", false);
-				addLocalModuleMarginsCentral(fc, env, "CMA_Central", true);
-				addLocalModuleMarginsDictionary(fc, env, "CMA_Central", false);
-				addLocalModuleMarginsLibrary(fc, env, "CMA_Central");
-				addLocalModuleMarginsLocal(fc, env, "CMA_Central");
-				addLocalModuleStrategicPlanCentral(fc, env, "CMA_Central");
-				addLocalModuleStrategicPlanLocal(fc, env, "CMA_Central");
-				addLocalModuleWorkingCapitalCentral(fc, env, "CMA_Central");
-				addLocalModuleWorkingCapitalLocal(fc, env, "CMA_Central");
-				addLocalModuleSecurity(fc, env, "CMA_Central");
+				addLibrary(fc, env, "CMA_Central");
+				addModuleBudgetDictionary(fc, env, "CMA_Central");
+				addModuleBudgetLocal(fc, env, "CMA_Central", false);
+				addModuleMarginsCentral(fc, env, "CMA_Central", true);
+				addModuleMarginsDictionary(fc, env, "CMA_Central", false);
+				addModuleMarginsLibrary(fc, env, "CMA_Central");
+				addModuleMarginsLocal(fc, env, "CMA_Central");
+				addModuleStrategicPlanCentral(fc, env, "CMA_Central");
+				addModuleStrategicPlanLocal(fc, env, "CMA_Central");
+				addModuleWorkingCapitalCentral(fc, env, "CMA_Central");
+				addModuleWorkingCapitalLocal(fc, env, "CMA_Central");
+				addModuleSecurity(fc, env, "CMA_Central");
 				tasks.add(fc);
 			}
 
@@ -209,13 +209,13 @@ public class CMAUpdate {
 				fc.setName(getName(env, local, "D"));
 				fc.setDescription(getDescription(env, local, "dictionary"));
 				fc.setPurgeDestination(purge);
-				addLocalLibrary(fc, env, "CMA_Dictionary");
-				addLocalModuleBudgetDictionary(fc, env, "CMA_Dictionary");
-				addLocalModuleMarginsCentral(fc, env, "CMA_Dictionary", false);
-				addLocalModuleMarginsDictionary(fc, env, "CMA_Dictionary", true);
-				addLocalModuleMarginsLibrary(fc, env, "CMA_Dictionary");
-				addLocalModuleMarginsLocal(fc, env, "CMA_Dictionary");
-				addLocalModuleSecurity(fc, env, "CMA_Dictionary");
+				addLibrary(fc, env, "CMA_Dictionary");
+				addModuleBudgetDictionary(fc, env, "CMA_Dictionary");
+				addModuleMarginsCentral(fc, env, "CMA_Dictionary", false);
+				addModuleMarginsDictionary(fc, env, "CMA_Dictionary", true);
+				addModuleMarginsLibrary(fc, env, "CMA_Dictionary");
+				addModuleMarginsLocal(fc, env, "CMA_Dictionary");
+				addModuleSecurity(fc, env, "CMA_Dictionary");
 				tasks.add(fc);
 			}
 
@@ -225,17 +225,17 @@ public class CMAUpdate {
 				fc.setName(getName(env, local, "L"));
 				fc.setDescription(getDescription(env, local, "local"));
 				fc.setPurgeDestination(purge);
-				addLocalLibrary(fc, env, "CMA_Local");
-				addLocalModuleBudgetDictionary(fc, env, "CMA_Local");
-				addLocalModuleBudgetLocal(fc, env, "CMA_Local", true);
-				addLocalModuleMarginsCentral(fc, env, "CMA_Local", false);
-				addLocalModuleMarginsDictionary(fc, env, "CMA_Local", false);
-				addLocalModuleMarginsLibrary(fc, env, "CMA_Local");
-				addLocalModuleMarginsLocal(fc, env, "CMA_Local");
-				addLocalModuleStrategicPlanLocal(fc, env, "CMA_Local");
-				addLocalModuleWorkingCapitalCentral(fc, env, "CMA_Local");
-				addLocalModuleWorkingCapitalLocal(fc, env, "CMA_Local");
-				addLocalModuleSecurity(fc, env, "CMA_Local");
+				addLibrary(fc, env, "CMA_Local");
+				addModuleBudgetDictionary(fc, env, "CMA_Local");
+				addModuleBudgetLocal(fc, env, "CMA_Local", true);
+				addModuleMarginsCentral(fc, env, "CMA_Local", false);
+				addModuleMarginsDictionary(fc, env, "CMA_Local", false);
+				addModuleMarginsLibrary(fc, env, "CMA_Local");
+				addModuleMarginsLocal(fc, env, "CMA_Local");
+				addModuleStrategicPlanLocal(fc, env, "CMA_Local");
+				addModuleWorkingCapitalCentral(fc, env, "CMA_Local");
+				addModuleWorkingCapitalLocal(fc, env, "CMA_Local");
+				addModuleSecurity(fc, env, "CMA_Local");
 				tasks.add(fc);
 			}
 		}
@@ -336,7 +336,7 @@ public class CMAUpdate {
 	 * @param env Environment
 	 * @param module Module (CMA_Central/CMA_Dictionary/CMA_Local)
 	 */
-	private static void addLocalLibrary(FileCopy fc, Environment env, String module) {
+	private static void addLibrary(FileCopy fc, Environment env, String module) {
 		String srcParent = "XVR COM Lib";
 		String dstParent = module + "\\mads\\library";
 		addLocalDirs(fc, env, srcParent, dstParent, "bin");
@@ -346,31 +346,27 @@ public class CMAUpdate {
 	}
 
 	/**
-	 * Add the local margins central module copy task.
+	 * Add the local budget dictionary module copy task.
 	 * 
 	 * @param fc File copy.
 	 * @param env Environment
 	 * @param module Module (CMA_Central/CMA_Dictionary/CMA_Local)
-	 * @param menu A boolean to indicate if the menu file should be copied.
 	 */
-	private static void addLocalModuleMarginsCentral(FileCopy fc, Environment env, String module, boolean menu) {
-		String srcParent = "XVR COM Module Margins Central";
-		String dstParent = module + "\\mads\\module_margins_central";
+	private static void addModuleBudgetDictionary(FileCopy fc, Environment env, String module) {
+		String srcParent = "XVR COM Module Budget Dictionary";
+		String dstParent = module + "\\mads\\module_budget_dictionary";
 		// bin
 		addLocalDirs(fc, env, srcParent, dstParent, "bin");
 		// res
-		addLocalFiles(fc, env, srcParent, dstParent, "res\\Margins_Central_DBSchema.txt");
-		addLocalFiles(fc, env, srcParent, dstParent, "res\\Margins_Central_Descriptor.txt");
-		addLocalFiles(fc, env, srcParent, dstParent, "res\\Margins_Central_Domains.txt");
-		addLocalFiles(fc, env, srcParent, dstParent, "res\\Margins_Central_Strings.txt");
+		addLocalFiles(fc, env, srcParent, dstParent, "res\\Budget_Dictionary_DBSchema.txt");
+		addLocalFiles(fc, env, srcParent, dstParent, "res\\Budget_Dictionary_Descriptor.txt");
+		addLocalFiles(fc, env, srcParent, dstParent, "res\\Budget_Dictionary_Domains.txt");
+		addLocalFiles(fc, env, srcParent, dstParent, "res\\Budget_Dictionary_Strings.txt");
 		// xml
-		addLocalFiles(fc, env, srcParent, dstParent, "xml\\Margins_Central_DBSchema.xml");
-		addLocalFiles(fc, env, srcParent, dstParent, "xml\\Margins_Central_Descriptor.xml");
-		addLocalFiles(fc, env, srcParent, dstParent, "xml\\Margins_Central_Domains.xml");
-		addLocalFiles(fc, env, srcParent, dstParent, "xml\\Margins_Central_Strings.xml");
-		if (menu) {
-			addLocalFiles(fc, env, srcParent, dstParent, "xml\\CMA_Central_Menu.xml");
-		}
+		addLocalFiles(fc, env, srcParent, dstParent, "xml\\Budget_Dictionary_DBSchema.xml");
+		addLocalFiles(fc, env, srcParent, dstParent, "xml\\Budget_Dictionary_Descriptor.xml");
+		addLocalFiles(fc, env, srcParent, dstParent, "xml\\Budget_Dictionary_Domains.xml");
+		addLocalFiles(fc, env, srcParent, dstParent, "xml\\Budget_Dictionary_Strings.xml");
 	}
 
 	/**
@@ -381,7 +377,7 @@ public class CMAUpdate {
 	 * @param module Module (CMA_Central/CMA_Dictionary/CMA_Local)
 	 * @param menu A boolean to indicate if the menu file should be copied.
 	 */
-	private static void addLocalModuleBudgetLocal(FileCopy fc, Environment env, String module, boolean menu) {
+	private static void addModuleBudgetLocal(FileCopy fc, Environment env, String module, boolean menu) {
 		String srcParent = "XVR COM Module Budget Local";
 		String dstParent = module + "\\mads\\module_budget_local";
 		// bin
@@ -402,6 +398,34 @@ public class CMAUpdate {
 	}
 
 	/**
+	 * Add the local margins central module copy task.
+	 * 
+	 * @param fc File copy.
+	 * @param env Environment
+	 * @param module Module (CMA_Central/CMA_Dictionary/CMA_Local)
+	 * @param menu A boolean to indicate if the menu file should be copied.
+	 */
+	private static void addModuleMarginsCentral(FileCopy fc, Environment env, String module, boolean menu) {
+		String srcParent = "XVR COM Module Margins Central";
+		String dstParent = module + "\\mads\\module_margins_central";
+		// bin
+		addLocalDirs(fc, env, srcParent, dstParent, "bin");
+		// res
+		addLocalFiles(fc, env, srcParent, dstParent, "res\\Margins_Central_DBSchema.txt");
+		addLocalFiles(fc, env, srcParent, dstParent, "res\\Margins_Central_Descriptor.txt");
+		addLocalFiles(fc, env, srcParent, dstParent, "res\\Margins_Central_Domains.txt");
+		addLocalFiles(fc, env, srcParent, dstParent, "res\\Margins_Central_Strings.txt");
+		// xml
+		addLocalFiles(fc, env, srcParent, dstParent, "xml\\Margins_Central_DBSchema.xml");
+		addLocalFiles(fc, env, srcParent, dstParent, "xml\\Margins_Central_Descriptor.xml");
+		addLocalFiles(fc, env, srcParent, dstParent, "xml\\Margins_Central_Domains.xml");
+		addLocalFiles(fc, env, srcParent, dstParent, "xml\\Margins_Central_Strings.xml");
+		if (menu) {
+			addLocalFiles(fc, env, srcParent, dstParent, "xml\\CMA_Central_Menu.xml");
+		}
+	}
+
+	/**
 	 * Add the local margins dictionary module copy task.
 	 * 
 	 * @param fc File copy.
@@ -409,7 +433,7 @@ public class CMAUpdate {
 	 * @param module Module (CMA_Central/CMA_Dictionary/CMA_Local)
 	 * @param menu A boolean to indicate if the menu file should be copied.
 	 */
-	private static void addLocalModuleMarginsDictionary(FileCopy fc, Environment env, String module, boolean menu) {
+	private static void addModuleMarginsDictionary(FileCopy fc, Environment env, String module, boolean menu) {
 		String srcParent = "XVR COM Module Margins Dictionary";
 		String dstParent = module + "\\mads\\module_margins_dictionary";
 		// bin
@@ -436,7 +460,7 @@ public class CMAUpdate {
 	 * @param env Environment
 	 * @param module Module (CMA_Central/CMA_Dictionary/CMA_Local)
 	 */
-	private static void addLocalModuleMarginsLibrary(FileCopy fc, Environment env, String module) {
+	private static void addModuleMarginsLibrary(FileCopy fc, Environment env, String module) {
 		String srcParent = "XVR COM Module Margins Library";
 		String dstParent = module + "\\mads\\module_margins_library";
 		// bin
@@ -460,7 +484,7 @@ public class CMAUpdate {
 	 * @param env Environment
 	 * @param module Module (CMA_Central/CMA_Dictionary/CMA_Local)
 	 */
-	private static void addLocalModuleMarginsLocal(FileCopy fc, Environment env, String module) {
+	private static void addModuleMarginsLocal(FileCopy fc, Environment env, String module) {
 		String srcParent = "XVR COM Module Margins Local";
 		String dstParent = module + "\\mads\\module_margins_local";
 		// bin
@@ -484,7 +508,7 @@ public class CMAUpdate {
 	 * @param env Environment
 	 * @param module Module (CMA_Central/CMA_Dictionary/CMA_Local)
 	 */
-	private static void addLocalModuleWorkingCapitalCentral(FileCopy fc, Environment env, String module) {
+	private static void addModuleWorkingCapitalCentral(FileCopy fc, Environment env, String module) {
 		String srcParent = "XVR COM Module WorkingCapital Central";
 		String dstParent = module + "\\mads\\module_wcapital_central";
 		// bin
@@ -508,7 +532,7 @@ public class CMAUpdate {
 	 * @param env Environment
 	 * @param module Module (CMA_Central/CMA_Dictionary/CMA_Local)
 	 */
-	private static void addLocalModuleWorkingCapitalLocal(FileCopy fc, Environment env, String module) {
+	private static void addModuleWorkingCapitalLocal(FileCopy fc, Environment env, String module) {
 		String srcParent = "XVR COM Module WorkingCapital Local";
 		String dstParent = module + "\\mads\\module_wcapital_local";
 		// bin
@@ -532,7 +556,7 @@ public class CMAUpdate {
 	 * @param env Environment
 	 * @param module Module (CMA_Central/CMA_Dictionary/CMA_Local)
 	 */
-	private static void addLocalModuleStrategicPlanCentral(FileCopy fc, Environment env, String module) {
+	private static void addModuleStrategicPlanCentral(FileCopy fc, Environment env, String module) {
 		String srcParent = "XVR COM Module StrategicPlan Central";
 		String dstParent = module + "\\mads\\module_stplan_central";
 		// bin
@@ -556,7 +580,7 @@ public class CMAUpdate {
 	 * @param env Environment
 	 * @param module Module (CMA_Central/CMA_Dictionary/CMA_Local)
 	 */
-	private static void addLocalModuleStrategicPlanLocal(FileCopy fc, Environment env, String module) {
+	private static void addModuleStrategicPlanLocal(FileCopy fc, Environment env, String module) {
 		String srcParent = "XVR COM Module StrategicPlan Local";
 		String dstParent = module + "\\mads\\module_stplan_local";
 		// bin
@@ -574,37 +598,13 @@ public class CMAUpdate {
 	}
 
 	/**
-	 * Add the local budget dictionary module copy task.
-	 * 
-	 * @param fc File copy.
-	 * @param env Environment
-	 * @param module Module (CMA_Central/CMA_Dictionary/CMA_Local)
-	 */
-	private static void addLocalModuleBudgetDictionary(FileCopy fc, Environment env, String module) {
-		String srcParent = "XVR COM Module Budget Dictionary";
-		String dstParent = "CMA_Central\\mads\\module_budget_dictionary";
-		// bin
-		addLocalDirs(fc, env, srcParent, dstParent, "bin");
-		// res
-		addLocalFiles(fc, env, srcParent, dstParent, "res\\Budget_Dictionary_DBSchema.txt");
-		addLocalFiles(fc, env, srcParent, dstParent, "res\\Budget_Dictionary_Descriptor.txt");
-		addLocalFiles(fc, env, srcParent, dstParent, "res\\Budget_Dictionary_Domains.txt");
-		addLocalFiles(fc, env, srcParent, dstParent, "res\\Budget_Dictionary_Strings.txt");
-		// xml
-		addLocalFiles(fc, env, srcParent, dstParent, "xml\\Budget_Dictionary_DBSchema.xml");
-		addLocalFiles(fc, env, srcParent, dstParent, "xml\\Budget_Dictionary_Descriptor.xml");
-		addLocalFiles(fc, env, srcParent, dstParent, "xml\\Budget_Dictionary_Domains.xml");
-		addLocalFiles(fc, env, srcParent, dstParent, "xml\\Budget_Dictionary_Strings.xml");
-	}
-
-	/**
 	 * Add the local security module copy task.
 	 * 
 	 * @param fc File copy.
 	 * @param env Environment
 	 * @param module Module (CMA_Central/CMA_Dictionary/CMA_Local)
 	 */
-	private static void addLocalModuleSecurity(FileCopy fc, Environment env, String module) {
+	private static void addModuleSecurity(FileCopy fc, Environment env, String module) {
 		String srcParent = "XVR COM Module Seguridad";
 		String dstParent = module + "\\mads\\module_security";
 		// bin
