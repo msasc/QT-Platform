@@ -26,6 +26,7 @@ import com.qtplaf.library.app.Session;
 import com.qtplaf.library.database.Persistor;
 import com.qtplaf.library.database.Record;
 import com.qtplaf.library.swing.ActionUtils;
+import com.qtplaf.library.swing.action.ActionSelectColumns;
 import com.qtplaf.library.swing.core.JOptionFrame;
 import com.qtplaf.library.swing.core.JPanelTableRecord;
 import com.qtplaf.library.swing.core.JTableRecord;
@@ -104,6 +105,7 @@ public class ActionAvailableInstruments extends AbstractAction {
 				frame.setTitle(server.getName() + " " + session.getString("qtMenuServersAvInst").toLowerCase());
 				frame.setComponent(panelTableRecord);
 				frame.addAction(new ActionClose(session));
+				frame.addAction(new ActionSelectColumns(tableRecord));
 				frame.setSize(0.6, 0.8);
 				frame.showFrame();
 

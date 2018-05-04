@@ -274,7 +274,7 @@ public class JPanelColumns extends JPanel {
 	}
 
 	/**
-	 * Mouse handle to handle doble cliks in left and right tables.
+	 * Mouse handle to handle double clicks in left and right tables.
 	 */
 	class DoubleClickHandler extends MouseHandler {
 		@Override

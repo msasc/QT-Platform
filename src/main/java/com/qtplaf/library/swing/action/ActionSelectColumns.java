@@ -79,7 +79,7 @@ public class ActionSelectColumns extends AbstractAction {
 	}
 
 	/**
-	 * Peerform the action.
+	 * Perform the action.
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {

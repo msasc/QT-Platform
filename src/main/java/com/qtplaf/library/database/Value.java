@@ -111,7 +111,7 @@ public class Value implements Comparable<Object> {
 	 */
 	public Value(boolean b) {
 		super();
-		value = b;
+		value = Boolean.valueOf(b);
 		type = Types.BOOLEAN;
 	}
 
