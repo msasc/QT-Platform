@@ -56,8 +56,6 @@ import com.qtplaf.library.swing.ActionGroup;
 import com.qtplaf.library.swing.ActionUtils;
 import com.qtplaf.library.swing.EditField;
 import com.qtplaf.library.util.NumberUtils;
-import com.qtplaf.library.util.StringUtils;
-import com.qtplaf.library.util.TextServer;
 import com.qtplaf.library.util.list.ListUtils;
 
 /**
@@ -100,7 +98,7 @@ public class SwingUtils {
 	 * <tt>JMenuItem</tt>.
 	 * 
 	 * @param component The parent component.
-	 * @return The las action group or null.
+	 * @return The last action group or null.
 	 */
 	private static ActionGroup getLastActionGroup(JComponent component) {
 		if (!(component instanceof JPopupMenu) && !(component instanceof JMenuItem)) {
@@ -141,7 +139,7 @@ public class SwingUtils {
 	 * Returns the menu item.
 	 * 
 	 * @param action The source action.
-	 * @return The menu iem.
+	 * @return The menu item.
 	 */
 	public static JMenuItem getMenuItem(Action action) {
 		JMenuItem menuItem = new JMenuItem();
@@ -159,14 +157,16 @@ public class SwingUtils {
 	 * Returns the menu item.
 	 * 
 	 * @param button The source button.
-	 * @return The menu iem.
+	 * @return The menu item.
 	 */
 	public static JMenuItem getMenuItem(JButton button) {
 		JMenuItem menuItem = new JMenuItem();
 		Action action = button.getAction();
 		menuItem.addActionListener(action);
 		menuItem.setIcon(button.getIcon());
-		menuItem.setText(button.getText());
+//		menuItem.setText(button.getText());
+		menuItem.setText(ActionUtils.getSourceName(action));
+		menuItem.setAccelerator(ActionUtils.getAcceleratorKey(action));
 		menuItem.setToolTipText(button.getToolTipText());
 		menuItem.setVisible(button.isVisible());
 		menuItem.setEnabled(button.isEnabled());
@@ -263,21 +263,34 @@ public class SwingUtils {
 	 * @return The key stroke representation translated.
 	 */
 	public static String translate(KeyStroke keyStroke, Locale locale) {
-		String[] tokens = StringUtils.parse(StringUtils.toString(keyStroke), " ");
-		StringBuilder b = new StringBuilder();
-		for (int i = 0; i < tokens.length; i++) {
-			String token = tokens[i];
-			String key = "key_" + token;
-			String translated = TextServer.getString(key, locale);
-			if (translated.equals(TextServer.notFoundKey(key))) {
-				translated = token;
-			}
-			if (i > 0) {
-				b.append(" ");
-			}
-			b.append(translated);
-		}
-		return b.toString();
+//		String[] tokens = StringUtils.parse(StringUtils.toString(keyStroke), " ");
+//		if (tokens.length > 1) {
+//			Arrays.sort(tokens, 0, tokens.length - 1);
+//		}
+//		StringBuilder b = new StringBuilder();
+//		for (int i = 0; i < tokens.length; i++) {
+//			String token = tokens[i];
+//			String key = "key_" + token;
+//			String translated = TextServer.getString(key, locale);
+//			if (translated.equals(TextServer.notFoundKey(key))) {
+//				translated = token;
+//			}
+//			if (i > 0) {
+//				b.append("+");
+//			}
+//			b.append(translated);
+//		}
+//		return b.toString();
+        String acceleratorText = "";
+        if (keyStroke != null) {
+            int modifiers = keyStroke.getModifiers();
+            if (modifiers > 0) {
+                acceleratorText = KeyEvent.getKeyModifiersText(modifiers);
+                acceleratorText += "+";
+            }
+            acceleratorText += KeyEvent.getKeyText(keyStroke.getKeyCode());
+        }
+        return acceleratorText;
 	}
 
 	/**
@@ -1025,6 +1038,7 @@ public class SwingUtils {
 					ActionEvent actionEvent = new ActionEvent(e.getSource(), 0, null, modifiers);
 					action.actionPerformed(actionEvent);
 				}
+				e.consume();
 			}
 
 		}

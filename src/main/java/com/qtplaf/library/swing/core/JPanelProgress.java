@@ -62,7 +62,7 @@ import com.qtplaf.library.util.Timestamp;
  * A panel aimed to monitor the progress of a time consuming task normally executed in thread separated from the event
  * dispatch thread.
  * <p>
- * The panel has the following components layed vertically:
+ * The panel has the following components laid vertically:
  * <ul>
  * <li>An optional task label to describe the task being executed.</li>
  * <li>An optional processStatus label to describe initial counting, the current completion percentage, with optional
@@ -1438,7 +1438,7 @@ public class JPanelProgress extends JPanel {
 	 * Returns the menu item.
 	 * 
 	 * @param button The source button.
-	 * @return The menu iem.
+	 * @return The menu item.
 	 */
 	private JMenuItem getMenuItem(JButton button) {
 		JMenuItem menuItem = new JMenuItem();

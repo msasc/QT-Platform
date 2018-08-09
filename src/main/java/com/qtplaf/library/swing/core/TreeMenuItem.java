@@ -356,7 +356,7 @@ public class TreeMenuItem {
 					ActionUtils.setLaunchArgs(action, getLaunchArgs());
 				}
 
-				// Access mode readonly to edit mode readonly.
+				// Access mode read-only to edit mode read-only.
 				AccessMode accessMode = getSession().getAccessMode(getAccessKey());
 				if (accessMode.equals(AccessMode.READ_ONLY)) {
 					ActionUtils.setEditMode(action, EditMode.ReadOnly);

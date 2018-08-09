@@ -62,7 +62,7 @@ public abstract class Propagation extends LearningMethod {
 			// Iterate learning data.
 			for (int i = 0; i < source.size(); i++) {
 
-				// Retrive the pattern.
+				// Retrieve the pattern.
 				Pattern pattern = source.get(i);
 				double[] patternInputs = pattern.getInputs();
 

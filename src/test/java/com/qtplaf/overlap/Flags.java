@@ -15,13 +15,13 @@
 package com.qtplaf.overlap;
 
 /**
- * Utility to use flags with an integer.
+ * Utility to use flags within an integer. Only 31 (0 to 30) flags can be set.
  *
  * @author Miquel Sas
  */
 public class Flags {
 
-	public static long set(long flags, int flag, boolean b) {
+	public static long set(int flags, int flag, boolean b) {
         if(b) {
             flags |= (1 << flag);
         } else {
@@ -30,7 +30,7 @@ public class Flags {
 		return flags;
 	}
     
-	public static boolean get(long flags, int flag) {
+	public static boolean get(int flags, int flag) {
         int mask = (1 << flag);
         return ((flags & mask) == mask);
     }

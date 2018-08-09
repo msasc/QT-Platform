@@ -109,6 +109,7 @@ public class QTPlatform {
 		TextServer.addBaseResource("resources/StringsLibrary.xml");
 		TextServer.addBaseResource("resources/StringsQTPlatform.xml");
 		Session session = new Session(Locale.UK);
+		Locale.setDefault(Locale.UK);
 
 		// Frame menu.
 		FrameMenu frameMenu = new FrameMenu(session);

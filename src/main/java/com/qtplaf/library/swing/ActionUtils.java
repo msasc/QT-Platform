@@ -14,6 +14,7 @@
 
 package com.qtplaf.library.swing;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.List;
@@ -23,6 +24,7 @@ import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.KeyStroke;
+import javax.swing.UIManager;
 
 import com.qtplaf.library.app.Session;
 import com.qtplaf.library.database.Record;
@@ -678,13 +680,16 @@ public class ActionUtils {
 				b.append("<html>");
 				b.append(sourceName);
 				b.append(" ");
-				b.append("<font color=\"gray\">");
-				// b.append("&lt;");
+				b.append("<small>");
+				Color color = UIManager.getColor("MenuItem.acceleratorForeground");
+				b.append("<span style=\"color:rgb(");
+				b.append(color.getRed()+","+color.getGreen()+","+color.getBlue());
+				b.append(")\">");
 				b.append("(");
 				b.append(SwingUtils.translate(keyStroke, locale));
 				b.append(")");
-				// b.append("&gt;");
-				b.append("</font>");
+				b.append("</span>");
+				b.append("</small>");
 				b.append("</html>");
 			}
 		} else {
@@ -728,7 +733,7 @@ public class ActionUtils {
 	 * Returns the chart plotter.
 	 * 
 	 * @param action The action where the chart should be installed.
-	 * @return The chart plotteer.
+	 * @return The chart plotter.
 	 */
 	public static JChartPlotter getChartPlotter(Action action) {
 		return (JChartPlotter) getProperties(action).getObject(CHART_PLOTTER);

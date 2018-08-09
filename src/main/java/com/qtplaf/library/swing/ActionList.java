@@ -265,12 +265,10 @@ public class ActionList {
 
 	/**
 	 * Creates the button that handles the argument action, with the action correctly parameterized to perform as
-	 * expected by this system behaviour.
-	 * <p>
-	 * If the action has no name nor source name, but has an icon, a small utton is created.
+	 * expected by this system behavior.
 	 * 
 	 * @param action The source action.
-	 * @return Tna action button.
+	 * @return The action button.
 	 */
 	private JButton createStandardButton(Action action) {
 

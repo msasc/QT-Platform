@@ -36,6 +36,7 @@ import com.qtplaf.library.database.Value;
 import com.qtplaf.library.database.ValueMap;
 import com.qtplaf.library.database.View;
 import com.qtplaf.library.trading.data.info.DataInfo;
+import com.qtplaf.library.util.map.CacheMap;
 
 /**
  * A persistor for elements of timed <tt>Data</tt>. The general contract for a persistor of timed <tt>Data</tt> is that
@@ -95,7 +96,11 @@ public class DataPersistor implements Persistor {
 	 * Map record data indexes to record field indexes. Key is the field index and value is the data index.
 	 */
 	private Map<Integer, Integer> mapRecordIndexes;
-
+	
+	private CacheMap<Long, Record> mapRecords = new CacheMap<>(5000);
+	
+	private int pageSize = 100;
+	
 	/**
 	 * Constructor.
 	 * 
@@ -188,7 +193,7 @@ public class DataPersistor implements Persistor {
 			throw new IllegalArgumentException();
 		}
 
-		// The second fied must be of type <tt>Long</tt>.
+		// The second field must be of type <tt>Long</tt>.
 		if (!persistor.getField(1).isLong()) {
 			throw new IllegalArgumentException();
 		}
@@ -302,21 +307,36 @@ public class DataPersistor implements Persistor {
 	 * @return The persistor index.
 	 */
 	public Record getRecord(Long index) {
-		Criteria criteria = new Criteria();
-		criteria.add(Condition.fieldEQ(getField(0), new Value(index)));
-		Record record = null;
-		RecordIterator iter = null;
-		try {
-			iter = persistor.iterator(criteria);
-			if (iter.hasNext()) {
-				record = iter.next();
+		Record record = mapRecords.get(index);
+		if (record != null) {
+			return record;
+		}
+//		Criteria criteria = new Criteria();
+//		criteria.add(Condition.fieldEQ(getField(0), new Value(index)));
+//		RecordIterator iter = null;
+//		try {
+//			iter = persistor.iterator(criteria);
+//			if (iter.hasNext()) {
+//				record = iter.next();
+//				mapRecords.put(index, record);
+//			}
+//		} catch (PersistorException exc) {
+//			LOGGER.catching(exc);
+//		} finally {
+//			close(iter);
+//		}
+		RecordSet page = getPage(index);
+		if (!page.isEmpty()) {
+			record = page.get(0);
+			for (int i = 0; i < page.size(); i++) {
+				mapRecords.put(index+i, page.get(i));
 			}
-		} catch (PersistorException exc) {
-			LOGGER.catching(exc);
-		} finally {
-			close(iter);
 		}
 		return record;
+	}
+	
+	public RecordSet getPage(Long index) {
+		return getPage(index, pageSize);
 	}
 
 	/**

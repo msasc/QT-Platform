@@ -31,7 +31,7 @@ import com.qtplaf.library.task.Task;
  * Progress manager utility.
  * <p>
  * To perform actions or checkings prior to close the frame, add the actions to the list of pre-close actions. If the
- * closing should be cancelled, the action must thow any kind of exception, normally <tt>java.lang</tt> exception
+ * closing should be cancelled, the action must throw any kind of exception, normally <tt>java.lang</tt> exception
  * compatible with the <tt>actionPerformed</tt> method like for instance <tt>IllegalStateException</tt>.
  * 
  * @author Miquel Sas
@@ -162,7 +162,7 @@ public class ProgressManager {
 	}
 
 	/**
-	 * Show the frame resizable.
+	 * Show the frame.
 	 */
 	public void showFrame() {
 		frame.setTitle(title);
