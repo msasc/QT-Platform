@@ -207,7 +207,7 @@ public class JLookupRecords extends JDialogSession {
 	}
 
 	/**
-	 * Sets the selection modethat will apply when selecting records.
+	 * Sets the selection mode that will apply when selecting records.
 	 * 
 	 * @param selectionMode The selection mode that will apply when selecting records.
 	 */
@@ -245,7 +245,7 @@ public class JLookupRecords extends JDialogSession {
 	}
 
 	/**
-	 * Set the list of prevously selected records.
+	 * Set the list of previously selected records.
 	 * 
 	 * @param records The list of selected records.
 	 */

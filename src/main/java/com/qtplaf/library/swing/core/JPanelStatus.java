@@ -26,7 +26,7 @@ import javax.swing.JProgressBar;
 /**
  * A status panel that shows a status line and optionally, at its right, a progress bar.
  * 
- * @author Mique Sas
+ * @author Miquel Sas
  */
 public class JPanelStatus extends JPanel implements StatusBar {
 
@@ -130,7 +130,7 @@ public class JPanelStatus extends JPanel implements StatusBar {
 	}
 	
 	/**
-	 * Clearthe status text.
+	 * Clear the status text.
 	 */
 	@Override
 	public void clearStatus() {

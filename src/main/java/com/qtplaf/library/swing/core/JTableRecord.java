@@ -40,7 +40,6 @@ import com.qtplaf.library.database.Order;
 import com.qtplaf.library.database.PageRecordSet;
 import com.qtplaf.library.database.Record;
 import com.qtplaf.library.database.Value;
-import com.qtplaf.library.swing.EditContext;
 import com.qtplaf.library.swing.event.MouseHandler;
 import com.qtplaf.library.util.StringUtils;
 import com.qtplaf.library.util.list.ListUtils;
@@ -50,9 +49,9 @@ import com.qtplaf.library.util.list.ListUtils;
  * throws a <code>ClassCastException</code>.
  * <p>
  * When <b>sorting</b> is enabled, clicking the header out of the resize area and without the control mask sorts the
- * table by the column, starting ascending and int subsequent clicks switching between asending and descending. Using
+ * table by the column, starting ascending and int subsequent clicks switching between ascending and descending. Using
  * the control mask, adds the column as an order segment to the current order if not present in the order, and
- * subsequents clicks with the control mask switch the column between ascending and descending.
+ * subsequent clicks with the control mask switch the column between ascending and descending.
  * 
  * @author Miquel Sas
  */
@@ -100,7 +99,7 @@ public class JTableRecord extends JTable {
 		 * limit of two subsequent columns.
 		 * 
 		 * @param p The mouse point.
-		 * @return The coumn number to resize or -1 if none applicable.
+		 * @return The column number to resize or -1 if none applicable.
 		 */
 		private int getColumnToResize(Point p) {
 			int column = getTableHeader().columnAtPoint(p);
@@ -315,9 +314,9 @@ public class JTableRecord extends JTable {
 			tableColumn.setHeaderValue(field.getDisplayHeader());
 
 			// Set the cell editor.
-			EditContext editContext = new EditContext(getSession());
-			editContext.setRecord(tableModelRecord.getMasterRecord());
-			editContext.setAlias(field.getAlias());
+			// EditContext editContext = new EditContext(getSession());
+			// editContext.setRecord(tableModelRecord.getMasterRecord());
+			// editContext.setAlias(field.getAlias());
 
 			// DefaultCellEditor cellEditor = null;
 			// if (editContext.getField().isBoolean()) {

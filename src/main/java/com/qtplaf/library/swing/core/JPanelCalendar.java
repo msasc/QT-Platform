@@ -416,7 +416,7 @@ public class JPanelCalendar extends JPanel {
 	}
 
 	/**
-	 * Inititalizes the main panel.
+	 * Initializes the main panel.
 	 */
 	private void initializeMainPanel() {
 		setName("JPanelCalendar");
